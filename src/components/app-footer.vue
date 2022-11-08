@@ -34,16 +34,17 @@
       <div class="container">
         <div class="slogan">
           <a href="javascrpt:;">
-            <i class="iconfront icon-footer01"></i>
+            <i class="iconfont icon-footer01"></i>
             <span>价格亲民</span>
           </a>
-          <a href="javascript:;">
-            <i class="iconfront icon-footer02"></i>
+          <a href="javascrpt:;">
+            <i class="iconfont icon-footer02"></i>
             <span>物流快捷</span>
           </a>
-          <a href="javascript:;"
-            ><i><span>品质新鲜</span></i></a
-          >
+          <a href="javascrpt:;">
+            <i class="iconfont icon-footer03"></i>
+            <span>品质新鲜</span>
+          </a>
         </div>
       </div>
     </div>

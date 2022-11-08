@@ -23,12 +23,16 @@
 <script setup lang="ts">
 import { useCategoryStore } from '@/store';
 import { storeToRefs } from 'pinia';
-import { computed, isRef } from 'vue';
+import type { CategoryResult } from '@/types/category';
+import { computed, type ComputedRef } from 'vue';
 
 const categoryStore = useCategoryStore();
 const { list } = storeToRefs(categoryStore);
 const { show, hide } = categoryStore;
-const useList = computed(() => list.value);
+
+let useList: ComputedRef<CategoryResult[]> = computed(
+  () => list.value as CategoryResult[]
+);
 </script>
 
 <style scoped lang="less">
@@ -81,7 +85,7 @@ const useList = computed(() => list.value);
   ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    // justify-content: space-around;
     padding: 0 70px;
     align-items: center;
     height: 132px;

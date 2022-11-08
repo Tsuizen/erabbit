@@ -1,4 +1,3 @@
-import type { CategoryResult } from '@/types';
 import request from '@/utils/request';
 
 /* 获取首页头部分类数据 */
