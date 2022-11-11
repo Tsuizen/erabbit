@@ -17,7 +17,7 @@ interface Props {
   animated: boolean;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   bg: '#efefef',
   width: '100px',
   height: '100px',

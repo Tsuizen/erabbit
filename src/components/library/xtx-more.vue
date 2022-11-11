@@ -10,7 +10,7 @@ interface Props {
   path: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   path: '/'
 });
 </script>

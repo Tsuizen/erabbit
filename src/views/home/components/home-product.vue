@@ -3,16 +3,21 @@
     <HomePanel :title="cate.name" v-for="cate in list" :key="cate.id">
       <template v-slot:right>
         <div class="sub">
-          <RouterLink v-for="sub in cate.children" :key="sub.id" :to="`/category/sub/${sub.id}`">{{sub.name}}</RouterLink>
+          <RouterLink
+            v-for="sub in cate.children"
+            :key="sub.id"
+            :to="`/category/sub/${sub.id}`"
+            >{{ sub.name }}</RouterLink
+          >
         </div>
         <XtxMore :path="`/category/${cate.id}`" />
       </template>
       <div class="box">
         <RouterLink class="cover" :to="`/category/${cate.id}`">
-          <img v-lazy="cate.picture" alt="">
+          <img v-lazy="cate.picture" alt="" />
           <strong class="label">
-            <span>{{cate.name}}馆</span>
-            <span>{{cate.saleInfo}}</span>
+            <span>{{ cate.name }}馆</span>
+            <span>{{ cate.saleInfo }}</span>
           </strong>
         </RouterLink>
         <ul class="goods-list">
@@ -79,16 +84,16 @@ const list: Ref<GoodsResult[]> = result;
         position: absolute;
         left: 0;
         top: 50%;
-        transform: translate3d(0,-50%,0);
+        transform: translate3d(0, -50%, 0);
         span {
           text-align: center;
           &:first-child {
             width: 76px;
-            background: rgba(0,0,0,.9);
+            background: rgba(0, 0, 0, 0.9);
           }
           &:last-child {
             flex: 1;
-            background: rgba(0,0,0,.7);
+            background: rgba(0, 0, 0, 0.7);
           }
         }
       }
@@ -102,7 +107,7 @@ const list: Ref<GoodsResult[]> = result;
         height: 300px;
         margin-right: 10px;
         margin-bottom: 10px;
-        &:nth-last-child(-n+4) {
+        &:nth-last-child(-n + 4) {
           margin-bottom: 0;
         }
         &:nth-child(4n) {

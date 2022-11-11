@@ -7,9 +7,9 @@
 <script setup lang="ts">
 import { findBanner } from '@/api/home';
 import type { BannerResult } from '@/types/home';
-import { ref, type Ref } from 'vue';
+import { ref } from 'vue';
 
-const sliders: Ref<BannerResult[]> = ref([]);
+const sliders = ref<BannerResult[]>([]);
 findBanner().then((data) => {
   sliders.value = data.result;
 });

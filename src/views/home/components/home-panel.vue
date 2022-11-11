@@ -19,8 +19,7 @@ interface Props {
   title: string;
   subTitle: string;
 }
-
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   title: '',
   subTitle: ''
 });

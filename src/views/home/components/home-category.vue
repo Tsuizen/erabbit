@@ -79,7 +79,7 @@ const categoryStore = useCategoryStore();
 const { list } = storeToRefs(categoryStore);
 
 const menuList = computed(() => {
-  if (isCategoryResult(list.value) && Array.isArray(list.value)) {
+  if (isCategoryResult(list.value)) {
     const tempList: CategoryResult[] = list.value.map(
       (item: CategoryResult) => {
         return {
@@ -101,8 +101,6 @@ const categoryId = ref('');
 const currCategory = computed(() => {
   return menuList.value?.find((item) => item.id === categoryId.value);
 });
-
-
 
 findBrand(6).then((data) => {
   brand.brands = data.result;

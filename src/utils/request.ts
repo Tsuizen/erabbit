@@ -54,7 +54,7 @@ instance.interceptors.response.use(
 export default <T = any>(
   url: string,
   method: string,
-  submitData?: T
+  submitData?: any
 ): Promise<T> => {
   return instance({
     url,

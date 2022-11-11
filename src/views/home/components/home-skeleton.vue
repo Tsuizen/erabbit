@@ -25,7 +25,7 @@ interface Props {
   bg: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   bg: '#fff'
 });
 </script>
