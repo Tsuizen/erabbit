@@ -13,7 +13,7 @@ export default {
     // 2. 获取默认插槽内容
     // 3. 去除xtx-bread-item组件的i标签，由render函数来组织
     // 4. 遍历插槽中的item，得到一个动态创建的节点，最后一个item不加i标签
-    // 5. 把动态创建的节点渲染再xtx-bread标签中
+    // 5. 把动态创建的节点渲染在xtx-bread标签中
     const items = this.$slots.default!();
     const dymanicItems: VNode[] = [];
     console.log(items);

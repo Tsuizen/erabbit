@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     XtxBreadItem: typeof import('./components/library/xtx-bread-item.vue')['default']
     XtxCarousel: typeof import('./components/library/xtx-carousel.vue')['default']
     XtxCheckbox: typeof import('./components/library/xtx-checkbox.vue')['default']
+    XtxCity: typeof import('./components/library/xtx-city.vue')['default']
     XtxInfiniteLoading: typeof import('./components/library/xtx-infinite-loading.vue')['default']
     XtxMore: typeof import('./components/library/xtx-more.vue')['default']
     XtxSkeleton: typeof import('./components/library/xtx-skeleton.vue')['default']
