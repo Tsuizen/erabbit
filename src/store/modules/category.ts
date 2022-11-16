@@ -1,7 +1,7 @@
 import { findAllCategory } from '@/api/category';
 import { topCategory } from '@/api/constant';
 import { defineStore } from 'pinia';
-import { ref, type Ref } from 'vue';
+import { ref } from 'vue';
 import type { CategoryResult } from '@/types/category';
 
 export function isCategoryResult(
@@ -15,7 +15,7 @@ const categoryStore = defineStore(
   () => {
     // 如果默认是[]数组，看不见默认的9个分类，等加载完数据才能看到
     // 所以常量数据生成一个默认的顶级数组，不会产生空白
-    const list: Ref<CategoryResult[]> | Ref<{ name: string }[]> = ref(
+    const list = ref<CategoryResult[] | { name: string }[]>(
       topCategory.map((item) => ({ name: item }))
     );
 

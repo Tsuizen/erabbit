@@ -20,6 +20,9 @@
         </div>
         <div class="spec">
           <GoodsName :goods="goods" />
+          <!-- 规格组件 -->
+          <GoodsSku :goods="goods" />
+          
         </div>
       </div>
       <!-- 商品推荐 -->
@@ -44,11 +47,61 @@ import GoodsRelevant from './components/goods-relevant.vue';
 import GoodsImage from './components/goods-image.vue';
 import GoodsSales from './components/goods-sales.vue';
 import GoodsName from './components/goods-name.vue';
+import GoodsSku from './components/goods-sku.vue';
 import { useGoods } from '@/hooks/index';
 import type { GoodsResult } from '@/types/goods';
-import type { Ref } from 'vue';
+import type { SkuInfo } from './goods';
+import { provide, ref, type Ref } from 'vue';
+import { useCartStore } from '@/store';
+import { storeToRefs } from 'pinia';
+import Message from '@/components/library/Message';
 
 const goods: Ref<GoodsResult> = useGoods();
+// 选择的数量
+const num = ref(1);
+
+const currSku = ref<SkuInfo>();
+
+const changeSku = (sku: SkuInfo) => {
+  // 修改商的现价原价信息
+  if (sku.skuId) {
+    goods.value.price = sku.price;
+    goods.value.oldPrice = sku.oldPrice;
+    goods.value.inventory = sku.inventory;
+  }
+  currSku.value = sku;
+};
+
+// 提供goods数据给后代组件使用
+provide('goods', goods);
+
+const cartStore = useCartStore();
+const { list } = storeToRefs(cartStore);
+
+// 加入购物车
+const insertCart = () => {
+  if (currSku.value && currSku.value.skuId) {
+    const { skuId, specsText: attrsText, inventory: stock } = currSku.value;
+    const { id, name, price, mainPictures } = goods.value;
+
+    cartStore.insertCart({
+      skuId,
+      attrsText,
+      stock,
+      id,
+      name,
+      price,
+      nowPrice: +price,
+      picture: mainPictures[0],
+      selected: true,
+      isEffective: true,
+      count: num.value
+    });
+    Message({ type: 'success', text: '加入购物车成功' });
+  } else {
+    Message({ text: '请选择完整规格' });
+  }
+};
 </script>
 
 <style scoped lang="less">

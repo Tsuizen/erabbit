@@ -8,6 +8,34 @@ export interface UserAddress {
   fullLocation: string;
 }
 
+export interface SkuInGoods {
+  id: string;
+  skuCode: string;
+  price: string;
+  oldPrice: string;
+  inventory: number;
+  picture: string;
+  specs: {
+    name: string;
+    valueName: string;
+  }[];
+}
+
+export interface SpecsInGoods {
+  name: string;
+  id: string;
+  values: SpecsValues[];
+}
+
+export interface SpecsValues {
+  name: string;
+  picture: string;
+  available?: boolean;
+  desc: string;
+  selected: boolean;
+  disabled: boolean;
+}
+
 export interface GoodsResult {
   id: string;
   name: string;
@@ -34,27 +62,8 @@ export interface GoodsResult {
   mainVideos: string[];
   videoScale: number;
   mainPictures: string[];
-  specs: {
-    name: string;
-    values: {
-      name: string;
-      picture: string;
-      available?: boolean;
-      desc: string;
-    }[];
-  }[];
-  skus: {
-    id: string;
-    skuCode: string;
-    price: string;
-    oldPrice: string;
-    inventory: number;
-    picture: string;
-    specs: {
-      name: string;
-      valueName: string;
-    };
-  }[];
+  specs: SpecsInGoods[];
+  skus: SkuInGoods[];
   categories: {
     id: string;
     name: string;

@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     XtxCheckbox: typeof import('./components/library/xtx-checkbox.vue')['default']
     XtxCity: typeof import('./components/library/xtx-city.vue')['default']
     XtxInfiniteLoading: typeof import('./components/library/xtx-infinite-loading.vue')['default']
+    XtxMessage: typeof import('./components/library/xtx-message.vue')['default']
     XtxMore: typeof import('./components/library/xtx-more.vue')['default']
     XtxSkeleton: typeof import('./components/library/xtx-skeleton.vue')['default']
   }
