@@ -39,12 +39,15 @@
       <div class="goods-footer">
         <div class="goods-article">
           <!-- 商品评价 -->
-          <div class="goods-tabs"></div>
+          <GoodsTabs />
           <!-- 注意事项 -->
-          <div class="goods-warn"></div>
+          <GoodsWarn />
         </div>
         <!-- 24小时热榜+专题推荐 -->
-        <div class="aside"></div>
+        <div class="aside">
+          <GoodsHot />
+          <GoodsHot type="2" />
+        </div>
       </div>
     </div>
   </div>
@@ -56,13 +59,16 @@ import GoodsImage from './components/goods-image.vue';
 import GoodsSales from './components/goods-sales.vue';
 import GoodsName from './components/goods-name.vue';
 import GoodsSku from './components/goods-sku.vue';
-import { useGoods } from '@/hooks/index';
+import GoodsTabs from './components/goods-tabs.vue';
+import GoodsHot from './components/goods-hot.vue';
+import GoodsWarn from './components/goods-warn.vue';
+import Message from '@/components/library/Message';
 import type { GoodsResult } from '@/types/goods';
 import type { SkuInfo } from './goods';
+import { useGoods } from '@/hooks/index';
 import { provide, ref, type Ref } from 'vue';
 import { useCartStore } from '@/store';
 import { storeToRefs } from 'pinia';
-import Message from '@/components/library/Message';
 
 const goods: Ref<GoodsResult> = useGoods();
 // 选择的数量

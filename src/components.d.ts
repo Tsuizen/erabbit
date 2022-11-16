@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     XtxMore: typeof import('./components/library/xtx-more.vue')['default']
     XtxNumber: typeof import('./components/library/xtx-number.vue')['default']
     XtxNumbox: typeof import('./components/library/xtx-numbox.vue')['default']
+    XtxPagination: typeof import('./components/library/xtx-pagination.vue')['default']
     XtxSkeleton: typeof import('./components/library/xtx-skeleton.vue')['default']
   }
 }
