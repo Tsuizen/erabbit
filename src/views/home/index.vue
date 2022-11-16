@@ -1,37 +1,35 @@
 <template>
   <div class="page-home">
+    <!-- 首页入口 -->
     <div class="home-entry">
       <div class="container">
+        <!-- 左侧分类 -->
         <HomeCategory />
+        <!-- 轮播图 -->
+        <HomeBanner />
       </div>
     </div>
   </div>
+  <!-- 新鲜好物 -->
+  <HomeNew />
+  <!-- 人气推荐 -->
+  <HomeHot />
+  <!-- 人气品牌 -->
+  <HomeBrand />
+  <!-- 货物 -->
+  <HomeProduct />
+  <!-- 最新专题 -->
+  <HomeSpecial />
 </template>
 
 <script setup lang="ts">
-import HomeCategory from '@/components/home-category.vue';
-import { computed, reactive } from 'vue';
-import { useCategoryStore } from '@/store';
-import { storeToRefs } from 'pinia';
-import type { CategoryResult } from '@/types';
-
-const brand = reactive({
-  id: 'brand',
-  name: '品牌',
-  children: [{ id: 'brand-children', name: '品牌推荐' }]
-});
-
-const categoryStore = useCategoryStore();
-const { list } = storeToRefs(categoryStore);
-const menuList = computed(() => {
-  const tempList = list.value.map((item: CategoryResult) => {
-    return {
-      id: item.id,
-      name: item.name,
-      children: item.children && item.children.slice(0, 2)
-    };
-  });
-});
+import HomeCategory from './components/home-category.vue';
+import HomeBanner from './components/home-banner.vue';
+import HomeNew from './components/home-new.vue';
+import HomeHot from './components/home-hot.vue';
+import HomeBrand from './components/home-brand.vue';
+import HomeProduct from './components/home-product.vue';
+import HomeSpecial from './components/home-special.vue';
 </script>
 
 <style scoped lang="less"></style>

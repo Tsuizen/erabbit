@@ -9,7 +9,7 @@ import router from '@/router';
 import { useUserStore } from '@/store';
 import { storeToRefs } from 'pinia';
 
-export const baseURL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net/';
+export const baseURL = 'https://apipc-xiaotuxian-front.itheima.net';
 
 const instance: AxiosInstance = axios.create({
   baseURL,
@@ -35,7 +35,7 @@ instance.interceptors.response.use(
   (res: AxiosResponse<any>) => res.data,
   (err) => {
     const userStore = useUserStore();
-    
+
     // 401状态码
     if (err.response && err.response.status === 400) {
       // 1.清空无效用户信息
@@ -54,7 +54,7 @@ instance.interceptors.response.use(
 export default <T = any>(
   url: string,
   method: string,
-  submitData?: T
+  submitData?: any
 ): Promise<T> => {
   return instance({
     url,

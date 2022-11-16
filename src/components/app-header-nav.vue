@@ -6,11 +6,13 @@
       :key="item.id"
       @mouseenter="show(item)"
       @mouseleave="hide(item)">
-      <RouterLink to="/" @click="hide(item)">{{ item.name }}</RouterLink>
+      <RouterLink :to="`/category/${item.id}`" @click="hide(item)">{{
+        item.name
+      }}</RouterLink>
       <div class="layer" :class="{ open: item.open }">
         <ul>
           <li v-for="sub in item.children" :key="sub.id">
-            <RouterLink to="/" @click="hide(item)">
+            <RouterLink :to="`/category/sub/${sub.id}`" @click="hide(item)">
               <img :src="sub.picture" alt="" />
               <p>{{ sub.name }}</p>
             </RouterLink>
@@ -23,12 +25,16 @@
 <script setup lang="ts">
 import { useCategoryStore } from '@/store';
 import { storeToRefs } from 'pinia';
-import { computed, isRef } from 'vue';
+import type { CategoryResult } from '@/types/category';
+import { computed, type ComputedRef } from 'vue';
 
 const categoryStore = useCategoryStore();
 const { list } = storeToRefs(categoryStore);
 const { show, hide } = categoryStore;
-const useList = computed(() => list.value);
+
+let useList: ComputedRef<CategoryResult[]> = computed(
+  () => list.value as CategoryResult[]
+);
 </script>
 
 <style scoped lang="less">
@@ -81,7 +87,7 @@ const useList = computed(() => list.value);
   ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    // justify-content: space-around;
     padding: 0 70px;
     align-items: center;
     height: 132px;

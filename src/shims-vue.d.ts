@@ -6,3 +6,6 @@ declare module '*.vue' {
   export default component;
 }
 
+declare interface Window {
+  cityData: any;
+}
