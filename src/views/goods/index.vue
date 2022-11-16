@@ -23,10 +23,18 @@
           <!-- 规格组件 -->
           <GoodsSku :goods="goods" />
           <!-- 数量选择组件 -->
+          <XtxNumbox label="数量" v-model="num" :max="goods.inventory" />
+          <!-- 按钮组件 -->
+          <XtxButton
+            type="primary"
+            style="margin-top: 20px"
+            @click="insertCart()"
+            >加入购物车</XtxButton
+          >
         </div>
       </div>
       <!-- 商品推荐 -->
-      <GoodsRelevant />
+      <GoodsRelevant :goodsId="goods.id" />
       <!-- 商品详情 -->
       <div class="goods-footer">
         <div class="goods-article">

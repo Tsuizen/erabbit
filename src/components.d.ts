@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     XtxBread: typeof import('./components/library/xtx-bread.vue')['default']
     XtxBreadItem: typeof import('./components/library/xtx-bread-item.vue')['default']
+    XtxButton: typeof import('./components/library/xtx-button.vue')['default']
     XtxCarousel: typeof import('./components/library/xtx-carousel.vue')['default']
     XtxCheckbox: typeof import('./components/library/xtx-checkbox.vue')['default']
     XtxCity: typeof import('./components/library/xtx-city.vue')['default']

@@ -125,3 +125,13 @@ export interface GoodsResult {
     praisePercent: number;
   };
 }
+
+export interface RelevantResult {
+  id: string;
+  name: string;
+  desc: string;
+  price: string;
+  picture: string;
+  discount: number | null;
+  orderNum: number;
+}

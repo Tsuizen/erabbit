@@ -9,20 +9,20 @@
         :key="i"
         :class="{ fade: index === i }">
         <!-- 图片 -->
-        <RouterLink v-if="item.imgUrl" to="/">
-          <img :src="item.imgUrl" alt="" />
+        <RouterLink v-if="(item as BannerResult).imgUrl" to="/">
+          <img :src="(item as BannerResult).imgUrl" alt="" />
         </RouterLink>
         <!-- 商品列表 item=[goods1,goods2,。。。]-->
-        <!-- <div v-else class="slider">
+        <div v-else class="slider">
           <RouterLink
-            v-for="goods in item"
+            v-for="goods in item as RelevantResult[]"
             :key="goods.id"
             :to="`/product/${goods.id}`">
             <img :src="goods.picture" alt="" />
             <p class="name ellipsis">{{ goods.name }}</p>
             <p class="price">&yen;{{ goods.price }}</p>
           </RouterLink>
-        </div> -->
+        </div>
       </li>
     </ul>
     <!-- 上一张 -->
@@ -48,9 +48,10 @@
 <script setup lang="ts">
 import { onUnmounted, ref, watch } from 'vue';
 import type { BannerResult } from '@/types/home';
+import type { RelevantResult } from '@/types/goods';
 
 interface Props {
-  sliders: BannerResult[];
+  sliders: BannerResult[] | RelevantResult[][];
   duration: number;
   autoPlay: boolean;
 }
@@ -198,28 +199,28 @@ onUnmounted(() => {
   }
 }
 // 轮播商品
-// .slider {
-//   display: flex;
-//   justify-content: space-around;
-//   padding: 0 40px;
-//   > a {
-//     width: 240px;
-//     text-align: center;
-//     img {
-//       padding: 20px;
-//       width: 230px !important;
-//       height: 230px !important;
-//     }
-//     .name {
-//       font-size: 16px;
-//       color: #666;
-//       padding: 0 40px;
-//     }
-//     .price {
-//       font-size: 16px;
-//       color: @priceColor;
-//       margin-top: 15px;
-//     }
-//   }
-// }
+.slider {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 40px;
+  > a {
+    width: 240px;
+    text-align: center;
+    img {
+      padding: 20px;
+      width: 230px !important;
+      height: 230px !important;
+    }
+    .name {
+      font-size: 16px;
+      color: #666;
+      padding: 0 40px;
+    }
+    .price {
+      font-size: 16px;
+      color: @priceColor;
+      margin-top: 15px;
+    }
+  }
+}
 </style>
