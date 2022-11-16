@@ -17,6 +17,8 @@ declare module '@vue/runtime-core' {
     XtxInfiniteLoading: typeof import('./components/library/xtx-infinite-loading.vue')['default']
     XtxMessage: typeof import('./components/library/xtx-message.vue')['default']
     XtxMore: typeof import('./components/library/xtx-more.vue')['default']
+    XtxNumber: typeof import('./components/library/xtx-number.vue')['default']
+    XtxNumbox: typeof import('./components/library/xtx-numbox.vue')['default']
     XtxSkeleton: typeof import('./components/library/xtx-skeleton.vue')['default']
   }
 }

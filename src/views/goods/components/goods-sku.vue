@@ -29,7 +29,7 @@ import type { SpecsInGoods, SpecsValues } from '@/types/goods';
 
 const props = defineProps<{
   goods: GoodsResult;
-  skuId: string;
+  skuId?: string;
 }>();
 
 const emit = defineEmits(['change']);
@@ -142,11 +142,7 @@ const changeSku = (item: SpecsInGoods, val: SpecsValues) => {
   );
   if (validSelectedValues.length === props.goods.specs.length) {
     const skuIds = pathMap[validSelectedValues.join(spliter)];
-    const sku = props.goods.skus.find((sku) => sku.id === skuIds[0]);
-    console.log(sku.specs);
-    console.log(
-      sku.specs.reduce((p, c) => `${p} ${c.name}: ${c.valueName}`, '').trim()
-    );
+    const sku = props.goods.skus.find((sku) => sku.id === skuIds[0]) as SkuInGoods;
 
     emit('change', {
       skuId: sku.id,

@@ -10,6 +10,8 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
+
 defineProps<{
   type: string;
   text: string;

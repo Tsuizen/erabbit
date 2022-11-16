@@ -22,7 +22,7 @@
           <GoodsName :goods="goods" />
           <!-- 规格组件 -->
           <GoodsSku :goods="goods" />
-          
+          <!-- 数量选择组件 -->
         </div>
       </div>
       <!-- 商品推荐 -->
@@ -99,7 +99,7 @@ const insertCart = () => {
     });
     Message({ type: 'success', text: '加入购物车成功' });
   } else {
-    Message({ text: '请选择完整规格' });
+    Message({ type: 'error', text: '请选择完整规格' });
   }
 };
 </script>
