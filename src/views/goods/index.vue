@@ -21,7 +21,7 @@
         <div class="spec">
           <GoodsName :goods="goods" />
           <!-- 规格组件 -->
-          <GoodsSku :goods="goods" />
+          <GoodsSku :goods="goods" @change="changeSku"/>
           <!-- 数量选择组件 -->
           <XtxNumbox label="数量" v-model="num" :max="goods.inventory" />
           <!-- 按钮组件 -->
@@ -94,6 +94,8 @@ const { list } = storeToRefs(cartStore);
 
 // 加入购物车
 const insertCart = () => {
+  console.log(currSku.value);
+  
   if (currSku.value && currSku.value.skuId) {
     const { skuId, specsText: attrsText, inventory: stock } = currSku.value;
     const { id, name, price, mainPictures } = goods.value;
