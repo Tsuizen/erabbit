@@ -68,6 +68,9 @@ const cartStore = defineStore(
       }
       list.value.unshift(cart);
     };
+    const setCart = (cartList: CartResult[]) => {
+      list.value = cartList;
+    };
     return {
       list,
       validList,
@@ -78,7 +81,8 @@ const cartStore = defineStore(
       selectedList,
       selectedTotal,
       isCheckAll,
-      insertCart
+      insertCart,
+      setCart
     };
   },
   {
