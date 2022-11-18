@@ -4,21 +4,27 @@
     <div class="wrapper">
       <nav>
         <a
-          href="javascript:;"
           @click="activeName = 'account'"
-          :class="{ acitve: activeName === 'account' }"
+          :class="{ active: activeName === 'account' }"
+          href="javascript:;"
           >账户登录</a
         >
         <a
-          href="javascript:;"
           @click="activeName = 'qrcode'"
           :class="{ active: activeName === 'qrcode' }"
+          href="javascript:;"
           >扫码登录</a
         >
       </nav>
+      <!-- 帐号登录&扫码登录 -->
+      <LoginForm v-if="activeName === 'account'">表单</LoginForm>
+      <div v-if="activeName === 'qrcode'" class="qrcode-box">
+        <img src="@/assets/images/qrcode.png" alt="" />
+        <p>打开 <a href="javascript:;">小兔鲜App</a> 扫码登录</p>
+      </div>
     </div>
   </section>
-  <LoginFooter></LoginFooter>
+  <LoginFooter />
 </template>
 
 <script setup lang="ts">
