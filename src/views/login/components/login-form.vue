@@ -14,7 +14,7 @@ import schema from '@/utils/vee-validate-schema';
 import { Form, Field } from 'vee-validate';
 import {useCartStore, useUserStore} from '@/store'
 import { useRoute, useRouter } from 'vue-router';
-import { userMobileLogin } from '@/api/user';
+import { userAccountLogin, userMobileLogin } from '@/api/user';
 
 // 切换短信登录
 const isMsgLogin = ref(false);
@@ -46,10 +46,10 @@ const formCom = ref<any>(null);
 watch(isMsgLogin, () => {
   // 重置数据
   form.isAgree = true;
-  form.account = null;
-  form.password = null;
-  form.mobile = null;
-  form.code = null;
+  form.account = '';
+  form.password = '';
+  form.mobile = '';
+  form.code = '';
   // 如果是没有销毁Field组件，之前的校验结果是不会清除  例如：v-show切换的
   // Form组件提供了一个 resetForm 函数清除校验结果
   formCom.value.resetFrom();
@@ -72,7 +72,21 @@ const login = async () => {
             // 2.4. 失败：消息提示
         const { mobile, code } = form;
         data = await userMobileLogin({mobile, code})
+      } else {
+        // 账号登录
+        // 准备一个api做账号登录
+        // 调用api函数
+        // 成功：存储用户信息 + 跳转至来源页或首页 + 消息提示
+        // 失败：消息提示
+
+        const { account, password } = form;
+        data = await userAccountLogin({account, password})
       }
+      // 存储用户信息
+      const { id, account, avatar, mobile, nickname, token } = data.result;
+      
+    } catch (err) {
+
     }
   }
 }
