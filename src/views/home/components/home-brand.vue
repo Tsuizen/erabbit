@@ -18,7 +18,7 @@
           :style="{ transform: `translateX(${-index * 1240}px)` }">
           <li v-for="item in brands" :key="item.id">
             <RouterLink to="/">
-              <img :src="item.picture" alt="" />
+              <img :src="item.picture" alt="" z/>
             </RouterLink>
           </li>
         </ul>

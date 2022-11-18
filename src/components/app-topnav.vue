@@ -2,18 +2,20 @@
   <nav class="app-topnav">
     <div class="container">
       <ul>
-        <li>
-          <a href="javascript:;"><i class="iconfont icon-user"></i>周杰伦</a>
-        </li>
-        <template v-if="useProfile.token">
-          <li><a href="javascript:;">退出登录</a></li>
-          <li><a href="javascript:;">请先登录</a></li>
+        <template v-if="profile.token">
+          <li>
+            <RouterLink to="/member"
+              ><i class="iconfont icon-user"></i
+              >{{ profile.account }}</RouterLink
+            >
+          </li>
+          <li><a href="javascript:;" @click="logout">退出登录</a></li>
         </template>
         <template v-else>
-          <li><a href="javascript:;">免费注册</a></li>
-          <li><a href="javascript:;">我的订单</a></li>
+          <li><RouterLink to="/login">请先登录</RouterLink></li>
+          <li><a href="javascript">免费注册</a></li>
         </template>
-
+        <li><a href="javascript:;">我的订单</a></li>
         <li><a href="javascript:;">会员中心</a></li>
         <li><a href="javascript:;">帮助中心</a></li>
         <li><a href="javascript:;">关于我们</a></li>
@@ -26,17 +28,24 @@
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from '@/store';
+import router from '@/router';
+import { useCartStore, useUserStore } from '@/store';
 import { storeToRefs } from 'pinia';
 
 import { computed } from 'vue';
 
 const userStore = useUserStore();
+const cartStore = useCartStore();
 const { profile } = storeToRefs(userStore);
 
-const useProfile = computed(() => {
-  return profile.value;
-});
+// 退出登录
+// 1. 清空本地存储信息和pinia的用户信息
+// 2. 跳转登录
+const logout = () => {
+  userStore.setUser({});
+  cartStore.setCart([]);
+  router.push('/login');
+};
 </script>
 
 <style scoped lang="less">

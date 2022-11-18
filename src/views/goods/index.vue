@@ -112,7 +112,7 @@ const insertCart = () => {
       selected: true,
       isEffective: true,
       count: num.value
-    });
+    }).then();
     Message({ type: 'success', text: '加入购物车成功' });
   } else {
     Message({ type: 'error', text: '请选择完整规格' });
