@@ -2,7 +2,7 @@ export interface CartResult {
   id?: string;
   name?: string;
   picture?: string;
-  price?: string;
+  price?: number;
   count?: number;
   skuId?: string;
   attrsText?: string;

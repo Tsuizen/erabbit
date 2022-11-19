@@ -250,7 +250,7 @@ const cartStore = defineStore(
     };
 
     const insertCart = (payload: any) => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         if (user.profile.token) {
           insertCartApi({ skuId: payload.skuId, count: payload.count })
             .then(() => {
@@ -260,8 +260,7 @@ const cartStore = defineStore(
               setCartNotLogin(data.result);
               resolve();
             });
-        }
-        {
+        } else {
           insertCart(payload);
           resolve();
         }

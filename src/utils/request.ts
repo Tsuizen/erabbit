@@ -13,7 +13,7 @@ export const baseURL = 'https://apipc-xiaotuxian-front.itheima.net';
 
 const instance: AxiosInstance = axios.create({
   baseURL,
-  timeout: 5000
+  timeout: 100000
 });
 
 instance.interceptors.request.use(
