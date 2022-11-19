@@ -18,10 +18,10 @@
         <h3>全部分类</h3>
         <ul>
           <li v-for="item in topCategory.children" :key="item.id">
-            <a href="javascript:;">
+            <RouterLink :to="`/category/sub/${item.id}`">
               <img :src="item.picture" alt="" />
               <p>{{ item.name }}</p>
-            </a>
+            </RouterLink>
           </li>
         </ul>
       </div>
@@ -49,7 +49,7 @@ import { useCategoryStore } from '@/store';
 import type { CategoryResult } from '@/types/category';
 import { storeToRefs } from 'pinia';
 import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 import GoodsItem from './components/goods-item.vue';
 
 // 轮播图
