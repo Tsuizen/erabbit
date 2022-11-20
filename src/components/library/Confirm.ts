@@ -7,7 +7,7 @@ div.setAttribute('class', 'xtx-confirm-container');
 document.body.appendChild(div);
 
 // 返回Promise对象
-export default ({ title, text }: { title: string; text: string }) => {
+export default ({ title, text }: { title?: string; text?: string }) => {
   // 1.导入被创建的组件
   // 2.使用createVNode创建虚拟节点
   // 3.准备一个dom容器装载组件

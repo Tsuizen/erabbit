@@ -3,7 +3,7 @@
     <div class="xtx-message" :style="style[type]" v-show="visible">
       <!-- 上面绑定的是样式 -->
       <!-- 不同提示图标会变 :class="{'icon-warning':true}" :class="['icon-warning']" -->
-      <i class="iconfont" :class="[style[type].icon]"></i>
+      <i class="iconfont" :class="style[type].icon"></i>
       <span class="text">{{ text }}</span>
     </div>
   </Transition>
@@ -12,10 +12,16 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
-defineProps<{
-  type: string;
-  text: string;
-}>();
+defineProps({
+  type: {
+    type: String,
+    default: 'warn'
+  },
+  text: {
+    type: String,
+    default: ''
+  }
+});
 
 // 定义一个对象，包含三种情况的样式，对象key就是类型字符串
 const style = {

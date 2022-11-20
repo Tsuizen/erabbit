@@ -17,13 +17,15 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'change']);
 
 const checked = ref(false);
+
 const changeChecked = () => {
   checked.value = !checked.value;
   // 使用emit通知父组件数据的改变
   emit('update:modelValue', checked.value);
+  emit('change', checked.value);
 };
 
 // 使用侦听器

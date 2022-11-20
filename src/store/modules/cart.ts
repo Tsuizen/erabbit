@@ -20,8 +20,9 @@ const cartStore = defineStore(
     // 购物车列表
     const list = ref<CartResult[]>([]);
     // 有效商品列表库存大于0，商品有效标识符为true
-    const validList = computed<CartResult[]>(() =>
-      list.value.filter((goods) => goods.stock && goods.isEffective)
+    const validList = computed<CartResult[]>(() => {
+     return list.value.filter((goods) => goods.stock && goods.isEffective)
+    }
     );
     // 有效商品总件数
     const validTotal = computed<number>(() =>
@@ -57,10 +58,11 @@ const cartStore = defineStore(
       );
     });
     // 是否全选
-    const isCheckAll = computed(() => {
-      validList.value.length !== 0 &&
-        selectedList.value.length === validList.value.length;
-    });
+    const isCheckAll = computed(
+      () =>
+        validList.value.length !== 0 &&
+        selectedList.value.length === validList.value.length
+    );
 
     const insertCartNotLogin = (cart: CartResult) => {
       // 约定加入购物车字段必须和后端保持一致 payload对象 的字段
@@ -83,16 +85,23 @@ const cartStore = defineStore(
     // 设置购物车
     const setCartNotLogin = (cartList: CartResult[]) => {
       list.value = cartList;
+      console.log('valid', validList.value);
     };
     // 更新购物车
     const updateCartNotLogin = (goods: any) => {
       // goods 商品信息nowPrice, stock, isEffective
       // goods 商品对象的字段不固定，对象中有哪些字段就改哪些字段
       // 商品对象必须有skuid
-      const updateGoods = list.value.find((item) => item.skuId === goods.skuId);
+      const updateGoods = list.value.find(
+        (item) => item.skuId === goods.skuId
+      ) as CartResult[];
       for (const key in goods) {
-        if (goods[key] && goods[key]) {
-          updateGoods![key] = goods[key];
+        if (
+          goods[key] !== undefined &&
+          goods[key] !== null &&
+          goods[key] !== ''
+        ) {
+          updateGoods[key] = goods[key];
         }
       }
     };
@@ -200,6 +209,7 @@ const cartStore = defineStore(
               return findCartApi();
             })
             .then((data) => {
+              console.log(data.result);
               setCartNotLogin(data.result);
               resolve();
             });
@@ -261,7 +271,7 @@ const cartStore = defineStore(
               resolve();
             });
         } else {
-          insertCart(payload);
+          insertCartNotLogin(payload);
           resolve();
         }
       });
@@ -319,9 +329,7 @@ const cartStore = defineStore(
       checkAllCart
     };
   },
-  {
-    persist: true
-  }
+  {}
 );
 
 export default cartStore;
