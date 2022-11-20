@@ -1,4 +1,4 @@
-import type { CartResult } from '@/types/carts';
+import type { Cart } from '@/types/carts';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import {
@@ -12,18 +12,16 @@ import {
 } from '@/api/cart';
 import userStore from './user';
 
-const user = userStore();
-
 const cartStore = defineStore(
   'cart',
   () => {
+    const user = userStore();
     // 购物车列表
-    const list = ref<CartResult[]>([]);
+    const list = ref<Cart[]>([]);
     // 有效商品列表库存大于0，商品有效标识符为true
-    const validList = computed<CartResult[]>(() => {
-     return list.value.filter((goods) => goods.stock && goods.isEffective)
-    }
-    );
+    const validList = computed<Cart[]>(() => {
+      return list.value.filter((goods) => goods.stock && goods.isEffective);
+    });
     // 有效商品总件数
     const validTotal = computed<number>(() =>
       validList.value.reduce((p, c) => p + c.count!, 0)
@@ -37,11 +35,11 @@ const cartStore = defineStore(
         ) / 100
     );
     // 无效商品列表
-    const invalidList = computed<CartResult[]>(() =>
+    const invalidList = computed<Cart[]>(() =>
       list.value.filter((goods) => goods.stock! <= 0 || !goods.isEffective)
     );
     // 已选商品列表
-    const selectedList = computed<CartResult[]>(() =>
+    const selectedList = computed<Cart[]>(() =>
       validList.value.filter((goods) => goods.selected)
     );
     // 已选商品总件数
@@ -64,7 +62,7 @@ const cartStore = defineStore(
         selectedList.value.length === validList.value.length
     );
 
-    const insertCartNotLogin = (cart: CartResult) => {
+    const insertCartNotLogin = (cart: Cart) => {
       // 约定加入购物车字段必须和后端保持一致 payload对象 的字段
       // 它们是：id skuId name attrsText picture price nowPrice selected stock count isEffective
       // 插入数据规则：
@@ -83,7 +81,7 @@ const cartStore = defineStore(
       list.value.unshift(cart);
     };
     // 设置购物车
-    const setCartNotLogin = (cartList: CartResult[]) => {
+    const setCartNotLogin = (cartList: Cart[]) => {
       list.value = cartList;
       console.log('valid', validList.value);
     };
@@ -94,7 +92,7 @@ const cartStore = defineStore(
       // 商品对象必须有skuid
       const updateGoods = list.value.find(
         (item) => item.skuId === goods.skuId
-      ) as CartResult[];
+      ) as Cart[];
       for (const key in goods) {
         if (
           goods[key] !== undefined &&

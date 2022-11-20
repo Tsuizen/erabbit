@@ -31,7 +31,7 @@ import SubBread from './components/sub-bread.vue';
 import SubFilter from './components/sub-filter.vue';
 import SubSort from './components/sub-sort.vue';
 import GoodsItem from './components/goods-item.vue';
-import type { TemporaryItem, TemporaryResult } from '@/types/category';
+import type { TemporaryItem, Temporary } from '@/types/category';
 
 const route = useRoute();
 // 加载中
@@ -51,7 +51,7 @@ const getData = () => {
   // 设置二级分类id
   reqParams.categoryId = route.params.id as string;
   findSubCategroyGoods(reqParams).then(
-    ({ result }: { result: TemporaryResult }) => {
+    ({ result }: { result: Temporary }) => {
       // 获取数据成功
       if (result.items.length) {
         // 有数据就追加数据

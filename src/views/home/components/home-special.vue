@@ -36,11 +36,11 @@ import XtxMore from '@/components/library/xtx-more.vue';
 import HomePanel from './home-panel.vue';
 import { useLazyData } from '@/hooks';
 import { findSpecial } from '@/api/home';
-import type { SpecialResult } from '@/types/home';
+import type { Special } from '@/types/home';
 import type { Ref } from 'vue';
 
 const { target, result } = useLazyData(findSpecial);
-const specailList: Ref<SpecialResult[]> = result;
+const specailList: Ref<Special[]> = result;
 </script>
 
 <style scoped lang="less">

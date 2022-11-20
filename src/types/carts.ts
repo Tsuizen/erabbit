@@ -1,4 +1,4 @@
-export interface CartResult {
+export interface Cart {
   id?: string;
   name?: string;
   picture?: string;

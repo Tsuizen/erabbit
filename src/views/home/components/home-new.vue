@@ -26,14 +26,14 @@
 <script setup lang="ts">
 import { findNew } from '@/api/home';
 import type { Ref } from 'vue';
-import type { NewResult } from '@/types/home';
+import type { New } from '@/types/home';
 import HomePanel from './home-panel.vue';
 import HomeSkeleton from './home-skeleton.vue';
 import { useLazyData } from '@/hooks/index';
 
 const { target, result } = useLazyData(findNew);
 
-const goods: Ref<NewResult[]> = result;
+const goods: Ref<New[]> = result;
 </script>
 
 <style scoped lang="less">

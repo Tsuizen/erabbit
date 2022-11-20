@@ -9,7 +9,7 @@ import router from '@/router';
 import { useUserStore } from '@/store';
 import { storeToRefs } from 'pinia';
 
-export const baseURL = 'https://apipc-xiaotuxian-front.itheima.net';
+export const baseURL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net';
 
 const instance: AxiosInstance = axios.create({
   baseURL,

@@ -63,14 +63,14 @@ import GoodsTabs from './components/goods-tabs.vue';
 import GoodsHot from './components/goods-hot.vue';
 import GoodsWarn from './components/goods-warn.vue';
 import Message from '@/components/library/Message';
-import type { GoodsResult } from '@/types/goods';
+import type { Goods } from '@/types/goods';
 import type { SkuInfo } from './goods';
 import { useGoods } from '@/hooks/index';
 import { provide, ref, type Ref } from 'vue';
 import { useCartStore } from '@/store';
 import { storeToRefs } from 'pinia';
 
-const goods: Ref<GoodsResult> = useGoods();
+const goods: Ref<Goods> = useGoods();
 // 选择的数量
 const num = ref(1);
 

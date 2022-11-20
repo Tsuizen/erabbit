@@ -2,12 +2,12 @@ import { findAllCategory } from '@/api/category';
 import { topCategory } from '@/api/constant';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import type { CategoryResult } from '@/types/category';
+import type { Category } from '@/types/category';
 
 export function isCategoryResult(
-  item: CategoryResult[] | { name: string }[]
-): item is CategoryResult[] {
-  return (item as CategoryResult[]) !== undefined;
+  item: Category[] | { name: string }[]
+): item is Category[] {
+  return (item as Category[]) !== undefined;
 }
 
 const categoryStore = defineStore(
@@ -15,11 +15,11 @@ const categoryStore = defineStore(
   () => {
     // 如果默认是[]数组，看不见默认的9个分类，等加载完数据才能看到
     // 所以常量数据生成一个默认的顶级数组，不会产生空白
-    const list = ref<CategoryResult[] | { name: string }[]>(
+    const list = ref<Category[] | { name: string }[]>(
       topCategory.map((item) => ({ name: item }))
     );
 
-    function setList(category: CategoryResult[]) {
+    function setList(category: Category[]) {
       if (isCategoryResult(category)) {
         list.value = category;
       }
@@ -27,16 +27,16 @@ const categoryStore = defineStore(
 
     async function getList() {
       const { result } = await findAllCategory();
-      result.forEach((item: CategoryResult) => {
+      result.forEach((item: Category) => {
         item.open = false;
       });
       setList(result);
     }
 
-    function show(item: CategoryResult) {
+    function show(item: Category) {
       if (isCategoryResult(list.value)) {
-        const category: CategoryResult | undefined = list.value.find(
-          (category: CategoryResult) => category.id === item.id
+        const category: Category | undefined = list.value.find(
+          (category: Category) => category.id === item.id
         );
         if (category) {
           category.open = true;
@@ -44,10 +44,10 @@ const categoryStore = defineStore(
       }
     }
 
-    function hide(item: CategoryResult) {
+    function hide(item: Category) {
       if (isCategoryResult(list.value)) {
-        const category: CategoryResult | undefined = list.value.find(
-          (category: CategoryResult) => category.id === item.id
+        const category: Category | undefined = list.value.find(
+          (category: Category) => category.id === item.id
         );
         if (category) {
           category.open = false;

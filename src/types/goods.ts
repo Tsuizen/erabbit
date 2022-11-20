@@ -1,3 +1,4 @@
+/* 用户地址 */
 export interface UserAddress {
   id: string;
   provinceCode: string;
@@ -8,7 +9,8 @@ export interface UserAddress {
   fullLocation: string;
 }
 
-export interface SkuInGoods {
+/* 商品sku */
+export interface GoodsSku {
   id: string;
   skuCode: string;
   price: string;
@@ -21,7 +23,8 @@ export interface SkuInGoods {
   }[];
 }
 
-export interface SpecsInGoods {
+/* 商品spec */
+export interface GoodsSpecs {
   name: string;
   id: string;
   values: SpecsValues[];
@@ -36,7 +39,8 @@ export interface SpecsValues {
   disabled: boolean;
 }
 
-export interface GoodsResult {
+/* 商品 */
+export interface Goods {
   id: string;
   name: string;
   spuCode: string;
@@ -62,8 +66,8 @@ export interface GoodsResult {
   mainVideos: string[];
   videoScale: number;
   mainPictures: string[];
-  specs: SpecsInGoods[];
-  skus: SkuInGoods[];
+  specs: GoodsSpecs[];
+  skus: GoodsSku[];
   categories: {
     id: string;
     name: string;
@@ -126,7 +130,8 @@ export interface GoodsResult {
   };
 }
 
-export interface RelevantResult {
+/* 相关推荐 */
+export interface Relevant {
   id: string;
   name: string;
   desc: string;

@@ -25,12 +25,12 @@
 </template>
 
 <script setup lang="ts">
-import type { GoodsResult } from '@/types/goods';
+import type { Goods } from '@/types/goods';
 import { inject, ref } from 'vue';
 import GoodsDetail from './goods-detail.vue';
 import GoodsComment from './goods-comment.vue';
 const activeName = ref<string>('GoodsDetail');
-const goods = inject<GoodsResult>('goods');
+const goods = inject<Goods>('goods');
 </script>
 
 <style scoped lang="less">

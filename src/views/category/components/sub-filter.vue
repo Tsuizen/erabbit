@@ -43,7 +43,7 @@
 //2.数据中需要全部选中，需要预览将来点击激活功能，默认选中全部
 
 import { findSubCategoryFilter } from '@/api/category';
-import type { FilterCategoryResult, SaleProperty } from '@/types/category';
+import type { FilterCategory, SaleProperty } from '@/types/category';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -51,7 +51,7 @@ const emit = defineEmits(['filter-change']);
 
 //3.完成渲染
 const route = useRoute();
-const filterData = ref<FilterCategoryResult | null>(null);
+const filterData = ref<FilterCategory | null>(null);
 const filterLoading = ref(false);
 
 //4.分类发生变化的时候需要重新获取筛选数据，需要使用侦听器
@@ -66,7 +66,7 @@ watch(
         // 每一组可选的筛选条件缺失 全部 条件，处理下数据加上全部
         // 给每一组数据加上一个选中的ID
         // 1.品牌
-        const result: FilterCategoryResult = data.result;
+        const result: FilterCategory = data.result;
         result.selectedBrand = '';
         result.brands.unshift({ id: '', name: '全部' });
         // 2.销售属性

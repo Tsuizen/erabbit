@@ -1,6 +1,6 @@
 // 封装购物车相关的API函数
 import request from '@/utils/request';
-import type { CartResult } from '@/types/carts';
+import type { Cart } from '@/types/carts';
 
 /* 获取商品最新价格库存 */
 export const getNewCartGoods = (skuId: string) => {
@@ -13,7 +13,7 @@ export const getGoodsSku = (skuId: string) => {
 };
 
 /* 合并购物车 */
-export const mergeCart = (cartList: CartResult[]) => {
+export const mergeCart = (cartList: Cart[]) => {
   return request('/member/cart/merge', 'post', cartList);
 };
 

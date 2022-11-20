@@ -16,9 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import type { GoodsResult } from '@/types/goods';
+import type { Goods } from '@/types/goods';
 import { inject, type Ref } from 'vue';
-const goods = inject<Ref<GoodsResult>>('goods');
+const goods = inject<Ref<Goods>>('goods');
 </script>
 
 <style scoped lang="less">

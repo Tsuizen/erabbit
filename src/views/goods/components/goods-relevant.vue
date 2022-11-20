@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { findRelevantGoods } from '@/api/product';
-import type { BannerResult } from '@/types/home';
+import type { Banner } from '@/types/home';
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -22,7 +22,7 @@ const props = defineProps({
 
 // 最终需要sliders给轮播图使用
 // 数据结构：sliders = [[4个],[4个],[4个],[4个]]
-const sliders = ref<BannerResult[]>([]);
+const sliders = ref<Banner[]>([]);
 
 findRelevantGoods({ id: props.goodsId }).then((data) => {
   const pageSize = 4;

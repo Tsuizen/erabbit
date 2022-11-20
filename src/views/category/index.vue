@@ -46,7 +46,7 @@
 import { findBanner } from '@/api/home';
 import { findTopCategory } from '@/api/category';
 import { useCategoryStore } from '@/store';
-import type { CategoryResult } from '@/types/category';
+import type { Category } from '@/types/category';
 import { storeToRefs } from 'pinia';
 import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
@@ -63,13 +63,13 @@ const categoryStore = useCategoryStore();
 const { list } = storeToRefs(categoryStore);
 const route = useRoute();
 
-const topCategory: ComputedRef<CategoryResult> = computed(() => {
-  let cate: CategoryResult = {
+const topCategory: ComputedRef<Category> = computed(() => {
+  let cate: Category = {
     id: '',
     name: '',
     children: []
   };
-  let listValue = list.value as CategoryResult[];
+  let listValue = list.value as Category[];
   //当前顶级分类
   const item = listValue.find((item) => {
     return item.id === route.params.id;
@@ -81,7 +81,7 @@ const topCategory: ComputedRef<CategoryResult> = computed(() => {
 });
 
 //获取各个子目录下推荐商品
-const subList: Ref<CategoryResult[]> = ref([]);
+const subList: Ref<Category[]> = ref([]);
 const getSubList = () => {
   findTopCategory(route.params.id as string).then((data) => {
     subList.value = data.result.children;
