@@ -19,7 +19,6 @@ export const mergeCart = (cartList: Cart[]) => {
 
 /* 获取购物车列表 */
 export const findCart = () => {
-  console.log('findCart');
   return request('/member/cart', 'get');
 };
 

@@ -16,7 +16,6 @@ export default {
     // 5. 把动态创建的节点渲染在xtx-bread标签中
     const items = this.$slots.default!();
     const dymanicItems: VNode[] = [];
-    console.log(items);
 
     items.forEach((item: any, i) => {
       // 对插槽节点进行判断（是XtxBreadItem和Transition才进行组装）

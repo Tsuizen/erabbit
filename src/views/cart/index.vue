@@ -143,7 +143,7 @@
           共 {{ cart.validTotal }} 件商品，已选择
           {{ cart.selectedTotal }} 件，商品合计：
           <span class="red">¥{{ cart.selectedAmount }}</span>
-          <XtxButton @click="checkout()" type="primary">下单结算</XtxButton>
+          <XtxButton @click="checkout" type="primary">下单结算</XtxButton>
         </div>
       </div>
       <!-- 猜你喜欢 -->

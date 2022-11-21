@@ -93,8 +93,6 @@ const changeSort = (sortField: string | null) => {
 watch(
   () => [sortParams.inventory, sortParams.onlyDiscount],
   () => {
-    console.log(sortParams);
-
     emit('sort-change', sortParams);
   }
 );

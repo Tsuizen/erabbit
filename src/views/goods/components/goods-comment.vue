@@ -91,7 +91,7 @@
 
 <script setup lang="ts">
 import { findGoodsCommentInfo, findGoodsCommentList } from '@/api/product';
-import type { GoodsResult } from '@/types/goods';
+import type { Goods } from '@/types/goods';
 import { inject, reactive, ref, watch, type Ref } from 'vue';
 import GoodsCommentImage from './goods-comment-image.vue';
 
@@ -142,7 +142,7 @@ interface ItemOfComment {
 }
 
 const commentInfo = ref<CommentInfo>();
-const goods = inject<Ref<GoodsResult>>('goods');
+const goods = inject<Ref<Goods>>('goods');
 // 准备筛选条件数据
 const reqParams = reactive<ReqParam>({
   page: 1,
@@ -174,7 +174,6 @@ const changeTag = (i: number) => {
   currentTagIndex.value = i;
   // 点击tag修改筛选条件
   const tag = commentInfo.value?.tags[i];
-  console.log(tag);
   // 情况1: 全部评价
   // 情况2: 有图
   // 情况3: 正常tag

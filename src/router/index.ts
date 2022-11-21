@@ -12,6 +12,8 @@ const SubCategory = () => import('@/views/category/sub.vue');
 const Goods = () => import('@/views/goods/index.vue');
 const Login = () => import('@/views/login/index.vue');
 const Cart = () => import('@/views/cart/index.vue');
+const Checkout = () => import('@/views/member/pay/checkout.vue');
+const Pay = () => import('@/views/member/pay/index.vue');
 
 const routes: RouteRecordRaw[] = [
   {
@@ -22,7 +24,9 @@ const routes: RouteRecordRaw[] = [
       { path: '/category/:id', component: TopCategory },
       { path: '/category/sub/:id', component: SubCategory },
       { path: '/product/:id', component: Goods },
-      { path: '/cart', component: Cart }
+      { path: '/cart', component: Cart },
+      { path: '/member/checkout', component: Checkout },
+      { path: '/member/pay', component: Pay }
     ]
   },
   { path: '/login', component: Login }

@@ -83,7 +83,6 @@ const cartStore = defineStore(
     // 设置购物车
     const setCartNotLogin = (cartList: Cart[]) => {
       list.value = cartList;
-      console.log('valid', validList.value);
     };
     // 更新购物车
     const updateCartNotLogin = (goods: any) => {
@@ -207,7 +206,6 @@ const cartStore = defineStore(
               return findCartApi();
             })
             .then((data) => {
-              console.log(data.result);
               setCartNotLogin(data.result);
               resolve();
             });

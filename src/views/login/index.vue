@@ -34,7 +34,6 @@ import LoginForm from './components/login-form.vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useUserStore } from '@/store';
-import { storeToRefs } from 'pinia';
 
 const activeName = ref('account');
 const route = useRoute();
