@@ -24,6 +24,7 @@
 </template>
 
 <script setup lang="ts">
+import type { TemporaryItem, Temporary } from '@/types/category';
 import { findSubCategroyGoods } from '@/api/category';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
@@ -31,17 +32,22 @@ import SubBread from './components/sub-bread.vue';
 import SubFilter from './components/sub-filter.vue';
 import SubSort from './components/sub-sort.vue';
 import GoodsItem from './components/goods-item.vue';
-import type { TemporaryItem, Temporary } from '@/types/category';
+
+interface ReqParams {
+  page: number;
+  pageSize: number;
+  categoryId: string;
+}
 
 const route = useRoute();
 // 加载中
-const loading = ref(false);
+const loading = ref<boolean>(false);
 // 是否加载完毕
-const finished = ref(false);
+const finished = ref<boolean>(false);
 // 商品列表数据
 const goodsList = ref<TemporaryItem[]>([]);
 // 请求参数
-let reqParams = {
+let reqParams: ReqParams = {
   page: 1,
   pageSize: 20,
   categoryId: ''
@@ -84,7 +90,7 @@ const getData = () => {
 };
 
 // 1.更改排序组件的筛选数据，重新请求
-const sortChange = (sortParams: typeof reqParams) => {
+const sortChange = (sortParams: ReqParams) => {
   finished.value = false;
   // 合并请求参
   reqParams = { ...reqParams, ...sortParams };
@@ -93,7 +99,7 @@ const sortChange = (sortParams: typeof reqParams) => {
 };
 
 // 2.更改筛选组件的筛选数据，重新请求
-const filterChange = (filterParams: typeof reqParams) => {
+const filterChange = (filterParams: ReqParams) => {
   finished.value = false;
   reqParams = { ...reqParams, ...filterParams };
   reqParams.page = 1;

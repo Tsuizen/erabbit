@@ -119,7 +119,7 @@ const openDialog = () => {
 };
 
 // 打开添加编辑收货地址组件
-const addressEdit = ref<typeof AddressEdit>();
+const addressEdit = ref<InstanceType<typeof AddressEdit> | null>(null);
 const openAddressEdit = (address: Address | {}) => {
   // 添加 {}  修改 {数据}
   addressEdit.value!.open(address);

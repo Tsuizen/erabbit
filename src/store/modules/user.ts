@@ -25,13 +25,13 @@ const userStore = defineStore(
 
     const redirectUrl = ref<string | LocationQueryValue[]>('/');
 
-    function setUser(user: ProfileState) {
+    const setUser = (user: ProfileState) => {
       profile.value = user;
-    }
+    };
 
-    function setRedirectUrl(url: string | LocationQueryValue[]) {
+    const setRedirectUrl = (url: string | LocationQueryValue[]) => {
       redirectUrl.value = url;
-    }
+    };
 
     return { profile, setUser, setRedirectUrl };
   },

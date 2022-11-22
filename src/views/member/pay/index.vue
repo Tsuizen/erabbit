@@ -57,12 +57,13 @@
 <script setup lang="ts">
 import { findOrderDetail } from '@/api/order';
 import { usePayTime } from '@/hooks';
+import type { RepurchaseOrder } from './pay';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 // 根据地址栏id发请求获取订单数据
 const route = useRoute();
-const order = ref();
+const order = ref<RepurchaseOrder>();
 const { start, timeText } = usePayTime();
 findOrderDetail(route.query.orderId as string).then((data) => {
   order.value = data.result;

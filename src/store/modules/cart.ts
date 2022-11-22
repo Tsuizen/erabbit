@@ -1,4 +1,6 @@
 import type { Cart } from '@/types/carts';
+import type { SkuInfo } from '@/types/goods';
+import userStore from './user';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import {
@@ -10,7 +12,6 @@ import {
   updateCart as updateCartApi,
   getNewCartGoods
 } from '@/api/cart';
-import userStore from './user';
 
 const cartStore = defineStore(
   'cart',
@@ -56,7 +57,7 @@ const cartStore = defineStore(
       );
     });
     // 是否全选
-    const isCheckAll = computed(
+    const isCheckAll = computed<boolean>(
       () =>
         validList.value.length !== 0 &&
         selectedList.value.length === validList.value.length
@@ -126,7 +127,7 @@ const cartStore = defineStore(
       newSku
     }: {
       oldSkuId: string;
-      newSku: any;
+      newSku: SkuInfo;
     }) => {
       return new Promise<void>((resolve, reject) => {
         if (user.profile.token) {

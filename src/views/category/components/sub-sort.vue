@@ -61,7 +61,7 @@ interface SortType {
   sortMethod: null | string;
 }
 
-const sortParams = reactive<SortType>({
+const sortParams: SortType = reactive({
   inventory: false,
   onlyDiscount: false,
   sortField: null,

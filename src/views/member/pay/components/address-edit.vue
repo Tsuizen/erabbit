@@ -87,7 +87,7 @@ const isAddress = (item: Address | {}): item is Address => {
   return (item as Address).address !== undefined;
 };
 
-const visibleDialog = ref(false);
+const visibleDialog = ref<boolean>(false);
 // 表单数据
 const formData = ref<Address>({
   receiver: '',

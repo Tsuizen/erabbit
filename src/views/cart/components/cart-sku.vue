@@ -6,7 +6,7 @@
     </div>
     <div class="layer" v-if="visible">
       <div v-if="loading" class="loading"></div>
-      <GoodsSku v-else @change="changeSku" :skuId="skuId" :goods="goods" />
+      <GoodsSku v-else @change="changeSku" :skuId="skuId" :goods="goods!" />
       <XtxButton
         @click="submit"
         v-if="!loading"
@@ -24,6 +24,8 @@ import { getGoodsSku } from '@/api/cart';
 import { onClickOutside } from '@vueuse/core';
 import { ref } from 'vue';
 import GoodsSku from '@/views/goods/components/goods-sku.vue';
+import type { Goods } from '@/types/goods';
+import type { SkuInfo } from '@/types/goods';
 
 const props = defineProps<{
   attrsText: string;
@@ -32,9 +34,9 @@ const props = defineProps<{
 
 const emit = defineEmits(['change']);
 
-const visible = ref(false);
-const goods = ref();
-const loading = ref(false);
+const visible = ref<boolean>(false);
+const goods = ref<Goods>();
+const loading = ref<boolean>(false);
 
 // 打开
 const open = () => {
@@ -63,8 +65,8 @@ onClickOutside(target, () => {
 });
 
 // 监听sku改变的函数，记录sku信息
-const currSku = ref();
-const changeSku = (sku: any) => {
+const currSku = ref<SkuInfo>();
+const changeSku = (sku: SkuInfo) => {
   currSku.value = sku;
 };
 
@@ -77,7 +79,7 @@ const submit = () => {
     currSku.value.skuId !== props.skuId
   ) {
     emit('change', currSku.value);
-    close;
+    close();
   }
 };
 </script>

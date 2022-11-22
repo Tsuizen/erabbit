@@ -5,9 +5,10 @@
       <div class="head">品牌：</div>
       <div class="body">
         <a
+          @click="changeBrand(item.id)"
           href="javascript:;"
           :class="{
-            active: filterData.selectedBrand === filterData.selectedBrand
+            active: item.id === filterData.selectedBrand
           }"
           v-for="item in filterData.brands"
           :key="item.id"
@@ -52,12 +53,12 @@ const emit = defineEmits(['filter-change']);
 //3.完成渲染
 const route = useRoute();
 const filterData = ref<FilterCategory | null>(null);
-const filterLoading = ref(false);
+const filterLoading = ref<boolean>(false);
 
 //4.分类发生变化的时候需要重新获取筛选数据，需要使用侦听器
 watch(
   () => route.params.id,
-  (newVal, oldVal) => {
+  (newVal) => {
     // 变化后的id有值，且处在二级类目路由下
     if (newVal && route.path === '/category/sub/' + newVal) {
       filterLoading.value = true;

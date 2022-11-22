@@ -153,12 +153,13 @@
 </template>
 
 <script setup lang="ts">
+import type { SkuInfo } from '@/types/goods';
 import GoodRelevant from '@/views/goods/components/goods-relevant.vue';
 import Confirm from '@/components/library/Confirm';
 import Message from '@/components/library/Message';
+import { useCartStore, useUserStore } from '@/store';
 import CartNone from './components/cart-none.vue';
 import CartSku from './components/cart-sku.vue';
-import { useCartStore, useUserStore } from '@/store';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
@@ -203,7 +204,7 @@ const updateCount = (skuId: string, count: number) => {
 };
 
 // 修改规格
-const updateCartSku = (oldSkuId: string, newSku: any) => {
+const updateCartSku = (oldSkuId: string, newSku: SkuInfo) => {
   cart.updateCartSku({ oldSkuId, newSku });
 };
 

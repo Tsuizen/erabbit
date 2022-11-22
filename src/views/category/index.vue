@@ -81,7 +81,7 @@ const topCategory: ComputedRef<Category> = computed(() => {
 });
 
 //获取各个子目录下推荐商品
-const subList: Ref<Category[]> = ref([]);
+const subList = ref<Category[]>([]);
 const getSubList = () => {
   findTopCategory(route.params.id as string).then((data) => {
     subList.value = data.result.children;

@@ -1,8 +1,8 @@
 import { findAllCategory } from '@/api/category';
 import { topCategory } from '@/api/constant';
+import type { Category } from '@/types/category';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import type { Category } from '@/types/category';
 
 export function isCategoryResult(
   item: Category[] | { name: string }[]
@@ -19,21 +19,13 @@ const categoryStore = defineStore(
       topCategory.map((item) => ({ name: item }))
     );
 
-    function setList(category: Category[]) {
+    const setList = (category: Category[]) => {
       if (isCategoryResult(category)) {
         list.value = category;
       }
-    }
+    };
 
-    async function getList() {
-      const { result } = await findAllCategory();
-      result.forEach((item: Category) => {
-        item.open = false;
-      });
-      setList(result);
-    }
-
-    function show(item: Category) {
+    const show = (item: Category) => {
       if (isCategoryResult(list.value)) {
         const category: Category | undefined = list.value.find(
           (category: Category) => category.id === item.id
@@ -42,9 +34,9 @@ const categoryStore = defineStore(
           category.open = true;
         }
       }
-    }
+    };
 
-    function hide(item: Category) {
+    const hide = (item: Category) => {
       if (isCategoryResult(list.value)) {
         const category: Category | undefined = list.value.find(
           (category: Category) => category.id === item.id
@@ -53,7 +45,16 @@ const categoryStore = defineStore(
           category.open = false;
         }
       }
-    }
+    };
+
+    const getList = async () => {
+      const { result } = await findAllCategory();
+      result.forEach((item: Category) => {
+        item.open = false;
+      });
+      setList(result);
+    };
+
     return { list, setList, getList, show, hide };
   },
   {
