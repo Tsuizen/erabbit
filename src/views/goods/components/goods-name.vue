@@ -29,10 +29,10 @@
 </template>
 
 <script setup lang="ts">
-import type { GoodsResult, UserAddress } from '@/types/goods';
+import type { Goods, UserAddress } from '@/types/goods';
 import { ref } from 'vue';
 const props = defineProps<{
-  goods: GoodsResult;
+  goods: Goods;
 }>();
 
 // 提供给后台的四项数据（未登录）

@@ -99,8 +99,6 @@ const changePager = (page: number) => {
   if (myCurrentPage.value !== page) {
     myCurrentPage.value = page;
     // 通知父组件
-    console.log('pagerstart', myCurrentPage.value);
-    
     emit('current-change', page);
   }
 };

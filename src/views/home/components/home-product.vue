@@ -30,11 +30,11 @@ import HomePanel from './home-panel.vue';
 import HomeGoods from './home-goods.vue';
 import { useLazyData } from '@/hooks';
 import { findGoods } from '@/api/home';
-import type { GoodsResult } from '@/types/home';
+import type { GoodsOfHome } from '@/types/home';
 import type { Ref } from 'vue';
 
 const { target, result } = useLazyData(findGoods);
-const list: Ref<GoodsResult[]> = result;
+const list: Ref<GoodsOfHome[]> = result;
 </script>
 
 <style scoped lang="less">

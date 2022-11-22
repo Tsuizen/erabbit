@@ -41,11 +41,11 @@
 import HomePanel from './home-panel.vue';
 import { useLazyData } from '@/hooks';
 import { findBrand } from '@/api/home';
-import type { BrandResult } from '@/types/home';
+import type { Brand } from '@/types/home';
 import { ref, type Ref } from 'vue';
 
 const { target, result } = useLazyData(() => findBrand(10));
-const brands: Ref<BrandResult[]> = result;
+const brands: Ref<Brand[]> = result;
 const index = ref(0);
 const toggle = (step: number) => {
   const newIndex = index.value + step;

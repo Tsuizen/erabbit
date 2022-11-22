@@ -14,7 +14,7 @@ document.body.appendChild(div);
 // 定时器标识
 let timer: null | ReturnType<typeof setTimeout> = null;
 
-export default ({ type, text }: { type: string; text: string }) => {
+export default ({ type, text }: { type?: string; text?: string }) => {
   // 渲染组件
   // 1.导入消息提示组件
   // 2.将消息提示组件编译为虚拟节点（dom节点）

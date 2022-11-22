@@ -1,4 +1,6 @@
-import type { CartResult } from '@/types/carts';
+import type { Cart } from '@/types/carts';
+import type { SkuInfo } from '@/types/goods';
+import userStore from './user';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import {
@@ -10,19 +12,17 @@ import {
   updateCart as updateCartApi,
   getNewCartGoods
 } from '@/api/cart';
-import userStore from './user';
-
-const user = userStore();
 
 const cartStore = defineStore(
   'cart',
   () => {
+    const user = userStore();
     // 购物车列表
-    const list = ref<CartResult[]>([]);
+    const list = ref<Cart[]>([]);
     // 有效商品列表库存大于0，商品有效标识符为true
-    const validList = computed<CartResult[]>(() =>
-      list.value.filter((goods) => goods.stock && goods.isEffective)
-    );
+    const validList = computed<Cart[]>(() => {
+      return list.value.filter((goods) => goods.stock && goods.isEffective);
+    });
     // 有效商品总件数
     const validTotal = computed<number>(() =>
       validList.value.reduce((p, c) => p + c.count!, 0)
@@ -36,11 +36,11 @@ const cartStore = defineStore(
         ) / 100
     );
     // 无效商品列表
-    const invalidList = computed<CartResult[]>(() =>
+    const invalidList = computed<Cart[]>(() =>
       list.value.filter((goods) => goods.stock! <= 0 || !goods.isEffective)
     );
     // 已选商品列表
-    const selectedList = computed<CartResult[]>(() =>
+    const selectedList = computed<Cart[]>(() =>
       validList.value.filter((goods) => goods.selected)
     );
     // 已选商品总件数
@@ -57,12 +57,13 @@ const cartStore = defineStore(
       );
     });
     // 是否全选
-    const isCheckAll = computed(() => {
-      validList.value.length !== 0 &&
-        selectedList.value.length === validList.value.length;
-    });
+    const isCheckAll = computed<boolean>(
+      () =>
+        validList.value.length !== 0 &&
+        selectedList.value.length === validList.value.length
+    );
 
-    const insertCartNotLogin = (cart: CartResult) => {
+    const insertCartNotLogin = (cart: Cart) => {
       // 约定加入购物车字段必须和后端保持一致 payload对象 的字段
       // 它们是：id skuId name attrsText picture price nowPrice selected stock count isEffective
       // 插入数据规则：
@@ -81,7 +82,7 @@ const cartStore = defineStore(
       list.value.unshift(cart);
     };
     // 设置购物车
-    const setCartNotLogin = (cartList: CartResult[]) => {
+    const setCartNotLogin = (cartList: Cart[]) => {
       list.value = cartList;
     };
     // 更新购物车
@@ -89,10 +90,16 @@ const cartStore = defineStore(
       // goods 商品信息nowPrice, stock, isEffective
       // goods 商品对象的字段不固定，对象中有哪些字段就改哪些字段
       // 商品对象必须有skuid
-      const updateGoods = list.value.find((item) => item.skuId === goods.skuId);
+      const updateGoods = list.value.find(
+        (item) => item.skuId === goods.skuId
+      ) as Cart[];
       for (const key in goods) {
-        if (goods[key] && goods[key]) {
-          updateGoods![key] = goods[key];
+        if (
+          goods[key] !== undefined &&
+          goods[key] !== null &&
+          goods[key] !== ''
+        ) {
+          updateGoods[key] = goods[key];
         }
       }
     };
@@ -120,7 +127,7 @@ const cartStore = defineStore(
       newSku
     }: {
       oldSkuId: string;
-      newSku: any;
+      newSku: SkuInfo;
     }) => {
       return new Promise<void>((resolve, reject) => {
         if (user.profile.token) {
@@ -250,7 +257,7 @@ const cartStore = defineStore(
     };
 
     const insertCart = (payload: any) => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         if (user.profile.token) {
           insertCartApi({ skuId: payload.skuId, count: payload.count })
             .then(() => {
@@ -260,13 +267,14 @@ const cartStore = defineStore(
               setCartNotLogin(data.result);
               resolve();
             });
-        }
-        {
-          insertCart(payload);
+        } else {
+          insertCartNotLogin(payload);
           resolve();
         }
       });
     };
+
+    // 设置购物车
 
     // 获取商品列表
     const findCart = () => {
@@ -310,6 +318,7 @@ const cartStore = defineStore(
       selectedList,
       selectedTotal,
       isCheckAll,
+      setCartNotLogin,
       insertCart,
       mergeCart,
       updateCart,
@@ -320,9 +329,7 @@ const cartStore = defineStore(
       checkAllCart
     };
   },
-  {
-    persist: true
-  }
+  {}
 );
 
 export default cartStore;

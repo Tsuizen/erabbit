@@ -32,8 +32,6 @@ import router from '@/router';
 import { useCartStore, useUserStore } from '@/store';
 import { storeToRefs } from 'pinia';
 
-import { computed } from 'vue';
-
 const userStore = useUserStore();
 const cartStore = useCartStore();
 const { profile } = storeToRefs(userStore);
@@ -43,7 +41,7 @@ const { profile } = storeToRefs(userStore);
 // 2. 跳转登录
 const logout = () => {
   userStore.setUser({});
-  cartStore.setCart([]);
+  cartStore.setCartNotLogin([]);
   router.push('/login');
 };
 </script>

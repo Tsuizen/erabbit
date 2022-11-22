@@ -9,7 +9,7 @@
         <input type="text" placeholder="搜一搜" />
       </div>
       <!-- 使用头部购物车组件 -->
-      <!-- <AppHeaderCart /> -->
+      <AppHeaderCart />
     </div>
   </header>
 </template>
@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import AppHeaderNav from './app-header-nav.vue';
+import AppHeaderCart from './app-header-cart.vue';
 </script>
 
 <style scoped lang="less">

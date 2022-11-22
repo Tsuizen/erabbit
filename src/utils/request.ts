@@ -9,11 +9,12 @@ import router from '@/router';
 import { useUserStore } from '@/store';
 import { storeToRefs } from 'pinia';
 
-export const baseURL = 'https://apipc-xiaotuxian-front.itheima.net';
+// export const baseURL = 'https://apipc-xiaotuxian-front.itheima.net';
+export const baseURL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net';
 
 const instance: AxiosInstance = axios.create({
   baseURL,
-  timeout: 5000
+  timeout: 100000
 });
 
 instance.interceptors.request.use(
@@ -51,11 +52,11 @@ instance.interceptors.response.use(
 );
 
 // 请求工具函数
-export default <T = any>(
+export default (
   url: string,
   method: string,
   submitData?: any
-): Promise<T> => {
+): Promise<any> => {
   return instance({
     url,
     method,

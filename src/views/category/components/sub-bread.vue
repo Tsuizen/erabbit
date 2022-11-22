@@ -38,7 +38,7 @@ const categoryStore = useCategoryStore();
 const { list } = storeToRefs(categoryStore);
 
 // 通过计算属性得到一级类目和二级类目的 ID & 名称
-const category = computed(() => {
+const category = computed<CategoryTopAndSub>(() => {
   const obj: CategoryTopAndSub = {};
   if (isCategoryResult(list.value)) {
     list.value.forEach((top) => {

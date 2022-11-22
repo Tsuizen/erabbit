@@ -3,10 +3,11 @@ export interface GoodsProps {
   name: string;
   price: number;
   picture: string;
-  desc: string;
+  desc?: string;
 }
 
-export interface BrandResult {
+/* 品牌 */
+export interface Brand {
   id: string;
   name: string;
   picture: string;
@@ -17,14 +18,16 @@ export interface BrandResult {
   place: string;
 }
 
-export interface BannerResult {
+/* 轮播图 */
+export interface Banner {
   id: string;
   imgUrl: string;
   herfUrl: string;
   type: number;
 }
 
-export interface NewResult {
+// 新品
+export interface New {
   id: string;
   picture: string;
   name: string;
@@ -32,7 +35,8 @@ export interface NewResult {
   desc: string;
 }
 
-export interface GoodsResult {
+/* 首页货物类型 */
+export interface GoodsOfHome {
   id: string;
   name: string;
   picture: string;
@@ -44,14 +48,16 @@ export interface GoodsResult {
   goods: GoodsProps[];
 }
 
-export interface HotResult {
+/* 热卖 */
+export interface Hot {
   id: string;
   picture: string;
   title: string;
   alt: string;
 }
 
-export interface SpecialResult {
+/* 最新专题 */
+export interface Special {
   creator: string;
   isDelete: number;
   createTime: string;

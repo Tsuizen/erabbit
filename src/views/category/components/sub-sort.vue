@@ -61,7 +61,7 @@ interface SortType {
   sortMethod: null | string;
 }
 
-const sortParams = reactive<SortType>({
+const sortParams: SortType = reactive({
   inventory: false,
   onlyDiscount: false,
   sortField: null,
@@ -93,8 +93,6 @@ const changeSort = (sortField: string | null) => {
 watch(
   () => [sortParams.inventory, sortParams.onlyDiscount],
   () => {
-    console.log(sortParams);
-
     emit('sort-change', sortParams);
   }
 );

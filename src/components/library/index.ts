@@ -1,16 +1,17 @@
-// import XtxSkeleton from './xtx-skeleton.vue';
-// import XtxCarousel from './xtx-carousel.vue';
-// import XtxBread from './xtx-bread.vue';
-// import XtxBreadItem from './xtx-bread-item.vue';
-// import XtxMore from './xtx-more.vue';
 import type { App } from 'vue';
 import defaultImg from '@/assets/images/200.png';
+import Message from './Message';
+import Confirm from './Confirm'
 
 // 扩展vue原有的功能：全局组件，自定义指令，挂载原型方法，注意：没有全局过滤器。
 // vue3.0插件写法要素：导出一个对象，有install函数，默认传入了app应用实例，app基础之上扩展
 export default {
   install(app: App<Element>) {
+    // 定义一个指令
     defineDirective(app);
+
+    app.config.globalProperties.$message = Message;
+    app.config.globalProperties.$confirm = Confirm;
   }
 };
 

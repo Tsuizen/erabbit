@@ -1,7 +1,8 @@
-import type { BrandResult } from './home';
+import type { Brand } from './home';
 import type { GoodsProps } from './home';
 
-export interface CategoryResult {
+/* 商品类别 */
+export interface Category {
   id: string;
   name: string;
   children: {
@@ -10,11 +11,12 @@ export interface CategoryResult {
     picture?: string;
   }[];
   goods?: GoodsProps[];
-  brands?: BrandResult[];
+  brands?: Brand[];
   open?: boolean;
 }
 
-export interface TopCategoryResult {
+/* 一级分类列表 */
+export interface TopCategory {
   id: string;
   name: string;
   children: {
@@ -32,6 +34,7 @@ export interface TopCategoryResult {
   }[];
 }
 
+/* 销售属性集合 */
 export interface SaleProperty {
   id: string;
   name: string;
@@ -42,7 +45,8 @@ export interface SaleProperty {
   }[];
 }
 
-export interface FilterCategoryResult {
+/* 分类筛选 */
+export interface FilterCategory {
   categories: {
     id: string;
     name: string;
@@ -61,6 +65,7 @@ export interface FilterCategoryResult {
   selectedBrand: string;
 }
 
+/* 临时商品 */
 export interface TemporaryItem {
   id: string;
   picture: string;
@@ -72,7 +77,8 @@ export interface TemporaryItem {
   oldPrice: number;
 }
 
-export interface TemporaryResult {
+/* 临时商品列表 */
+export interface Temporary {
   counts: number;
   pageSize: number;
   pages: number;

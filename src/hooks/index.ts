@@ -1,9 +1,10 @@
 import { findGoods } from '@/api/product';
-import type { GoodsResult } from '@/types/goods';
-import { useIntersectionObserver } from '@vueuse/core';
-import type { Ref } from 'vue';
+import type { Goods } from '@/types/goods';
+import { useIntersectionObserver, useIntervalFn } from '@vueuse/core';
+import { onUnmounted, type Ref } from 'vue';
 import { nextTick, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import dayjs from 'dayjs';
 
 //数据懒加载函数
 export const useLazyData = (apiFn: () => Promise<any>) => {
@@ -27,7 +28,7 @@ export const useLazyData = (apiFn: () => Promise<any>) => {
 };
 
 // 获取商品详情
-export const useGoods = (): Ref<GoodsResult> => {
+export const useGoods = (): Ref<Goods> => {
   // 出现路由地址商品id发生变化，但是不会重新初始化组件
   const goods = ref();
   const route = useRoute();
@@ -49,3 +50,29 @@ export const useGoods = (): Ref<GoodsResult> => {
   return goods;
 };
 
+/* 支付倒计时函数 */
+export const usePayTime = () => {
+  const time = ref(0);
+  const timeText = ref('');
+
+  const { pause, resume } = useIntervalFn(() => {
+    time.value--;
+    timeText.value = dayjs.unix(time.value).format('mm分ss秒');
+    if (time.value <= 0) {
+      pause();
+    }
+  }, 1000);
+
+  onUnmounted(() => {
+    pause();
+  });
+
+  // 开启定时器 countdown倒计时
+  const start = (countdown: number) => {
+    time.value = countdown;
+    timeText.value = dayjs.unix(time.value).format('mm分ss秒');
+    resume();
+  };
+
+  return { start, timeText };
+};

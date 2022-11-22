@@ -64,7 +64,7 @@
 import { computed, reactive, ref } from 'vue';
 import { useCategoryStore } from '@/store';
 import { storeToRefs } from 'pinia';
-import type { CategoryResult } from '@/types/category';
+import type { Category } from '@/types/category';
 import { isCategoryResult } from '@/store/modules/category';
 import { findBrand } from '@/api/home';
 
@@ -80,8 +80,8 @@ const { list } = storeToRefs(categoryStore);
 
 const menuList = computed(() => {
   if (isCategoryResult(list.value)) {
-    const tempList: CategoryResult[] = list.value.map(
-      (item: CategoryResult) => {
+    const tempList: Category[] = list.value.map(
+      (item: Category) => {
         return {
           id: item.id,
           name: item.name,

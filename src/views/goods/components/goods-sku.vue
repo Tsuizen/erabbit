@@ -23,12 +23,12 @@
 </template>
 
 <script setup lang="ts">
-import type { GoodsResult, SkuInGoods } from '@/types/goods';
+import type { Goods, GoodsSku } from '@/types/goods';
 import powerSet from '@/vender/power-set';
-import type { SpecsInGoods, SpecsValues } from '@/types/goods';
+import type { GoodsSpecs, SpecsValues } from '@/types/goods';
 
 const props = defineProps<{
-  goods: GoodsResult;
+  goods: Goods;
   skuId?: string;
 }>();
 
@@ -36,7 +36,7 @@ const emit = defineEmits(['change']);
 
 const spliter = '★';
 // 得到一个路径字典对象
-const getPathMap = (skus: SkuInGoods[]) => {
+const getPathMap = (skus: GoodsSku[]) => {
   // 1.得到所有sku集合
   // 2.筛选出有效的sku
   // 3.根据有效的sku使用powe-set算法得到子集
@@ -67,7 +67,7 @@ const getPathMap = (skus: SkuInGoods[]) => {
 };
 
 // 获取已选中的数组
-const getSelectedValues = (specs: SpecsInGoods[]) => {
+const getSelectedValues = (specs: GoodsSpecs[]) => {
   const arr: (string | undefined)[] = [];
   specs.forEach((item) => {
     const selectedVal = item.values.find((val) => val.selected);
@@ -77,7 +77,7 @@ const getSelectedValues = (specs: SpecsInGoods[]) => {
 };
 
 // 更新按钮禁用状态
-const updateDisabledStatus = <T>(specs: SpecsInGoods[], pathMap: T) => {
+const updateDisabledStatus = <T>(specs: GoodsSpecs[], pathMap: T) => {
   // 1.约定每一个按钮的状态由本身的disabled数据来控制
   specs.forEach((item, i) => {
     const selectedValue = getSelectedValues(specs);
@@ -97,7 +97,7 @@ const updateDisabledStatus = <T>(specs: SpecsInGoods[], pathMap: T) => {
 };
 
 // 默认选中
-const initDefaultSelected = (goods: GoodsResult, skuId: string) => {
+const initDefaultSelected = (goods: Goods, skuId: string) => {
   // 1.找出sku的信息
   // 2.遍历每一个按钮，按钮的值和sku记录的值相同，就选中
   const sku = goods.skus.find((sku) => sku.id === skuId);
@@ -117,7 +117,7 @@ updateDisabledStatus(props.goods.specs, pathMap);
 // 1.选中与取消选中，每一个按钮都有自己的选中状态selected
 // 1.1 点击的是已选中，只需要取消当前的选中
 // 1.2 点击的是未选中，把同一个规格的按钮改成未选中，当前点击的改成选中
-const changeSku = (item: SpecsInGoods, val: SpecsValues) => {
+const changeSku = (item: GoodsSpecs, val: SpecsValues) => {
   // 按钮是禁用的直接返回
   if (val.disabled) {
     return;
@@ -142,7 +142,7 @@ const changeSku = (item: SpecsInGoods, val: SpecsValues) => {
   );
   if (validSelectedValues.length === props.goods.specs.length) {
     const skuIds = pathMap[validSelectedValues.join(spliter)];
-    const sku = props.goods.skus.find((sku) => sku.id === skuIds[0]) as SkuInGoods;
+    const sku = props.goods.skus.find((sku) => sku.id === skuIds[0]) as GoodsSku;
 
     emit('change', {
       skuId: sku.id,
