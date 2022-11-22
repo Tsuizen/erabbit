@@ -274,6 +274,8 @@ const cartStore = defineStore(
       });
     };
 
+    // 设置购物车
+
     // 获取商品列表
     const findCart = () => {
       return new Promise<void>((resolve, reject) => {
@@ -316,6 +318,7 @@ const cartStore = defineStore(
       selectedList,
       selectedTotal,
       isCheckAll,
+      setCartNotLogin,
       insertCart,
       mergeCart,
       updateCart,

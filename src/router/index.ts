@@ -1,4 +1,5 @@
 import { useUserStore } from '@/store';
+import { h, resolveComponent } from 'vue';
 import {
   createRouter,
   createWebHashHistory,
@@ -15,6 +16,8 @@ const Cart = () => import('@/views/cart/index.vue');
 const Checkout = () => import('@/views/member/pay/checkout.vue');
 const Pay = () => import('@/views/member/pay/index.vue');
 const PayResult = () => import('@/views/member/pay/result.vue');
+const MemberLayout = () => import('@/views/member/Layout.vue');
+const MemberHome = () => import('@/views/member/home/index.vue');
 
 const routes: RouteRecordRaw[] = [
   {
@@ -28,7 +31,26 @@ const routes: RouteRecordRaw[] = [
       { path: '/cart', component: Cart },
       { path: '/member/checkout', component: Checkout },
       { path: '/member/pay', component: Pay },
-      { path: '/pay/callback', component: PayResult }
+      { path: '/pay/callback', component: PayResult },
+      {
+        path: '/member',
+        component: MemberLayout,
+        children: [
+          { path: '/member', component: MemberHome },
+          {
+            path: '/member/order',
+            // 在vue3中只有嵌套才能触发上一级路由的模糊匹，为了在/member/order的下级路由中实现嵌套关系。
+            // 采用render选项，现在/member/order对应一个router-view
+            // 否则需要在MemberOrder中再写一个router-view以实现对MemberOrderDetail的嵌套，少些一层路由
+            // vue2: h(<RouterView/>), vue3: h(resolveComponent('router-view'))
+            component: { render: () => h(resolveComponent('router-view')) },
+            children: [
+              // { path: '', component: MemberOrder },
+              // { path: ':id', component: MemberOrderDetail }
+            ]
+          }
+        ]
+      }
     ]
   },
   { path: '/login', component: Login }

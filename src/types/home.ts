@@ -3,7 +3,7 @@ export interface GoodsProps {
   name: string;
   price: number;
   picture: string;
-  desc: string;
+  desc?: string;
 }
 
 /* 品牌 */

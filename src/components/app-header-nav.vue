@@ -25,15 +25,15 @@
 <script setup lang="ts">
 import { useCategoryStore } from '@/store';
 import { storeToRefs } from 'pinia';
-import type { CategoryResult } from '@/types/category';
+import type { Category } from '@/types/category';
 import { computed, type ComputedRef } from 'vue';
 
 const categoryStore = useCategoryStore();
 const { list } = storeToRefs(categoryStore);
 const { show, hide } = categoryStore;
 
-let useList: ComputedRef<CategoryResult[]> = computed(
-  () => list.value as CategoryResult[]
+let useList: ComputedRef<Category[]> = computed(
+  () => list.value as Category[]
 );
 </script>
 

@@ -9,13 +9,13 @@
         :key="i"
         :class="{ fade: index === i }">
         <!-- 图片 -->
-        <RouterLink v-if="(item as BannerResult).imgUrl" to="/">
-          <img :src="(item as BannerResult).imgUrl" alt="" />
+        <RouterLink v-if="(item as Banner).imgUrl" to="/">
+          <img :src="(item as Banner).imgUrl" alt="" />
         </RouterLink>
         <!-- 商品列表 item=[goods1,goods2,。。。]-->
         <div v-else class="slider">
           <RouterLink
-            v-for="goods in item as RelevantResult[]"
+            v-for="goods in item as Relevant[]"
             :key="goods.id"
             :to="`/product/${goods.id}`">
             <img :src="goods.picture" alt="" />
@@ -47,11 +47,11 @@
 
 <script setup lang="ts">
 import { onUnmounted, ref, watch } from 'vue';
-import type { BannerResult } from '@/types/home';
-import type { RelevantResult } from '@/types/goods';
+import type { Banner } from '@/types/home';
+import type { Relevant } from '@/types/goods';
 
 interface Props {
-  sliders: BannerResult[] | RelevantResult[][];
+  sliders: Banner[] | Relevant[][];
   duration: number;
   autoPlay: boolean;
 }
