@@ -7,16 +7,19 @@
         <XtxBreadItem>支付订单</XtxBreadItem>
       </XtxBread>
       <!-- 付款信息 -->
-      <div class="pay-info">
+      <div class="pay-info" v-if="order">
         <span class="icon icon-font icon-queren2"></span>
         <div class="tip">
           <p>订单提交成功</p>
-          <p>支付还剩<span>{{}}</span>，超时后将取消订单</p>
+          <p v-if="order.countdown > -1">
+            支付还剩<span>{{ timeText }}</span
+            >，超时后将取消订单
+          </p>
           <p>订单已超时</p>
         </div>
         <div class="amount">
           <span>应付总额：</span>
-          <span>&yen;{{}}</span>
+          <span>&yen;{{ order.payMoney }}</span>
         </div>
       </div>
       <!-- 付款方式 -->
@@ -25,7 +28,11 @@
         <div class="item">
           <p>支付平台</p>
           <a href="javascript:;" class="btn wx"></a>
-          <a href="javascript:;" class="btn aliapy" target="_blank"></a>
+          <a
+            class="btn alipay"
+            @click="visibleDialog = true"
+            :href="payUrl"
+            target="_blank"></a>
         </div>
         <div class="item">
           <p>支付方式</p>
@@ -38,7 +45,7 @@
       </div>
     </div>
     <!-- 支付对话框 -->
-    <XtxDialog title="正在支付...">
+    <XtxDialog title="正在支付..." v-model:visible="visibleDialog">
       <div class="pay-wait">
         <img src="@/assets/images/load.gif" alt="" />
         <div v-if="order">
@@ -57,14 +64,22 @@
 <script setup lang="ts">
 import { findOrderDetail } from '@/api/order';
 import { usePayTime } from '@/hooks';
-import type { RepurchaseOrder } from './pay';
+import type { Order } from './pay';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { baseURL } from '@/utils/request';
 
 // 根据地址栏id发请求获取订单数据
 const route = useRoute();
-const order = ref<RepurchaseOrder>();
+const order = ref<Order>();
 const { start, timeText } = usePayTime();
+const visibleDialog = ref<boolean>(false);
+
+// 支付地址
+// const payUrl = '后台服务基准地址+支付页面地址+订单ID+回跳地址'
+const redirect = encodeURIComponent('http://www.corho.com:8080/#/pay/callback');
+const payUrl = `${baseURL}pay/aliPay?orderId=${route.query.orderId}&redirect=${redirect}`;
+
 findOrderDetail(route.query.orderId as string).then((data) => {
   order.value = data.result;
   // 后端提供倒计时
@@ -72,8 +87,91 @@ findOrderDetail(route.query.orderId as string).then((data) => {
     start(data.result.countdown);
   }
 });
-
-// 支付地址
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.pay-wait {
+  display: flex;
+  justify-content: space-around;
+  p {
+    margin-top: 30px;
+    font-size: 14px;
+  }
+  a {
+    color: @xtxColor;
+  }
+}
+.pay-info {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  height: 240px;
+  padding: 0 80px;
+  .icon {
+    font-size: 80px;
+    color: #1dc779;
+  }
+  .tip {
+    padding-left: 10px;
+    flex: 1;
+    p {
+      &:first-child {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+      &:last-child {
+        color: #999;
+        font-size: 16px;
+      }
+    }
+  }
+  .amount {
+    span {
+      &:first-child {
+        font-size: 16px;
+        color: #999;
+      }
+      &:last-child {
+        color: @priceColor;
+        font-size: 20px;
+      }
+    }
+  }
+}
+.pay-type {
+  margin-top: 20px;
+  background-color: #fff;
+  padding-bottom: 70px;
+  p {
+    line-height: 70px;
+    height: 70px;
+    padding-left: 30px;
+    font-size: 16px;
+    &.head {
+      border-bottom: 1px solid #f5f5f5;
+    }
+  }
+  .btn {
+    width: 150px;
+    height: 50px;
+    border: 1px solid #e4e4e4;
+    text-align: center;
+    line-height: 48px;
+    margin-left: 30px;
+    color: #666666;
+    display: inline-block;
+    &.active,
+    &:hover {
+      border-color: @xtxColor;
+    }
+    &.alipay {
+      background: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7b6b02396368c9314528c0bbd85a2e06.png)
+        no-repeat center / contain;
+    }
+    &.wx {
+      background: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c66f98cff8649bd5ba722c2e8067c6ca.jpg)
+        no-repeat center / contain;
+    }
+  }
+}
+</style>
