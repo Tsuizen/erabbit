@@ -19,22 +19,25 @@ defineProps<{
 
 <style scoped lang="less">
 .home-panel {
-  background-color: #fff;
   padding: 0 20px;
   margin-top: 20px;
   height: 400px;
+  background-color: #fff;
+
   .header {
-    height: 66px;
-    border-bottom: 1px solid #f5f5f5;
-    padding: 18px 0;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    padding: 18px 0;
+    height: 66px;
+    border-bottom: 1px solid #f5f5f5;
+
     h4 {
       font-size: 22px;
       font-weight: normal;
     }
   }
+
   .goods-list {
     display: flex;
     justify-content: space-around;

@@ -4,21 +4,24 @@
       <a
         href="javascript:;"
         @click="toggle(-1)"
-        class="iconfont icon-angle-left prev"></a>
+        class="iconfont icon-angle-left prev"
+      ></a>
       <a
         href="javascript:;"
         @click="toggle(1)"
-        class="iconfont icon-angle-right next"></a>
+        class="iconfont icon-angle-right next"
+      ></a>
     </template>
     <div class="box" ref="target">
       <Transition name="fade">
         <ul
           class="list"
           v-if="brands.length"
-          :style="{ transform: `translateX(${-index * 1240}px)` }">
+          :style="{ transform: `translateX(${-index * 1240}px)` }"
+        >
           <li v-for="item in brands" :key="item.id">
             <RouterLink to="/">
-              <img :src="item.picture" alt="" z/>
+              <img :src="item.picture" alt="" z />
             </RouterLink>
           </li>
         </ul>
@@ -30,7 +33,8 @@
             animated
             bg="#e4e4e4"
             width="240px"
-            height="305px" />
+            height="305px"
+          />
         </div>
       </Transition>
     </div>
@@ -60,41 +64,49 @@ const toggle = (step: number) => {
 .home-panel {
   background: #f5f5f5;
 }
+
 .iconfont {
+  display: inline-block;
+  margin-left: 5px;
   width: 20px;
   height: 20px;
-  background: #ccc;
-  color: #fff;
-  display: inline-block;
   text-align: center;
-  margin-left: 5px;
+  color: #fff;
+  background: #ccc;
   background: @xtxColor;
+
   &::before {
-    font-size: 12px;
     position: relative;
     top: -2px;
+    font-size: 12px;
   }
+
   &.disabled {
     background: #ccc;
     cursor: not-allowed;
   }
 }
+
 .box {
   display: flex;
-  width: 100%;
-  height: 345px;
   overflow: hidden;
   padding-bottom: 40px;
+  width: 100%;
+  height: 345px;
+
   .list {
-    width: 200%;
     display: flex;
+    width: 200%;
     transition: all 1s;
+
     li {
       margin-right: 10px;
       width: 240px;
+
       &:nth-child(5n) {
         margin-right: 0;
       }
+
       img {
         width: 240px;
         height: 305px;
@@ -102,11 +114,14 @@ const toggle = (step: number) => {
     }
   }
 }
+
 .skeleton {
-  width: 100%;
   display: flex;
+  width: 100%;
+
   .item {
     margin-right: 10px;
+
     &:nth-child(5n) {
       margin-right: 0;
     }

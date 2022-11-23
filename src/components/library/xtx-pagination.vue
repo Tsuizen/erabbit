@@ -4,7 +4,7 @@
       @click="changePager(myCurrentPage - 1)"
       v-if="myCurrentPage > 1"
       href="javascript:;"
-      >上一页</a
+    >上一页</a
     >
     <a v-else href="javascript:;" class="disabled">上一页</a>
     <span v-if="pager.start > 1">...</span>
@@ -14,14 +14,14 @@
       v-for="i in pager.btnArr"
       :key="i"
       :class="{ active: i === myCurrentPage }"
-      >{{ i }}</a
+    >{{ i }}</a
     >
     <span v-if="pager.end < pager.pageCount">...</span>
     <a
       @click="changePager(myCurrentPage + 1)"
       v-if="myCurrentPage < pager.pageCount"
       href="javascript:;"
-      >下一页</a
+    >下一页</a
     >
     <a v-else href="javascript:;" class="disabled">下一页</a>
   </div>
@@ -109,28 +109,34 @@ const changePager = (page: number) => {
   display: flex;
   justify-content: center;
   padding: 30px;
+
   > a {
     display: inline-block;
     padding: 5px 10px;
+    margin-right: 10px;
     border: 1px solid #e4e4e4;
     border-radius: 4px;
-    margin-right: 10px;
+
     &:hover {
       color: @xtxColor;
     }
+
     &.active {
-      background: @xtxColor;
       color: #fff;
+      background: @xtxColor;
       border-color: @xtxColor;
     }
+
     &.disabled {
       cursor: not-allowed;
       opacity: 0.4;
+
       &:hover {
         color: #333;
       }
     }
   }
+
   > span {
     margin-right: 10px;
   }

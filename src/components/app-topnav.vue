@@ -49,25 +49,30 @@ const logout = () => {
 <style scoped lang="less">
 .app-topnav {
   background: #333;
+
   ul {
     display: flex;
-    height: 53px;
     justify-content: flex-end;
     align-items: center;
+    height: 53px;
+
     li {
       a {
+        display: inline-block;
         padding: 0 15px;
         color: #cdcdcd;
         line-height: 1;
-        display: inline-block;
+
         i {
-          font-size: 14px;
           margin-right: 2px;
+          font-size: 14px;
         }
+
         &:hover {
           color: @xtxColor;
         }
       }
+
       ~ li {
         a {
           border-left: 2px solid #666;

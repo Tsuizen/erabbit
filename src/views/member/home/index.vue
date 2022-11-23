@@ -48,6 +48,7 @@ findCollect({
 :deep(.xtx-carousel) .carousel-btn.prev {
   left: 5px;
 }
+
 :deep(.xtx-carousel) .carousel-btn.next {
   right: 5px;
 }

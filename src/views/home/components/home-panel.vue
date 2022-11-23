@@ -28,21 +28,24 @@ withDefaults(defineProps<Props>(), {
 <style scoped lang="less">
 .home-panel {
   background-color: #fff;
+
   .head {
-    padding: 40px 0;
     display: flex;
     align-items: flex-end;
+    padding: 40px 0;
+
     h3 {
-      flex: 1;
-      font-size: 32px;
-      font-weight: normal;
       margin-left: 6px;
       height: 35px;
+      font-size: 32px;
+      flex: 1;
+      font-weight: normal;
       line-height: 35px;
+
       small {
+        margin-left: 20px;
         font-size: 16px;
         color: #999;
-        margin-left: 20px;
       }
     }
   }

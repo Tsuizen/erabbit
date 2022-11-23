@@ -129,7 +129,7 @@ const cartStore = defineStore(
       oldSkuId: string;
       newSku: SkuInfo;
     }) => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         if (user.profile.token) {
           // 已登录
           // 找出旧的商品数据
@@ -137,11 +137,11 @@ const cartStore = defineStore(
           // 原先商品的数量+新skuid
           // 添加新的商品
           const oldGoods = list.value.find((item) => item.skuId === oldSkuId);
-          deleteCartApi([oldGoods?.skuId!])
+          deleteCartApi([oldGoods!.skuId!])
             .then(() => {
               return insertCartApi({
                 skuId: newSku.skuId,
-                count: oldGoods?.count as number
+                count: oldGoods!.count as number
               });
             })
             .then(() => {
@@ -174,7 +174,7 @@ const cartStore = defineStore(
 
     // 批量删除
     const batchDeleteCart = (isClear: boolean) => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         if (user.profile.token) {
           // 已登录
           const ids = (isClear ? invalidList : selectedList).value.map(
@@ -198,7 +198,7 @@ const cartStore = defineStore(
     };
 
     const checkAllCart = (selected: boolean) => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         if (user.profile.token) {
           // 已登录
           const ids = validList.value.map((item) => item.skuId) as string[];
@@ -221,7 +221,7 @@ const cartStore = defineStore(
     };
     // 修改购物车（选中状态，数量）
     const updateCart = (payload: any) => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         if (user.profile.token) {
           updateCartApi(payload)
             .then(() => {
@@ -239,7 +239,7 @@ const cartStore = defineStore(
     };
 
     const deleteCart = (payload: any) => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         if (user.profile.token) {
           deleteCartApi([payload])
             .then(() => {
@@ -278,7 +278,7 @@ const cartStore = defineStore(
 
     // 获取商品列表
     const findCart = () => {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         if (user.profile.token) {
           findCartApi().then((data) => {
             setCartNotLogin(data.result);

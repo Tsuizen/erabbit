@@ -18,19 +18,22 @@ withDefaults(defineProps<Props>(), {
 <style scoped lang="less">
 .xtx-more {
   margin-bottom: 2px;
+
   span {
-    font-size: 16px;
-    vertical-align: middle;
     margin-right: 4px;
+    font-size: 16px;
     color: #999;
-  }
-  i {
-    font-size: 14px;
     vertical-align: middle;
+  }
+
+  i {
     position: relative;
     top: 2px;
+    font-size: 14px;
     color: #ccc;
+    vertical-align: middle;
   }
+
   &:hover {
     span,
     i {

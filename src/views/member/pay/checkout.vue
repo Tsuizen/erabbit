@@ -12,8 +12,10 @@
         <div class="box-body">
           <!-- 收货地址组件 -->
           <CheckoutAddress
+            @update:list="order!.userAddresses = $event"
             @change="changeAddress"
-            :list="order.userAddresses" />
+            :list="order.userAddresses"
+          />
         </div>
         <!-- 商品信息 -->
         <h3 class="box-title">商品信息</h3>
@@ -158,34 +160,41 @@ const submitOrderFn = () => {
 <style scoped lang="less">
 .xtx-pay-checkout-page {
   .wrapper {
-    background: #fff;
     padding: 0 20px;
+    background: #fff;
+
     .box-title {
+      padding-left: 10px;
       font-size: 16px;
       font-weight: normal;
-      padding-left: 10px;
       line-height: 70px;
       border-bottom: 1px solid #f5f5f5;
     }
+
     .box-body {
       padding: 20px 0;
     }
   }
 }
+
 .goods {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+
   .info {
     display: flex;
     text-align: left;
+
     img {
+      margin-right: 20px;
       width: 70px;
       height: 70px;
-      margin-right: 20px;
     }
+
     .right {
       line-height: 24px;
+
       p {
         &:last-child {
           color: #999;
@@ -193,54 +202,64 @@ const submitOrderFn = () => {
       }
     }
   }
+
   tr {
     th {
       background: #f5f5f5;
       font-weight: normal;
     }
+
     td,
     th {
-      text-align: center;
       padding: 20px;
+      text-align: center;
       border-bottom: 1px solid #f5f5f5;
+
       &:first-child {
         border-left: 1px solid #f5f5f5;
       }
+
       &:last-child {
         border-right: 1px solid #f5f5f5;
       }
     }
   }
 }
+
 .my-btn {
+  display: inline-block;
+  margin-right: 25px;
   width: 228px;
   height: 50px;
-  border: 1px solid #e4e4e4;
   text-align: center;
+  color: #666;
+  border: 1px solid #e4e4e4;
   line-height: 48px;
-  margin-right: 25px;
-  color: #666666;
-  display: inline-block;
+
   &.active,
   &:hover {
     border-color: @xtxColor;
   }
 }
+
 .total {
   dl {
     display: flex;
     justify-content: flex-end;
     line-height: 50px;
+
     dt {
       i {
         display: inline-block;
         width: 2em;
       }
     }
+
     dd {
+      padding-right: 70px;
       width: 240px;
       text-align: right;
-      padding-right: 70px;
+
       &.price {
         font-size: 20px;
         color: @priceColor;
@@ -248,9 +267,10 @@ const submitOrderFn = () => {
     }
   }
 }
+
 .submit {
-  text-align: right;
   padding: 60px;
+  text-align: right;
   border-top: 1px solid #f5f5f5;
 }
 </style>

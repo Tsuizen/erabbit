@@ -7,12 +7,13 @@ html {
   height: 100%;
   font-size: 14px;
 }
+
 body {
+  min-width: 1240px;
   height: 100%;
   color: #333;
-  min-width: 1240px;
-  font: 1em/1.4 'Microsoft Yahei', 'PingFang SC', 'Avenir', 'Segoe UI',
-    'Hiragino Sans GB', 'STHeiti', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei',
+  font: 1em/1.4 'Microsoft Yahei', 'PingFang SC', Avenir, 'Segoe UI',
+    'Hiragino Sans GB', STHeiti, 'Microsoft Sans Serif', 'WenQuanYi Micro Hei',
     sans-serif;
 }
 
@@ -42,8 +43,8 @@ input[type='search'],
 input[type='password'],
 input[type='checkbox'] {
   padding: 0;
-  outline: none;
   border: none;
+  outline: none;
   // -webkit-appearance: none;
   &::placeholder {
     color: #ccc;
@@ -66,24 +67,24 @@ ul {
 }
 
 .container {
-  width: 1240px;
-  margin: 0 auto;
   position: relative;
+  margin: 0 auto;
+  width: 1240px;
 }
 
 .ellipsis {
-  white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ellipsis-2 {
-  word-break: break-all;
-  text-overflow: ellipsis;
   display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  overflow: hidden;
 }
 
 .fl {
@@ -94,13 +95,13 @@ ul {
   float: right;
 }
 
-.clearfix:after {
-  content: '.';
+.clearfix::after {
   display: block;
-  visibility: hidden;
-  height: 0;
-  line-height: 0;
   clear: both;
+  height: 0;
+  visibility: hidden;
+  content: '.';
+  line-height: 0;
 }
 
 // 离开时候淡出动画
@@ -108,10 +109,11 @@ ul {
   &-leave {
     &-active {
       position: absolute;
+      z-index: 1;
       width: 100%;
       transition: opacity 0.5s 0.2s;
-      z-index: 1;
     }
+
     &-to {
       opacity: 0;
     }
@@ -126,10 +128,12 @@ ul {
   transform: translateX(20px);
   opacity: 0;
 }
+
 .fade-right-enter-active,
 .fade-right-leave-active {
   transition: all 0.5s;
 }
+
 .fade-right-enter-to,
 .fade-right-leave-from {
   transform: none;
@@ -139,71 +143,81 @@ ul {
 // 表单
 .xtx-form {
   padding: 50px 0;
+
   &-item {
     display: flex;
     align-items: center;
-    width: 700px;
-    margin: 0 auto;
     padding-bottom: 25px;
+    margin: 0 auto;
+    width: 700px;
+
     .label {
-      width: 180px;
       padding-right: 10px;
+      width: 180px;
       text-align: right;
       color: #999;
+
       ~ .field {
         margin-left: 0;
       }
     }
+
     .field {
-      width: 320px;
-      height: 50px;
       position: relative;
       margin-left: 190px;
+      width: 320px;
+      height: 50px;
+
       .icon {
         position: absolute;
-        left: 0;
         top: 0;
+        left: 0;
         width: 40px;
         height: 50px;
         text-align: center;
-        line-height: 50px;
         color: #999;
+        line-height: 50px;
+
         ~ .input {
           padding-left: 40px;
         }
       }
+
       .input {
-        border: 1px solid #e4e4e4;
+        padding: 0 10px;
         width: 320px;
         height: 50px;
+        border: 1px solid #e4e4e4;
         line-height: 50px;
-        padding: 0 10px;
+
         &.err {
           border-color: @priceColor;
         }
+
         &:focus,
         &:active {
           border-color: @xtxColor;
         }
       }
     }
+
     .error {
-      width: 180px;
       padding-left: 10px;
+      width: 180px;
       color: @priceColor;
     }
   }
+
   .submit {
-    width: 320px;
-    height: 50px;
-    border-radius: 4px;
-    background: @xtxColor;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    font-size: 16px;
-    color: #fff;
     display: block;
     margin: 0 auto;
+    width: 320px;
+    height: 50px;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+    background: @xtxColor;
+    border-radius: 4px;
+    line-height: 50px;
   }
 }

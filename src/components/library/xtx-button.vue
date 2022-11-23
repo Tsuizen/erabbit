@@ -19,52 +19,61 @@ defineProps({
 
 <style scoped lang="less">
 .xtx-button {
-  appearance: none;
-  border: none;
-  outline: none;
-  background: #fff;
   text-align: center;
+  background: #fff;
+  border: none;
   border: 1px solid transparent;
   border-radius: 4px;
+  outline: none;
+  appearance: none;
   cursor: pointer;
 }
+
 .large {
   width: 240px;
   height: 50px;
   font-size: 16px;
 }
+
 .middle {
   width: 180px;
   height: 50px;
   font-size: 16px;
 }
+
 .small {
   width: 100px;
   height: 32px;
   font-size: 14px;
 }
+
 .mini {
   width: 60px;
   height: 32px;
   font-size: 14px;
 }
+
 .default {
-  border-color: #e4e4e4;
   color: #666;
+  border-color: #e4e4e4;
 }
+
 .primary {
-  border-color: @xtxColor;
+  color: #fff;
   background: @xtxColor;
-  color: #fff;
-}
-.plain {
   border-color: @xtxColor;
-  color: @xtxColor;
-  background: lighten(@xtxColor,50%);
 }
+
+.plain {
+  color: @xtxColor;
+  /* stylelint-disable-next-line function-no-unknown */
+  background: lighten(@xtxColor, 50%);
+  border-color: @xtxColor;
+}
+
 .gray {
-  border-color: #ccc;
-  background: #ccc;;
   color: #fff;
+  background: #ccc;
+  border-color: #ccc;
 }
 </style>

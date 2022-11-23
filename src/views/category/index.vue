@@ -11,6 +11,7 @@
       </XtxBread>
 
       <!-- 轮播图 -->
+      /* stylelint-disable-next-line declaration-block-trailing-semicolon */
       <XtxCarousel :sliders="sliders" style="height: 500px" auto-play />
 
       <!-- 二级分类 -->
@@ -35,7 +36,8 @@
           <GoodsItem
             v-for="goods in sub.goods"
             :key="goods.id"
-            :goods="goods"></GoodsItem>
+            :goods="goods"
+          ></GoodsItem>
         </div>
       </div>
     </div>
@@ -48,7 +50,7 @@ import { findTopCategory } from '@/api/category';
 import { useCategoryStore } from '@/store';
 import type { Category } from '@/types/category';
 import { storeToRefs } from 'pinia';
-import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
+import { computed, ref, watch, type ComputedRef } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import GoodsItem from './components/goods-item.vue';
 
@@ -104,32 +106,39 @@ watch(
 .top-category {
   h3 {
     font-size: 28px;
+    text-align: center;
     color: #666;
     font-weight: normal;
-    text-align: center;
     line-height: 100px;
   }
+
   .sub-list {
     margin-top: 20px;
     background-color: #fff;
+
     ul {
       display: flex;
       padding: 0 32px;
       flex-wrap: wrap;
+
       li {
         width: 168px;
         height: 160px;
+
         a {
-          text-align: center;
           display: block;
           font-size: 16px;
+          text-align: center;
+
           img {
             width: 100px;
             height: 100px;
           }
+
           p {
             line-height: 40px;
           }
+
           &:hover {
             color: @xtxColor;
           }
@@ -139,23 +148,26 @@ watch(
   }
   // 推荐商品
   .ref-goods {
-    background-color: #fff;
-    margin-top: 20px;
     position: relative;
+    margin-top: 20px;
+    background-color: #fff;
+
     .head {
       .xtx-more {
         position: absolute;
         top: 20px;
         right: 20px;
       }
+
       .tag {
-        text-align: center;
-        color: #999;
-        font-size: 20px;
         position: relative;
         top: -20px;
+        font-size: 20px;
+        text-align: center;
+        color: #999;
       }
     }
+
     .body {
       display: flex;
       justify-content: flex-start;

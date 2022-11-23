@@ -27,22 +27,25 @@
 </template>
 <style lang="less" scoped>
 .goods-warn {
+  padding-bottom: 40px;
   margin-top: 20px;
   background: #fff;
-  padding-bottom: 40px;
+
   h3 {
+    padding-left: 50px;
+    margin-bottom: 10px;
     height: 70px;
+    font-size: 18px;
     line-height: 70px;
     border-bottom: 1px solid #f5f5f5;
-    padding-left: 50px;
-    font-size: 18px;
     font-weight: normal;
-    margin-bottom: 10px;
   }
+
   p {
     line-height: 40px;
     padding: 0 25px;
     color: #666;
+
     &.tit {
       color: #333;
     }

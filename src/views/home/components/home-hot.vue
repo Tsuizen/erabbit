@@ -49,14 +49,14 @@ const goods: Ref<Hot[]> = result;
     }
 
     p {
-      font-size: 22px;
       padding-top: 12px;
+      font-size: 22px;
       text-align: center;
     }
 
     .desc {
-      color: #999;
       font-size: 18px;
+      color: #999;
     }
   }
 }

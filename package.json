@@ -6,7 +6,10 @@
     "build": "run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit"
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "type-check": "vue-tsc --noEmit",
+    "format": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
+    "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix"
   },
   "dependencies": {
     "@vueuse/core": "^9.4.0",
@@ -20,17 +23,41 @@
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^17.3.0",
     "@types/lodash.clonedeep": "^4.5.7",
     "@types/node": "^16.11.56",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vue/tsconfig": "^0.1.3",
+    "commitlint": "^17.3.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-vue": "^9.7.0",
     "less": "^4.1.3",
-    "less-loader": "^11.1.0",
+    "lint-staged": "^13.0.3",
     "npm-run-all": "^4.1.5",
     "pinia": "^2.0.23",
+    "postcss": "^8.4.19",
+    "postcss-html": "^1.5.0",
+    "postcss-less": "^6.0.0",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.15.0",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-recommended-less": "^1.0.4",
+    "stylelint-config-standard": "^29.0.0",
+    "stylelint-config-standard-vue": "^1.0.0",
+    "stylelint-less": "^1.0.6",
+    "stylelint-order": "^5.0.0",
     "typescript": "~4.7.4",
     "unplugin-vue-components": "^0.22.9",
     "vite": "^3.0.9",
     "vue-tsc": "^0.40.7"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }

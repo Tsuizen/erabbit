@@ -41,20 +41,24 @@ const goods: Ref<New[]> = result;
   display: flex;
   justify-content: space-between;
   height: 406px;
+
   li {
     width: 306px;
     height: 406px;
     background: #f0f9f4;
     .hoverShadow();
+
     img {
       width: 306px;
       height: 306px;
     }
+
     p {
+      padding: 12px 30px 0;
       font-size: 22px;
-      padding: 12px 30px 0 30px;
       text-align: center;
     }
+
     .price {
       color: @priceColor;
     }

@@ -4,10 +4,8 @@
     <div
       v-show="show"
       class="large"
-      :style="[
-        { backgroundImage: `url(${images[currIndex]})` },
-        largePosition
-      ]"></div>
+      :style="[{ backgroundImage: `url(${images[currIndex]})` }, largePosition]"
+    ></div>
     <!-- 中图 -->
     <div class="middle" ref="target">
       <img :src="images[currIndex]" alt="" />
@@ -19,7 +17,8 @@
       <li
         v-for="(img, i) in images"
         :key="img"
-        :class="{ active: i === currIndex }">
+        :class="{ active: i === currIndex }"
+      >
         <img :src="img" @mouseenter="currIndex = i" alt="" />
       </li>
     </ul>
@@ -87,58 +86,11 @@ watch([elementX, elementY, isOutside], () => {
 
 <style scoped lang="less">
 .goods-image {
+  position: relative;
+  z-index: 500;
+  display: flex;
   width: 480px;
   height: 400px;
-  position: relative;
-  display: flex;
-  z-index: 500;
-  .large {
-    position: absolute;
-    top: 0;
-    left: 412px;
-    width: 400px;
-    height: 400px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-repeat: no-repeat;
-    background-size: 800px 800px;
-    background-color: #f8f8f8;
-  }
-  .middle {
-    width: 400px;
-    height: 400px;
-    background: #f5f5f5;
-    position: relative;
-    cursor: move;
-    .layer {
-      width: 200px;
-      height: 200px;
-      background: rgba(0, 0, 0, 0.2);
-      left: 0;
-      top: 0;
-      position: absolute;
-    }
-  }
-  .small {
-    width: 80px;
-    li {
-      width: 68px;
-      height: 68px;
-      margin-left: 12px;
-      margin-bottom: 15px;
-      cursor: pointer;
-      &:hover,
-      &.active {
-        border: 2px solid @xtxColor;
-      }
-    }
-  }
-}
-.goods-image {
-  width: 480px;
-  height: 400px;
-  position: relative;
-  display: flex;
-  z-index: 500;
 
   .large {
     position: absolute;
@@ -146,26 +98,26 @@ watch([elementX, elementY, isOutside], () => {
     left: 412px;
     width: 400px;
     height: 400px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-repeat: no-repeat;
     background-size: 800px 800px;
     background-color: #f8f8f8;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
   }
 
   .middle {
+    position: relative;
     width: 400px;
     height: 400px;
     background: #f5f5f5;
-    position: relative;
     cursor: move;
 
     .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 200px;
       height: 200px;
-      background: rgba(0, 0, 0, 0.2);
-      left: 0;
-      top: 0;
-      position: absolute;
+      background: rgb(0 0 0 / 20%);
     }
   }
 
@@ -173,10 +125,10 @@ watch([elementX, elementY, isOutside], () => {
     width: 80px;
 
     li {
+      margin-bottom: 15px;
+      margin-left: 12px;
       width: 68px;
       height: 68px;
-      margin-left: 12px;
-      margin-bottom: 15px;
       cursor: pointer;
 
       &:hover,

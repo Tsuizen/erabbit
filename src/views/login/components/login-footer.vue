@@ -17,19 +17,22 @@
 
 <script setup lang="ts"></script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .login-footer {
   padding: 30px 0 50px;
   background: #fff;
+
   p {
+    padding-top: 20px;
     text-align: center;
     color: #999;
-    padding-top: 20px;
+
     a {
-      line-height: 1;
-      padding:0 10px;
-      color: #999;
       display: inline-block;
+      padding: 0 10px;
+      color: #999;
+      line-height: 1;
+
       ~ a {
         border-left: 1px solid #ccc;
       }

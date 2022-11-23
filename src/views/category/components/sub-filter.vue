@@ -24,7 +24,8 @@
           href="javascript:;"
           :class="{ acitve: item.selectedProp === attr.id }"
           :key="attr.id"
-          @click="changeProp(item, attr.id)">
+          @click="changeProp(item, attr.id)"
+        >
           {{ attr.name }}
         </a>
       </div>
@@ -128,21 +129,26 @@ const changeProp = (item: SaleProperty, propId: string) => {
 <style scoped lang="less">
 // 筛选区
 .sub-filter {
-  background-color: #fff;
   padding: 25px;
+  background-color: #fff;
+
   .item {
     display: flex;
     line-height: 40px;
+
     .head {
       width: 80px;
       color: #999;
     }
+
     .body {
       flex: 1;
+
       a {
+        display: inline-block;
         margin-right: 36px;
         transition: all 0.3s;
-        display: inline-block;
+
         &.active,
         &.hover {
           color: @xtxColor;

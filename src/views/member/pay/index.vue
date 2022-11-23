@@ -32,7 +32,8 @@
             class="btn alipay"
             @click="visibleDialog = true"
             :href="payUrl"
-            target="_blank"></a>
+            target="_blank"
+          ></a>
         </div>
         <div class="item">
           <p>支付方式</p>
@@ -93,81 +94,97 @@ findOrderDetail(route.query.orderId as string).then((data) => {
 .pay-wait {
   display: flex;
   justify-content: space-around;
+
   p {
     margin-top: 30px;
     font-size: 14px;
   }
+
   a {
     color: @xtxColor;
   }
 }
+
 .pay-info {
-  background: #fff;
   display: flex;
   align-items: center;
-  height: 240px;
   padding: 0 80px;
+  height: 240px;
+  background: #fff;
+
   .icon {
     font-size: 80px;
     color: #1dc779;
   }
+
   .tip {
     padding-left: 10px;
     flex: 1;
+
     p {
       &:first-child {
-        font-size: 20px;
         margin-bottom: 5px;
+        font-size: 20px;
       }
+
       &:last-child {
-        color: #999;
         font-size: 16px;
+        color: #999;
       }
     }
   }
+
   .amount {
     span {
       &:first-child {
         font-size: 16px;
         color: #999;
       }
+
       &:last-child {
-        color: @priceColor;
         font-size: 20px;
+        color: @priceColor;
       }
     }
   }
 }
+
 .pay-type {
+  padding-bottom: 70px;
   margin-top: 20px;
   background-color: #fff;
-  padding-bottom: 70px;
+
   p {
-    line-height: 70px;
-    height: 70px;
     padding-left: 30px;
+    height: 70px;
     font-size: 16px;
+    line-height: 70px;
+
     &.head {
       border-bottom: 1px solid #f5f5f5;
     }
   }
+
   .btn {
+    display: inline-block;
+    margin-left: 30px;
     width: 150px;
     height: 50px;
-    border: 1px solid #e4e4e4;
     text-align: center;
+    color: #666;
+    border: 1px solid #e4e4e4;
     line-height: 48px;
-    margin-left: 30px;
-    color: #666666;
-    display: inline-block;
+
     &.active,
     &:hover {
       border-color: @xtxColor;
     }
+
     &.alipay {
       background: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7b6b02396368c9314528c0bbd85a2e06.png)
         no-repeat center / contain;
     }
+
     &.wx {
       background: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c66f98cff8649bd5ba722c2e8067c6ca.jpg)
         no-repeat center / contain;

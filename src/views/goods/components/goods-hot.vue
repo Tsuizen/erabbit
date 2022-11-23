@@ -17,7 +17,7 @@ import type { GoodsProps } from '@/types/home';
 const props = defineProps({
   type: {
     type: String,
-    default: 1
+    default: '1'
   }
 });
 
@@ -39,26 +39,30 @@ findHotGoods({
 <style scoped lang="less">
 .goods-hot {
   h3 {
-    height: 70px;
-    background: @helpColor;
-    color: #fff;
-    font-size: 18px;
-    line-height: 70px;
     padding-left: 25px;
     margin-bottom: 10px;
+    height: 70px;
+    font-size: 18px;
+    color: #fff;
+    background: @helpColor;
+    line-height: 70px;
     font-weight: normal;
   }
+
   :deep(.goods-item) {
-    background: #fff;
-    width: 100%;
     margin-bottom: 10px;
+    width: 100%;
+    background: #fff;
+
     img {
       width: 200px;
       height: 200px;
     }
+
     p {
       margin: 0 10px;
     }
+
     &:hover {
       transform: none;
       box-shadow: none;

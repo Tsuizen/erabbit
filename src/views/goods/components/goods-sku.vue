@@ -9,7 +9,8 @@
             :title="val.name"
             :src="val.picture"
             @click="changeSku(item, val)"
-            :class="{ selected: val.selected, disabled: val.disabled }" />
+            :class="{ selected: val.selected, disabled: val.disabled }"
+          />
           <span
             :class="{ selected: val.selected, disabled: val.disabled }"
             @click="changeSku(item, val)"
@@ -142,7 +143,9 @@ const changeSku = (item: GoodsSpecs, val: SpecsValues) => {
   );
   if (validSelectedValues.length === props.goods.specs.length) {
     const skuIds = pathMap[validSelectedValues.join(spliter)];
-    const sku = props.goods.skus.find((sku) => sku.id === skuIds[0]) as GoodsSku;
+    const sku = props.goods.skus.find(
+      (sku) => sku.id === skuIds[0]
+    ) as GoodsSku;
 
     emit('change', {
       skuId: sku.id,
@@ -163,42 +166,50 @@ const changeSku = (item: GoodsSpecs, val: SpecsValues) => {
 
 <style scoped lang="less">
 .sku-state-mixin () {
-  border: 1px solid #e4e4e4;
   margin-right: 10px;
+  border: 1px solid #e4e4e4;
   cursor: pointer;
+
   &.selected {
     border-color: @xtxColor;
   }
+
   &.disabled {
-    opacity: 0.6;
     border-style: dashed;
+    opacity: 0.6;
     cursor: not-allowed;
   }
 }
+
 .goods-sku {
-  padding-left: 10px;
   padding-top: 20px;
+  padding-left: 10px;
+
   dl {
     display: flex;
-    padding-bottom: 20px;
     align-items: center;
+    padding-bottom: 20px;
+
     dt {
       width: 50px;
       color: #999;
     }
+
     dd {
       flex: 1;
       color: #666;
+
       > img {
         width: 50px;
         height: 50px;
         .sku-state-mixin ();
       }
+
       > span {
         display: inline-block;
+        padding: 0 20px;
         height: 30px;
         line-height: 28px;
-        padding: 0 20px;
         .sku-state-mixin ();
       }
     }

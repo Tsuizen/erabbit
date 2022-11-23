@@ -10,7 +10,8 @@
       <div class="pay-result">
         <span
           v-if="$route.query.payResult"
-          class="iconfont icon-queren2 green"></span>
+          class="iconfont icon-queren2 green"
+        ></span>
         <span v-else class="iconfont icon-shanchu red"></span>
         <p class="tit">
           订单支付{{ $route.query.payResult ? '成功' : '失败' }}
@@ -21,6 +22,7 @@
           支付金额：<span class="red">¥{{ order?.payMoney }}</span>
         </p>
         <div class="btn">
+          /* stylelint-disable-next-line declaration-block-trailing-semicolon */
           <XtxButton
             @click="$router.push('/member/order')"
             type="primary"
@@ -52,34 +54,42 @@ findOrderDetail(route.query.id as string).then((data) => {
 <style scoped lang="less">
 .pay-result {
   padding: 100px 0;
-  background: #fff;
   text-align: center;
+  background: #fff;
+
   > .iconfont {
     font-size: 100px;
   }
+
   .green {
     color: #1dc779;
   }
+
   .red {
     color: @priceColor;
   }
+
   .tit {
     font-size: 24px;
   }
+
   .tip {
     color: #999;
   }
+
   p {
     line-height: 40px;
     font-size: 16px;
   }
+
   .btn {
     margin-top: 50px;
   }
+
   .alert {
+    margin-top: 50px;
     font-size: 12px;
     color: #999;
-    margin-top: 50px;
   }
 }
 </style>

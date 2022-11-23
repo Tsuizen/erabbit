@@ -46,35 +46,40 @@ setRedirectUrl(route.query.redirectUrl || '/');
 
 <style scoped lang="less">
 .login-section {
-  background: url(../../assets/images/login-bg.png) no-repeat center / cover;
-  height: 488px;
   position: relative;
+  height: 488px;
+  background: url(../../assets/images/login-bg.png) no-repeat center / cover;
+
   .wrapper {
-    width: 380px;
-    background: #fff;
-    min-height: 400px;
     position: absolute;
-    left: 50%;
     top: 54px;
+    left: 50%;
+    width: 380px;
+    min-height: 400px;
+    background: #fff;
+    box-shadow: 0 0 10px rgb(0 0 0 / 15%);
     transform: translate3d(100px, 0, 0);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+
     nav {
-      height: 55px;
-      border-bottom: 1px solid #f5f5f5;
       display: flex;
-      padding: 0 40px;
-      text-align: right;
       align-items: center;
+      padding: 0 40px;
+      height: 55px;
+      text-align: right;
+      border-bottom: 1px solid #f5f5f5;
+
       a {
-        flex: 1;
-        line-height: 1;
+        position: relative;
         display: inline-block;
         font-size: 18px;
-        position: relative;
+        flex: 1;
+        line-height: 1;
+
         &:first-child {
           border-right: 1px solid #f5f5f5;
           text-align: left;
         }
+
         &.active {
           color: @xtxColor;
           font-weight: bold;
@@ -85,13 +90,15 @@ setRedirectUrl(route.query.redirectUrl || '/');
 }
 // 二维码容器
 .qrcode-box {
-  text-align: center;
   padding-top: 40px;
+  text-align: center;
+
   p {
     margin-top: 20px;
+
     a {
-      color: @xtxColor;
       font-size: 16px;
+      color: @xtxColor;
     }
   }
 }

@@ -28,37 +28,44 @@
 <style scoped lang="less">
 .goods-sales {
   display: flex;
-  width: 400px;
   align-items: center;
-  text-align: center;
+  width: 400px;
   height: 140px;
+  text-align: center;
+
   li {
     flex: 1;
     position: relative;
+
     ~ li::after {
       position: absolute;
       top: 10px;
-      left: 0px;
+      left: 0;
       height: 60px;
       border-left: 1px solid #e4e4e4;
       content: '';
     }
+
     p {
       &:first-child {
         color: #999;
       }
+
       &:nth-child(2) {
+        margin-top: 10px;
         color: @priceColor;
-        margin-top: 10px;
       }
+
       &:last-child {
-        color: #666;
         margin-top: 10px;
+        color: #666;
+
         i {
-          color: @xtxColor;
-          font-size: 14px;
           margin-right: 2px;
+          font-size: 14px;
+          color: @xtxColor;
         }
+
         &:hover {
           color: @xtxColor;
           cursor: pointer;

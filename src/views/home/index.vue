@@ -31,5 +31,3 @@ import HomeBrand from './components/home-brand.vue';
 import HomeProduct from './components/home-product.vue';
 import HomeSpecial from './components/home-special.vue';
 </script>
-
-<style scoped lang="less"></style>

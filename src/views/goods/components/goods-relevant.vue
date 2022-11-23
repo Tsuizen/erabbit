@@ -35,34 +35,38 @@ findRelevantGoods({ id: props.goodsId }).then((data) => {
 
 <style scoped lang="less">
 .goods-relevant {
-  background: #fff;
-  min-height: 460px;
   margin-top: 20px;
+  min-height: 460px;
+  background: #fff;
+
   .header {
+    padding: 0 20px;
     height: 80px;
     line-height: 80px;
-    padding: 0 20px;
+
     .title {
-      font-size: 20px;
       padding-left: 10px;
+      font-size: 20px;
     }
+
     .icon {
+      position: relative;
+      display: inline-block;
       width: 16px;
       height: 16px;
-      display: inline-block;
       border-top: 4px solid @xtxColor;
       border-right: 4px solid @xtxColor;
       box-sizing: border-box;
-      position: relative;
       transform: rotate(45deg);
+
       &::before {
-        content: '';
+        position: absolute;
+        top: 2px;
+        left: 0;
         width: 10px;
         height: 10px;
-        position: absolute;
-        left: 0;
-        top: 2px;
         background: lighten(@xtxColor, 40%);
+        content: '';
       }
     }
   }
@@ -71,20 +75,24 @@ findRelevantGoods({ id: props.goodsId }).then((data) => {
 // 深度选择器，用于vue中突破scoped导致的组件样式私有化限制
 :deep(.xtx-carousel) {
   height: 380px;
+
   .carousel {
     &-indicator {
       bottom: 30px;
+
       span {
         &.active {
           background: @xtxColor;
         }
       }
     }
+
     &-btn {
       top: 110px;
-      opacity: 1;
-      background: rgba(0, 0, 0, 0);
       color: #ddd;
+      background: rgb(0 0 0 / 0%);
+      opacity: 1;
+
       i {
         font-size: 30px;
       }
