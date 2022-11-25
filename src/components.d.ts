@@ -23,6 +23,8 @@ declare module '@vue/runtime-core' {
     XtxNumber: typeof import('./components/library/xtx-number.vue')['default']
     XtxNumbox: typeof import('./components/library/xtx-numbox.vue')['default']
     XtxPagination: typeof import('./components/library/xtx-pagination.vue')['default']
+    XtxPanels: typeof import('./components/library/xtx-tabs-panel.vue')['default']
     XtxSkeleton: typeof import('./components/library/xtx-skeleton.vue')['default']
+    XtxTabsPanel: typeof import('./components/library/xtx-tabs-panel.vue')['default']
   }
 }

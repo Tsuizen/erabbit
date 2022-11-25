@@ -31,7 +31,6 @@
 import router from '@/router';
 import { useCartStore, useUserStore } from '@/store';
 import { storeToRefs } from 'pinia';
-
 const userStore = useUserStore();
 const cartStore = useCartStore();
 const { profile } = storeToRefs(userStore);

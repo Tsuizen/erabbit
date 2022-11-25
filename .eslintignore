@@ -11,3 +11,4 @@ node_modules
 /docs
 /bin
 /plugin
+/src/components.d.ts
