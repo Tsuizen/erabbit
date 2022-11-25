@@ -70,85 +70,101 @@
 <style scoped lang="less">
 .app-footer {
   overflow: hidden;
-  background-color: #f5f5f5;
   padding-top: 20px;
+  background-color: #f5f5f5;
+
   .contact {
     background: #fff;
+
     .container {
-      padding: 60px 0 40px 25px;
       display: flex;
+      padding: 60px 0 40px 25px;
     }
+
     dl {
+      padding: 0 72px;
       height: 190px;
       text-align: center;
-      padding: 0 72px;
-      border-right: 1px solid #f2f2f2;
       color: #999;
+      border-right: 1px solid #f2f2f2;
+
       &:first-child {
         padding-left: 0;
       }
+
       &:last-child {
         border-right: none;
         padding-right: 0;
       }
     }
+
     dt {
       line-height: 1;
       font-size: 18px;
     }
+
     dd {
-      margin: 36px 12px 0 0;
       float: left;
+      padding-top: 10px;
+      margin: 36px 12px 0 0;
       width: 92px;
       height: 92px;
-      padding-top: 10px;
       border: 1px solid #ededed;
+
       .iconfont {
-        font-size: 36px;
         display: block;
+        font-size: 36px;
         color: #666;
       }
+
       &:hover {
         .iconfont {
           color: @xtxColor;
         }
       }
+
       &:last-child {
         margin-right: 0;
       }
     }
+
     .qrcode {
+      padding: 7px;
       width: 92px;
       height: 92px;
-      padding: 7px;
       border: 1px solid #ededed;
     }
+
     .download {
       padding-top: 5px;
-      font-size: 14px;
       width: auto;
       height: auto;
+      font-size: 14px;
       border: none;
+
       span {
         display: block;
       }
+
       a {
         display: block;
-        line-height: 1;
         padding: 10px 25px;
         margin-top: 5px;
         color: #fff;
-        border-radius: 2px;
         background-color: @xtxColor;
+        border-radius: 2px;
+        line-height: 1;
       }
     }
+
     .hotline {
       padding-top: 20px;
-      font-size: 22px;
-      color: #666;
       width: auto;
       height: auto;
+      font-size: 22px;
+      color: #666;
       border: none;
+
       small {
         display: block;
         font-size: 15px;
@@ -156,48 +172,57 @@
       }
     }
   }
+
   .extra {
     background-color: #333;
   }
+
   .slogan {
-    height: 178px;
-    line-height: 58px;
-    padding: 60px 100px;
-    border-bottom: 1px solid #434343;
     display: flex;
     justify-content: space-between;
+    padding: 60px 100px;
+    height: 178px;
+    line-height: 58px;
+    border-bottom: 1px solid #434343;
+
     a {
       height: 58px;
-      line-height: 58px;
-      color: #fff;
       font-size: 28px;
+      color: #fff;
+      line-height: 58px;
+
       i {
+        margin-right: 10px;
         font-size: 50px;
         vertical-align: middle;
-        margin-right: 10px;
         font-weight: 100;
       }
+
       span {
         vertical-align: middle;
         text-shadow: 0 0 1px #333;
       }
     }
   }
+
   .copyright {
-    height: 170px;
     padding-top: 40px;
+    height: 170px;
+    font-size: 15px;
     text-align: center;
     color: #999;
-    font-size: 15px;
+
     p {
       line-height: 1;
       margin-bottom: 20px;
     }
+
     a {
+      padding: 0 10px;
       color: #999;
       line-height: 1;
-      padding: 0 10px;
       border-right: 1px solid #999;
+
       &:last-child {
         border-right: none;
       }

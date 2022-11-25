@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,6 +11,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    vueJsx(),
     Components({
       dirs: ['./src/components/library'],
       dts: 'src/components.d.ts'
@@ -21,6 +23,11 @@ export default defineConfig({
     }
   },
   css: {
+    modules: {
+      // css模块化 文件以.module.[css|less|scss]结尾
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+      hashPrefix: 'prefix'
+    },
     preprocessorOptions: {
       less: {
         // vite中引用less全局样式，注意分号

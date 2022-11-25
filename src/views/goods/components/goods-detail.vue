@@ -11,7 +11,8 @@
       v-for="item in goods?.details.pictures"
       alt=""
       :src="item"
-      :key="item" />
+      :key="item"
+    />
   </div>
 </template>
 

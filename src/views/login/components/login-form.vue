@@ -13,7 +13,8 @@
       class="form"
       :validation-schema="schema"
       v-slot="{ errors }"
-      autocomplete="off">
+      autocomplete="off"
+    >
       <template v-if="!isMsgLogin">
         <div class="form-item">
           <div class="input">
@@ -23,7 +24,8 @@
               v-model="form.account"
               name="account"
               type="text"
-              placeholder="请输入用户名" />
+              placeholder="请输入用户名"
+            />
           </div>
           <div class="error" v-if="errors.account">
             <i class="iconfont icon-warning" />
@@ -38,7 +40,8 @@
               v-model="form.password"
               name="password"
               type="password"
-              placeholder="请输入密码" />
+              placeholder="请输入密码"
+            />
           </div>
           <div class="error" v-if="errors.password">
             <i class="iconfont icon-warning" />
@@ -55,7 +58,8 @@
               v-model="form.mobile"
               name="mobile"
               type="text"
-              placeholder="请输入手机号" />
+              placeholder="请输入手机号"
+            />
           </div>
           <div class="error" v-if="errors.mobile">
             <i class="iconfont icon-warning" />
@@ -70,7 +74,8 @@
               v-model="form.code"
               name="code"
               type="text"
-              placeholder="请输入验证码" />
+              placeholder="请输入验证码"
+            />
             <span @click="send()" class="code">
               {{ time === 0 ? '发送验证码' : `${time}秒后发送` }}
             </span>
@@ -253,99 +258,116 @@ const send = async () => {
   .toggle {
     padding: 15px 40px;
     text-align: right;
+
     a {
       color: @xtxColor;
+
       i {
         font-size: 14px;
       }
     }
   }
+
   .form {
     padding: 0 40px;
+
     &-item {
       margin-bottom: 28px;
+
       .input {
         position: relative;
         height: 36px;
+
         > i {
+          position: absolute;
+          top: 1px;
+          left: 1px;
           width: 34px;
           height: 34px;
-          background: #cfcdcd;
-          color: #fff;
-          position: absolute;
-          left: 1px;
-          top: 1px;
-          text-align: center;
-          line-height: 34px;
           font-size: 18px;
+          text-align: center;
+          color: #fff;
+          background: #cfcdcd;
+          line-height: 34px;
         }
+
         input {
           padding-left: 44px;
-          border: 1px solid #cfcdcd;
-          height: 36px;
-          line-height: 36px;
           width: 100%;
+          height: 36px;
+          border: 1px solid #cfcdcd;
+          line-height: 36px;
+
           &.error {
             border-color: @priceColor;
           }
+
           &.active,
           &:focus {
             border-color: @xtxColor;
           }
         }
+
         .code {
           position: absolute;
-          right: 1px;
           top: 1px;
-          text-align: center;
-          line-height: 34px;
-          font-size: 14px;
-          background: #f5f5f5;
-          color: #666;
+          right: 1px;
           width: 90px;
           height: 34px;
+          font-size: 14px;
+          text-align: center;
+          color: #666;
+          background: #f5f5f5;
+          line-height: 34px;
           cursor: pointer;
         }
       }
+
       > .error {
         position: absolute;
         font-size: 12px;
         line-height: 28px;
         color: @priceColor;
+
         i {
-          font-size: 14px;
           margin-right: 2px;
+          font-size: 14px;
         }
       }
     }
+
     .agree {
       a {
         color: #069;
       }
     }
+
     .btn {
       display: block;
       width: 100%;
       height: 40px;
-      color: #fff;
       text-align: center;
-      line-height: 40px;
+      color: #fff;
       background: @xtxColor;
+      line-height: 40px;
+
       &.disabled {
         background: #cfcdcd;
       }
     }
   }
+
   .action {
-    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px 40px;
     flex-direction: row-reverse;
+
     .url {
       a {
-        color: #999;
         margin-left: 10px;
+        color: #999;
       }
     }
   }

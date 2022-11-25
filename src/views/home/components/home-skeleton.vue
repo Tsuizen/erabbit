@@ -5,17 +5,20 @@
         bg="#e4e4e4"
         width="306px"
         height="306px"
-        animated></XtxSkeleton>
+        animated
+      ></XtxSkeleton>
       <XtxSkeleton
         bg="#e4e4e4"
         width="160px"
         height="24px"
-        animated></XtxSkeleton>
+        animated
+      ></XtxSkeleton>
       <XtxSkeleton
         bg="#e4e4e4"
         width="120px"
         height="24px"
-        animated></XtxSkeleton>
+        animated
+      ></XtxSkeleton>
     </div>
   </div>
 </template>
@@ -32,12 +35,14 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped lang="less">
 .home-skeleton {
-  width: 1240px;
-  height: 406px;
   display: flex;
   justify-content: space-between;
+  width: 1240px;
+  height: 406px;
+
   .item {
     width: 306px;
+
     .xtx-skeleton ~ .xtx-skeleton {
       display: block;
       margin: 16px auto 0;

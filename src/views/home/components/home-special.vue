@@ -47,86 +47,98 @@ const specailList: Ref<Special[]> = result;
 .home-panel {
   background: #f5f5f5;
 }
+
 .special-list {
-  height: 380px;
-  padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 20px;
+  height: 380px;
+
   .special-item {
     width: 404px;
     background: #fff;
     .hoverShadow();
+
     a {
+      position: relative;
       display: block;
       width: 100%;
       height: 288px;
-      position: relative;
+
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
+
       .meta {
-        background-image: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.8),
-          transparent 50%
-        );
         position: absolute;
-        left: 0;
         top: 0;
+        left: 0;
         width: 100%;
         height: 288px;
+        background-image: linear-gradient(
+          to top,
+          rgb(0 0 0 / 80%),
+          transparent 50%
+        );
+
         .title {
           position: absolute;
-          bottom: 0px;
+          bottom: 0;
           left: 0;
           padding-left: 16px;
           width: 70%;
           height: 70px;
+
           .top {
-            color: #fff;
-            font-size: 22px;
             display: block;
+            font-size: 22px;
+            color: #fff;
           }
+
           .sub {
             display: block;
             font-size: 19px;
             color: #999;
           }
         }
+
         .price {
           position: absolute;
-          bottom: 25px;
           right: 16px;
-          line-height: 1;
+          bottom: 25px;
           padding: 4px 8px 4px 7px;
-          color: @priceColor;
           font-size: 17px;
+          color: @priceColor;
           background-color: #fff;
           border-radius: 2px;
+          line-height: 1;
         }
       }
     }
+
     .foot {
-      height: 72px;
-      line-height: 72px;
       padding: 0 20px;
+      height: 72px;
       font-size: 16px;
+      line-height: 72px;
 
       i {
         display: inline-block;
+        margin-right: 5px;
         width: 15px;
         height: 14px;
-        margin-right: 5px;
         color: #999;
       }
+
       .like,
       .view {
         float: left;
         margin-right: 25px;
         vertical-align: middle;
       }
+
       .reply {
         float: right;
         vertical-align: middle;

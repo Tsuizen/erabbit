@@ -12,18 +12,15 @@ export const useLazyData = (apiFn: () => Promise<any>) => {
   // 不同的api函数
   const target = ref(null);
   const result = ref([]);
-  const { stop } = useIntersectionObserver(
-    target,
-    ([{ isIntersecting }], observerElement) => {
-      if (isIntersecting) {
-        stop();
-        // 调用API获取数据
-        apiFn().then((data) => {
-          result.value = data.result;
-        });
-      }
+  const { stop } = useIntersectionObserver(target, ([{ isIntersecting }]) => {
+    if (isIntersecting) {
+      stop();
+      // 调用API获取数据
+      apiFn().then((data) => {
+        result.value = data.result;
+      });
     }
-  );
+  });
   return { target, result };
 };
 

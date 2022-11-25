@@ -1,5 +1,5 @@
 import { findAllCategory } from '@/api/category';
-import { topCategory } from '@/api/constant';
+import { topCategory } from '@/api/constants';
 import type { Category } from '@/types/category';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';

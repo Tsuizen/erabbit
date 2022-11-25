@@ -33,15 +33,17 @@
 
 <style scoped lang="less">
 .xtx-member-aside {
-  width: 220px;
   margin-right: 20px;
+  width: 220px;
   border-radius: 2px;
+
   .user-manage {
     background-color: #fff;
+
     h4 {
+      padding: 20px 52px 5px;
       font-size: 18px;
       font-weight: 400;
-      padding: 20px 52px 5px;
       border-top: 1px solid #f6f6f6;
     }
 
@@ -50,34 +52,36 @@
     }
 
     a {
+      position: relative;
       display: block;
-      line-height: 1;
       padding: 15px 0;
       font-size: 14px;
       color: #666;
-      position: relative;
+      line-height: 1;
 
       &:hover {
         color: @xtxColor;
       }
+
       &.active {
         color: @xtxColor;
 
-        &:before {
+        &::before {
           display: block;
         }
       }
 
-      &:before {
-        content: '';
-        display: none;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
+      &::before {
         position: absolute;
         top: 19px;
         left: -16px;
+        display: none;
+        width: 6px;
+        height: 6px;
         background-color: @xtxColor;
+        border-radius: 50%;
+        /* stylelint-disable-next-line string-quotes */
+        content: '';
       }
     }
   }

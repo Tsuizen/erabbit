@@ -29,25 +29,29 @@
 
 <style scoped lang="less">
 .home-overview {
+  display: flex;
   height: 132px;
   background: url(../../../../assets/images/center-bg.png) no-repeat center /
     cover;
-  display: flex;
+
   .user-meta {
     flex: 1;
     display: flex;
     align-items: center;
+
     .avatar {
+      overflow: hidden;
+      margin-left: 60px;
       width: 85px;
       height: 85px;
       border-radius: 50%;
-      overflow: hidden;
-      margin-left: 60px;
+
       img {
         width: 100%;
         height: 100%;
       }
     }
+
     h4 {
       padding-left: 26px;
       font-size: 18px;
@@ -55,21 +59,26 @@
       color: white;
     }
   }
+
   .item {
-    flex: 1;
     display: flex;
-    align-items: center;
     justify-content: space-around;
+    align-items: center;
+    flex: 1;
+
     &:first-child {
       border-right: 1px solid #f4f4f4;
     }
+
     a {
-      color: white;
       font-size: 16px;
       text-align: center;
+      color: white;
+
       .iconfont {
         font-size: 32px;
       }
+
       p {
         line-height: 32px;
       }

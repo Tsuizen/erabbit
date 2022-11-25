@@ -1,6 +1,6 @@
 import request from '@/utils/request';
 
-export const findBrand = (nums: number = 6): Promise<any> => {
+export const findBrand = (nums = 6): Promise<any> => {
   return request('/home/brand', 'get', { nums });
 };
 

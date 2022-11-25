@@ -17,7 +17,8 @@
         <XtxInfiniteLoading
           :loading="loading"
           :finished="finished"
-          @infinite="getData" />
+          @infinite="getData"
+        />
       </div>
     </div>
   </div>
@@ -56,21 +57,19 @@ const getData = () => {
   loading.value = true;
   // 设置二级分类id
   reqParams.categoryId = route.params.id as string;
-  findSubCategroyGoods(reqParams).then(
-    ({ result }: { result: Temporary }) => {
-      // 获取数据成功
-      if (result.items.length) {
-        // 有数据就追加数据
-        goodsList.value.push(...result.items);
-        // 把page改成下一页页码
-        reqParams.page++;
-      } else {
-        // 没有数据，代表加载完
-        finished.value = true;
-      }
-      loading.value = false;
+  findSubCategroyGoods(reqParams).then(({ result }: { result: Temporary }) => {
+    // 获取数据成功
+    if (result.items.length) {
+      // 有数据就追加数据
+      goodsList.value.push(...result.items);
+      // 把page改成下一页页码
+      reqParams.page++;
+    } else {
+      // 没有数据，代表加载完
+      finished.value = true;
     }
-  );
+    loading.value = false;
+  });
 
   // 在更改了二级分类的时候要重新加载数据
   watch(
@@ -109,16 +108,19 @@ const filterChange = (filterParams: ReqParams) => {
 
 <style scoped lang="less">
 .goods-list {
-  background: #fff;
   padding: 0 25px;
   margin-top: 25px;
+  background: #fff;
+
   ul {
     display: flex;
     flex-wrap: wrap;
     padding: 0 5px;
+
     li {
       margin-right: 20px;
       margin-bottom: 20px;
+
       &:nth-child(5n) {
         margin-right: 0;
       }

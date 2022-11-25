@@ -1,7 +1,8 @@
 <template>
   <XtxDialog
     :title="`${formData.id ? '修改' : '添加'}收货地址`"
-    v-model:visible="visibleDialog">
+    v-model:visible="visibleDialog"
+  >
     <!-- 表单 -->
     <div class="address-edit">
       <div class="xtx-form">
@@ -11,7 +12,8 @@
             <input
               v-model="formData.receiver"
               class="input"
-              placeholder="请输入收货人" />
+              placeholder="请输入收货人"
+            />
           </div>
         </div>
         <div class="xtx-form-item">
@@ -20,7 +22,8 @@
             <input
               v-model="formData.contact"
               class="input"
-              placeholder="请输入手机号" />
+              placeholder="请输入手机号"
+            />
           </div>
         </div>
         <div class="xtx-form-item">
@@ -29,7 +32,8 @@
             <XtxCity
               :fullLocation="formData.fullLocation"
               @change="changeCity"
-              placeholder="请选择所在地区" />
+              placeholder="请选择所在地区"
+            />
           </div>
         </div>
         <div class="xtx-form-item">
@@ -38,7 +42,8 @@
             <input
               v-model="formData.address"
               class="input"
-              placeholder="请输入详细地址" />
+              placeholder="请输入详细地址"
+            />
           </div>
         </div>
         <div class="xtx-form-item">
@@ -47,7 +52,8 @@
             <input
               v-model="formData.postalCode"
               class="input"
-              placeholder="请输入邮政编码" />
+              placeholder="请输入邮政编码"
+            />
           </div>
         </div>
         <div class="xtx-form-item">
@@ -56,7 +62,8 @@
             <input
               v-model="formData.addressTags"
               class="input"
-              placeholder="请输入地址标签，逗号分隔" />
+              placeholder="请输入地址标签，逗号分隔"
+            />
           </div>
         </div>
       </div>
@@ -83,7 +90,7 @@ import { ref } from 'vue';
 const emit = defineEmits(['on-success']);
 
 // Address类型守卫
-const isAddress = (item: Address | {}): item is Address => {
+const isAddress = (item: Address | Record<string, never>): item is Address => {
   return (item as Address).address !== undefined;
 };
 
@@ -104,7 +111,7 @@ const formData = ref<Address>({
 });
 
 // 打开对话框
-const open = (address: Address | {}) => {
+const open = (address: Address | Record<string, never>) => {
   visibleDialog.value = true;
 
   if (isAddress(address)) {
@@ -141,7 +148,7 @@ const submit = () => {
   // 2.发送了请求
   if (formData.value.id) {
     // 修改请求
-    editAddress(formData.value).then((data) => {
+    editAddress(formData.value).then(() => {
       // 提示
       Message({ type: 'success', text: '修改收货地址成功' });
       // 关闭
@@ -165,5 +172,55 @@ const submit = () => {
 
 defineExpose({ open });
 </script>
+<style scoped lang="less">
+.xtx-dialog {
+  :deep(.wrapper) {
+    width: 780px;
 
-<style scoped lang="less"></style>
+    .body {
+      font-size: 14px;
+    }
+  }
+}
+
+.xtx-form {
+  padding: 0;
+
+  input {
+    outline: none;
+
+    &::placeholder {
+      color: #ccc;
+    }
+  }
+}
+
+.xtx-city {
+  width: 320px;
+
+  :deep(.select) {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 50px;
+    line-height: 48px;
+
+    .placeholder {
+      color: #ccc;
+    }
+
+    i {
+      font-size: 18px;
+      color: #ccc;
+    }
+
+    .value {
+      font-size: 14px;
+    }
+  }
+
+  :deep(.option) {
+    top: 49px;
+  }
+}
+</style>

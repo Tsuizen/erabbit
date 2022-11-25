@@ -58,33 +58,38 @@ onMounted(() => {
       transform: translate3d(0, -75px, 0);
       opacity: 0;
     }
+
     &-active {
       transition: all 0.5s;
     }
+
     &-to {
       transform: none;
       opacity: 1;
     }
   }
 }
+
 .xtx-message {
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  z-index: 9999;
+  padding: 0 25px;
+  margin-left: -150px;
   width: 300px;
   height: 50px;
-  position: fixed;
-  z-index: 9999;
-  left: 50%;
-  margin-left: -150px;
-  top: 25px;
-  line-height: 50px;
-  padding: 0 25px;
-  border: 1px solid #e4e4e4;
-  background: #f5f5f5;
   color: #999;
+  background: #f5f5f5;
+  border: 1px solid #e4e4e4;
   border-radius: 4px;
+  line-height: 50px;
+
   i {
     margin-right: 4px;
     vertical-align: middle;
   }
+
   .text {
     vertical-align: middle;
   }

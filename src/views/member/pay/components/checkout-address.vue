@@ -40,7 +40,8 @@
       class="text item"
       :class="{
         active: selectedAddress && selectedAddress.id === item.id
-      }">
+      }"
+    >
       <ul>
         <li>
           <span>收<i />货<i />人：</span>{{ item.receiver }}
@@ -72,7 +73,7 @@
 <script setup lang="ts">
 import AddressEdit from './address-edit.vue';
 import type { Address } from '@/types/member';
-import { ref } from 'vue';
+import { ref, toRefs } from 'vue';
 
 const props = defineProps<{
   list: Address[];
@@ -80,7 +81,7 @@ const props = defineProps<{
 
 // 1.在拥有根元素的组件中，触发自定义事件，有没有emits无所谓
 // 2.提倡：发了自定义事件，需要在emits中申明下，提高可读性
-const emits = defineEmits(['change']);
+const emits = defineEmits(['change', 'update:list']);
 emits('change');
 
 // 找到默认收货地址
@@ -92,7 +93,8 @@ if (defaultAddress) {
   showAddress.value = defaultAddress;
 } else {
   if (props.list.length) {
-    showAddress.value = props.list[0];
+    const { list } = toRefs(props);
+    showAddress.value = list.value[0];
   }
 }
 
@@ -120,7 +122,7 @@ const openDialog = () => {
 
 // 打开添加编辑收货地址组件
 const addressEdit = ref<InstanceType<typeof AddressEdit> | null>(null);
-const openAddressEdit = (address: Address | {}) => {
+const openAddressEdit = (address: Address | Record<string, never>) => {
   // 添加 {}  修改 {数据}
   addressEdit.value!.open(address);
 };
@@ -138,26 +140,31 @@ const successHandler = (formData: Address) => {
     // 啥时候修改formData，当你打开对话框需要清空之前的输入信息
     // 克隆formData数据
     const jsonStr = JSON.stringify(formData);
-    props.list.unshift(JSON.parse(jsonStr));
+    const list = props.list;
+    list.unshift(JSON.parse(jsonStr));
+    emits('update:list', list);
   }
 };
 </script>
 <style scoped lang="less">
 .xtx-dialog {
   .text {
-    flex: 1;
-    min-height: 90px;
     display: flex;
     align-items: center;
+    min-height: 90px;
+    flex: 1;
+
     &.item {
-      border: 1px solid #f5f5f5;
       margin-bottom: 10px;
+      border: 1px solid #f5f5f5;
       cursor: pointer;
+
       &.active,
       &:hover {
-        border-color: @xtxColor;
         background: lighten(@xtxColor, 50%);
+        border-color: @xtxColor;
       }
+
       > ul {
         padding: 10px;
         font-size: 14px;
@@ -166,53 +173,64 @@ const successHandler = (formData: Address) => {
     }
   }
 }
+
 .checkout-address {
-  border: 1px solid #f5f5f5;
   display: flex;
   align-items: center;
+  border: 1px solid #f5f5f5;
+
   .text {
-    flex: 1;
-    min-height: 90px;
     display: flex;
     align-items: center;
+    min-height: 90px;
+    flex: 1;
+
     .none {
-      line-height: 90px;
-      color: #999;
-      text-align: center;
       width: 100%;
+      text-align: center;
+      color: #999;
+      line-height: 90px;
     }
+
     > ul {
       flex: 1;
       padding: 20px;
+
       li {
         line-height: 30px;
+
         span {
-          color: #999;
           margin-right: 5px;
+          color: #999;
+
           > i {
-            width: 0.5em;
             display: inline-block;
+            width: 0.5em;
           }
         }
       }
     }
+
     > a {
-      color: @xtxColor;
       width: 160px;
-      text-align: center;
       height: 90px;
+      text-align: center;
+      color: @xtxColor;
       line-height: 90px;
       border-right: 1px solid #f5f5f5;
     }
   }
+
   .action {
     width: 420px;
     text-align: center;
+
     .btn {
       width: 140px;
       height: 46px;
       line-height: 44px;
       font-size: 14px;
+
       &:first-child {
         margin-right: 10px;
       }

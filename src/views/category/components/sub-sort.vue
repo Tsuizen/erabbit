@@ -33,14 +33,16 @@
             active:
               sortParams.sortField === 'price' &&
               sortParams.sortMethod === 'asc'
-          }" />
+          }"
+        />
         <i
           class="arrow down"
           :class="{
             active:
               sortParams.sortField === 'price' &&
               sortParams.sortMethod === 'desc'
-          }" />
+          }"
+        />
       </a>
     </div>
     <div class="check">
@@ -100,35 +102,35 @@ watch(
 
 <style scoped lang="less">
 .sub-sort {
-  height: 80px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  height: 80px;
 
   .sort {
     display: flex;
 
     a {
-      height: 30px;
-      line-height: 28px;
-      border: 1px solid #e4e4e4;
+      position: relative;
       padding: 0 20px;
       margin-right: 20px;
+      height: 30px;
       color: #999;
+      border: 1px solid #e4e4e4;
       border-radius: 2px;
-      position: relative;
       transition: all 0.3s;
+      line-height: 28px;
 
       &.active {
+        color: #fff;
         background: @xtxColor;
         border-color: @xtxColor;
-        color: #fff;
       }
 
       .arrow {
         position: absolute;
-        border: 5px solid transparent;
         right: 8px;
+        border: 5px solid transparent;
 
         &.up {
           top: 3px;

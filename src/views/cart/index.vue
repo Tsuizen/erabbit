@@ -32,7 +32,8 @@
               <td>
                 <XtxCheckbox
                   v-model="goods.selected"
-                  @change="($event: boolean) => checkOne(goods.skuId!, $event)" />
+                  @change="($event: boolean) => checkOne(goods.skuId!, $event)"
+                />
               </td>
               <td>
                 <div class="goods">
@@ -45,7 +46,8 @@
                     <CartSku
                       @change="($event) => updateCartSku(goods.skuId!, $event)"
                       :skuId="goods.skuId!"
-                      :attrsText="goods.attrsText!" />
+                      :attrsText="goods.attrsText!"
+                    />
                   </div>
                 </div>
               </td>
@@ -62,7 +64,8 @@
                 <XtxNumbox
                   @change="($event: number) => updateCount(goods.skuId!, $event)"
                   :max="goods.stock"
-                  :modelValue="goods.count" />
+                  :modelValue="goods.count"
+                />
               </td>
               <td class="tc">
                 <p class="f16 red">
@@ -186,7 +189,9 @@ const deleteCart = (skuId: string) => {
         Message({ type: 'success', text: '删除成功' });
       });
     })
-    .catch((e) => {});
+    .catch((e) => {
+      console.log(e);
+    });
 };
 
 // 批量删除选中商品，也支持清空无效商品
@@ -228,91 +233,111 @@ const checkout = () => {
     .then(() => {
       router.push('/member/checkout');
     })
-    .catch((e) => {});
+    .catch((e) => {
+      console.log(e);
+    });
 };
 </script>
 
 <style scoped lang="less">
 .tc {
   text-align: center;
+
   .xtx-numbox {
     margin: 0 auto;
     width: 120px;
   }
 }
+
 .red {
   color: @priceColor;
 }
+
 .green {
   color: @xtxColor;
 }
+
 .f16 {
   font-size: 16px;
 }
+
 .goods {
   display: flex;
   align-items: center;
+
   img {
     width: 100px;
     height: 100px;
   }
+
   > div {
+    padding-left: 10px;
     width: 280px;
     font-size: 16px;
-    padding-left: 10px;
+
     .attr {
       font-size: 14px;
       color: #999;
     }
   }
 }
+
 .action {
   display: flex;
-  background: #fff;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
   margin-top: 20px;
   height: 80px;
-  align-items: center;
   font-size: 16px;
-  justify-content: space-between;
-  padding: 0 30px;
+  background: #fff;
+
   .xtx-checkbox {
     color: #999;
   }
+
   .batch {
     a {
       margin-left: 20px;
     }
   }
+
   .red {
-    font-size: 18px;
     margin-right: 20px;
+    font-size: 18px;
     font-weight: bold;
   }
 }
+
 .tit {
-  color: #666;
   font-size: 16px;
+  color: #666;
   font-weight: normal;
   line-height: 50px;
 }
+
 .xtx-cart-page {
   .cart {
-    background: #fff;
     color: #666;
+    background: #fff;
+
     table {
       border-spacing: 0;
       border-collapse: collapse;
       line-height: 24px;
+
       th,
       td {
         padding: 10px;
         border-bottom: 1px solid #f5f5f5;
+
         &:first-child {
-          text-align: left;
           padding-left: 30px;
+          text-align: left;
           color: #999;
         }
       }
+
       th {
         font-size: 16px;
         font-weight: normal;

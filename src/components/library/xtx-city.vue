@@ -132,7 +132,7 @@ const getCityData = () => {
   // 1. 当本地没有缓存，发请求获取数据
   // 2. 当本地缓存，取出本地数据
   // 返回promise在then获取数据，这里可能是异步操作可能是同步操作
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     // 约定数据存储在window上的cityData字段
     if (window.cityData) {
       resolve(window.cityData);
@@ -150,14 +150,14 @@ const getCityData = () => {
 
 <style scoped lang="less">
 .xtx-city {
-  display: inline-block;
   position: relative;
   z-index: 400;
+  display: inline-block;
 
   .select {
-    border: 1px solid #e4e4e4;
-    height: 30px;
     padding: 0 5px;
+    height: 30px;
+    border: 1px solid #e4e4e4;
     line-height: 28px;
     cursor: pointer;
 
@@ -170,35 +170,35 @@ const getCityData = () => {
     }
 
     .value {
-      color: #666;
       font-size: 12px;
+      color: #666;
     }
 
     i {
-      font-size: 12px;
       margin-left: 5px;
+      font-size: 12px;
     }
   }
 
   .option {
-    width: 542px;
-    border: 1px solid #e4e4e4;
     position: absolute;
-    left: 0;
     top: 29px;
-    background: #fff;
-    min-height: 30px;
-    line-height: 30px;
+    left: 0;
     display: flex;
-    flex-wrap: wrap;
     padding: 10px;
+    width: 542px;
+    min-height: 30px;
+    background: #fff;
+    border: 1px solid #e4e4e4;
+    line-height: 30px;
+    flex-wrap: wrap;
 
     > span {
+      padding: 0 3px;
       width: 130px;
       text-align: center;
-      cursor: pointer;
       border-radius: 4px;
-      padding: 0 3px;
+      cursor: pointer;
 
       &:hover {
         background: #f5f5f5;
@@ -206,8 +206,9 @@ const getCityData = () => {
     }
 
     .loading {
-      height: 290px;
       width: 100%;
+      height: 290px;
+      /* stylelint-disable-next-line function-url-quotes */
       background: url(../../assets/images/loading.gif) no-repeat center;
     }
   }

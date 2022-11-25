@@ -23,33 +23,40 @@ import AppHeaderCart from './app-header-cart.vue';
 <style scoped lang="less">
 .app-header {
   background: #fff;
+
   .container {
     display: flex;
     align-items: center;
   }
+
   .logo {
     width: 200px;
+
     a {
       display: block;
-      height: 132px;
       width: 100%;
+      height: 132px;
       text-indent: -9999px;
+      /* stylelint-disable-next-line function-url-quotes */
       background: url(../assets/images/logo.png) no-repeat center 18px / contain;
     }
   }
+
   .search {
+    position: relative;
     width: 170px;
     height: 32px;
-    position: relative;
     border-bottom: 1px solid #e7e7e7;
     line-height: 32px;
+
     .icon-search {
-      font-size: 18px;
       margin-left: 5px;
+      font-size: 18px;
     }
+
     input {
-      width: 140px;
       padding-left: 5px;
+      width: 140px;
       color: #666;
     }
   }

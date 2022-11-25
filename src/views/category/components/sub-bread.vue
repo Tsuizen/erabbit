@@ -54,5 +54,3 @@ const category = computed<CategoryTopAndSub>(() => {
   return obj;
 });
 </script>
-
-<style scoped lang="less"></style>

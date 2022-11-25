@@ -68,7 +68,7 @@ import type { SkuInfo } from '@/types/goods';
 import { useGoods } from '@/hooks/index';
 import { provide, ref, type Ref } from 'vue';
 import { useCartStore } from '@/store';
-import { storeToRefs } from 'pinia';
+// import { storeToRefs } from 'pinia';
 
 const goods: Ref<Goods> = useGoods();
 // 选择的数量
@@ -90,7 +90,7 @@ const changeSku = (sku: SkuInfo) => {
 provide('goods', goods);
 
 const cartStore = useCartStore();
-const { list } = storeToRefs(cartStore);
+// const { list } = storeToRefs(cartStore);
 
 // 加入购物车
 const insertCart = () => {
@@ -123,38 +123,45 @@ const insertCart = () => {
 
 <style scoped lang="less">
 .goods-info {
+  display: flex;
   min-height: 600px;
   background: #fff;
-  display: flex;
+
   .media {
+    padding: 30px 50px;
     width: 580px;
     height: 600px;
-    padding: 30px 50px;
   }
+
   .spec {
     flex: 1;
     padding: 30px 30px 30px 0;
   }
 }
+
 .goods-footer {
   display: flex;
   margin-top: 20px;
+
   .goods-article {
-    width: 940px;
     margin-right: 20px;
+    width: 940px;
   }
+
   .goods-aside {
     width: 280px;
     min-height: 1000px;
   }
 }
+
 .goods-tabs {
   min-height: 600px;
   background: #fff;
 }
+
 .goods-warn {
+  margin-top: 20px;
   min-height: 600px;
   background: #fff;
-  margin-top: 20px;
 }
 </style>

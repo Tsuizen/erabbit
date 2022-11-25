@@ -59,18 +59,21 @@
             <i
               v-for="i in item.score"
               :key="i + 's'"
-              class="iconfont icon-wjx01"></i>
+              class="iconfont icon-wjx01"
+            ></i>
             <i
               v-for="i in 5 - item.score"
               :key="i + 'k'"
-              class="iconfont icon-wjx02"></i>
+              class="iconfont icon-wjx02"
+            ></i>
             <span class="attr">{{ formatSpecs(item.orderInfo.specs) }}</span>
           </div>
           <div class="text">{{ item.content }}</div>
           <!-- 图片评论组件 -->
           <GoodsCommentImage
             v-if="item.pictures.length"
-            :pictures="item.pictures" />
+            :pictures="item.pictures"
+          />
           <div class="time">
             <span>{{ item.createTime }}</span>
             <span class="zan"
@@ -85,7 +88,8 @@
       v-if="total"
       @current-change="changePagerFn"
       :page-size="reqParams.pageSize"
-      :current-page="reqParams.page" />
+      :current-page="reqParams.page"
+    />
   </div>
 </template>
 
@@ -230,124 +234,150 @@ const changePagerFn = (newPage: number) => {
   .head {
     display: flex;
     padding: 30px 0;
+
     .data {
-      width: 340px;
       display: flex;
       padding: 20px;
+      width: 340px;
+
       p {
         flex: 1;
         text-align: center;
+
         span {
           display: block;
+
           &:first-child {
             font-size: 32px;
             color: @priceColor;
           }
+
           &:last-child {
             color: #999;
           }
         }
       }
     }
+
     .tags {
       flex: 1;
       display: flex;
       border-left: 1px solid #f5f5f5;
+
       .dt {
         font-weight: bold;
         width: 100px;
         text-align: right;
         line-height: 42px;
       }
+
       .dd {
         flex: 1;
         display: flex;
         flex-wrap: wrap;
+
         > a {
+          margin-bottom: 20px;
+          margin-left: 20px;
           width: 132px;
           height: 42px;
-          margin-left: 20px;
-          margin-bottom: 20px;
-          border-radius: 4px;
-          border: 1px solid #e4e4e4;
-          background: #f5f5f5;
-          color: #999;
           text-align: center;
+          color: #999;
+          background: #f5f5f5;
+          border: 1px solid #e4e4e4;
+          border-radius: 4px;
           line-height: 40px;
+
           &:hover {
-            border-color: @xtxColor;
-            background: lighten(@xtxColor, 50%);
             color: @xtxColor;
-          }
-          &.active {
+            background: lighten(@xtxColor, 50%);
             border-color: @xtxColor;
-            background: @xtxColor;
+          }
+
+          &.active {
             color: #fff;
+            background: @xtxColor;
+            border-color: @xtxColor;
           }
         }
       }
     }
   }
+
   .sort {
+    margin: 0 20px;
     height: 60px;
+    color: #666;
     line-height: 60px;
     border-top: 1px solid #f5f5f5;
     border-bottom: 1px solid #f5f5f5;
-    margin: 0 20px;
-    color: #666;
+
     > span {
       margin-left: 20px;
     }
+
     > a {
       margin-left: 30px;
+
       &.active,
       &:hover {
         color: @xtxColor;
       }
     }
   }
+
   .list {
     padding: 0 20px;
+
     .item {
       display: flex;
       padding: 25px 10px;
       border-bottom: 1px solid #f5f5f5;
+
       .user {
         width: 160px;
+
         img {
+          overflow: hidden;
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          overflow: hidden;
         }
+
         span {
           padding-left: 10px;
           color: #666;
         }
       }
+
       .body {
         flex: 1;
+
         .score {
           line-height: 40px;
+
           .iconfont {
-            color: #ff9240;
             padding-right: 3px;
+            color: #ff9240;
           }
+
           .attr {
             padding-left: 10px;
             color: #666;
           }
         }
       }
+
       .text {
         color: #666;
         line-height: 24px;
       }
+
       .time {
-        color: #999;
         display: flex;
         justify-content: space-between;
         margin-top: 5px;
+        color: #999;
       }
     }
   }

@@ -1,7 +1,6 @@
 <template>
   <div class="member-order-detail" v-if="order">
     <!-- 头部 -->
-    
   </div>
 </template>
 
@@ -13,11 +12,7 @@ import type { Order } from '../pay/pay';
 
 const route = useRoute();
 const order = ref<Order>();
-findOrderDetail(route.params.id as string).then(data => {
+findOrderDetail(route.params.id as string).then((data) => {
   order.value = data.result;
-})
+});
 </script>
-
-<style scoped lang="less">
-
-</style>

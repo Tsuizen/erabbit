@@ -6,7 +6,8 @@
         @click="currImg = url"
         href="javascript:;"
         v-for="url in pictures"
-        :key="url">
+        :key="url"
+      >
         <img :src="url" alt="" />
       </a>
     </div>
@@ -33,44 +34,50 @@ const currImg = ref<string>('');
     display: flex;
     flex-wrap: wrap;
     margin-top: 10px;
+
     a {
+      margin-right: 20px;
+      margin-bottom: 10px;
       width: 120px;
       height: 120px;
       border: 1px solid #e4e4e4;
-      margin-right: 20px;
-      margin-bottom: 10px;
+
       img {
         width: 100%;
         height: 100%;
         object-fit: contain;
       }
+
       &.active {
         border-color: @xtxColor;
       }
     }
   }
 }
+
 .preview {
+  position: relative;
+  margin-bottom: 20px;
   width: 480px;
   height: 480px;
-  border: 1px solid #e4e4e4;
   background: #f8f8f8;
-  margin-bottom: 20px;
-  position: relative;
+  border: 1px solid #e4e4e4;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
+
   i {
     position: absolute;
-    right: 0;
     top: 0;
+    right: 0;
     width: 30px;
     height: 30px;
-    background: rgba(0, 0, 0, 0.2);
-    color: #fff;
     text-align: center;
+    color: #fff;
+    background: rgb(0 0 0 / 20%);
     line-height: 30px;
   }
 }

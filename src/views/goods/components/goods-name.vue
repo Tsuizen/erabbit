@@ -65,53 +65,65 @@ const changeCity = (result: UserAddress) => {
 .g-name {
   font-size: 22px;
 }
+
 .g-desc {
-  color: #999;
   margin-top: 10px;
+  color: #999;
 }
+
 .g-price {
   margin-top: 10px;
+
   span {
     &::before {
       content: '¥';
       font-size: 14px;
     }
+
     &:first-child {
-      color: @priceColor;
       margin-right: 10px;
       font-size: 22px;
+      color: @priceColor;
     }
+
     &:last-child {
-      color: #999;
-      text-decoration: line-through;
       font-size: 16px;
+      text-decoration: line-through;
+      color: #999;
     }
   }
 }
+
 .g-service {
-  background: #f5f5f5;
-  width: 500px;
-  padding: 20px 10px 0 10px;
+  padding: 20px 10px 0;
   margin-top: 10px;
+  width: 500px;
+  background: #f5f5f5;
+
   dl {
-    padding-bottom: 20px;
     display: flex;
     align-items: center;
+    padding-bottom: 20px;
+
     dt {
       width: 50px;
       color: #999;
     }
+
     dd {
       color: #666;
+
       &:last-child {
         span {
           margin-right: 10px;
+
           &::before {
-            content: '•';
-            color: @xtxColor;
             margin-right: 2px;
+            color: @xtxColor;
+            content: '•';
           }
         }
+
         a {
           color: @xtxColor;
         }

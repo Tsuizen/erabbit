@@ -18,6 +18,7 @@ const Pay = () => import('@/views/member/pay/index.vue');
 const PayResult = () => import('@/views/member/pay/result.vue');
 const MemberLayout = () => import('@/views/member/Layout.vue');
 const MemberHome = () => import('@/views/member/home/index.vue');
+const MemberOrder = () => import('@/views/member/order/index.vue');
 
 const routes: RouteRecordRaw[] = [
   {
@@ -45,7 +46,7 @@ const routes: RouteRecordRaw[] = [
             // vue2: h(<RouterView/>), vue3: h(resolveComponent('router-view'))
             component: { render: () => h(resolveComponent('router-view')) },
             children: [
-              // { path: '', component: MemberOrder },
+              { path: '', component: MemberOrder }
               // { path: ':id', component: MemberOrderDetail }
             ]
           }

@@ -5,7 +5,8 @@
       v-for="item in useList"
       :key="item.id"
       @mouseenter="show(item)"
-      @mouseleave="hide(item)">
+      @mouseleave="hide(item)"
+    >
       <RouterLink :to="`/category/${item.id}`" @click="hide(item)">{{
         item.name
       }}</RouterLink>
@@ -32,29 +33,30 @@ const categoryStore = useCategoryStore();
 const { list } = storeToRefs(categoryStore);
 const { show, hide } = categoryStore;
 
-let useList: ComputedRef<Category[]> = computed(
-  () => list.value as Category[]
-);
+let useList: ComputedRef<Category[]> = computed(() => list.value as Category[]);
 </script>
 
 <style scoped lang="less">
 .app-header-nav {
-  width: 820px;
+  position: relative;
+  z-index: 999;
   display: flex;
   justify-content: space-around;
   padding-left: 40px;
-  position: relative;
-  z-index: 999;
+  width: 820px;
+
   > li {
     margin-right: 40px;
     width: 38px;
     text-align: center;
+
     > a {
+      display: inline-block;
+      height: 32px;
       font-size: 16px;
       line-height: 32px;
-      height: 32px;
-      display: inline-block;
     }
+
     &:hover {
       > a {
         color: @xtxColor;
@@ -74,33 +76,39 @@ let useList: ComputedRef<Category[]> = computed(
     height: 132px;
     opacity: 1;
   }
-  width: 1240px;
-  background-color: #fff;
+
   position: absolute;
-  left: -200px;
   top: 56px;
-  height: 0;
+  left: -200px;
   overflow: hidden;
+  width: 1240px;
+  height: 0;
+  background-color: #fff;
   opacity: 0;
   box-shadow: 0 0 5px #ccc;
   transition: all 0.2s 0.1s;
+
   ul {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     // justify-content: space-around;
     padding: 0 70px;
-    align-items: center;
     height: 132px;
+    flex-wrap: wrap;
+
     li {
       width: 110px;
       text-align: center;
+
       img {
         width: 60px;
         height: 60px;
       }
+
       p {
         padding-top: 10px;
       }
+
       &:hover {
         p {
           color: @xtxColor;
