@@ -5,9 +5,9 @@
         <XtxMore path="/" />
       </template>
       <!-- 面板内容 -->
-      <div style="position: relative; height: 406px" ref="target">
+      <div ref="target" style="position: relative; height: 406px">
         <Transition name="fade">
-          <ul class="goods-list" v-if="goods.length">
+          <ul v-if="goods.length" class="goods-list">
             <li v-for="item in goods" :key="item.id">
               <RouterLink :to="`/product/${item.id}`">
                 <img :src="item.picture" alt="" />
@@ -16,7 +16,7 @@
               </RouterLink>
             </li>
           </ul>
-          <HomeSkeleton bg="f0f9f4" v-else />
+          <HomeSkeleton v-else bg="f0f9f4" />
         </Transition>
       </div>
     </HomePanel>
@@ -25,11 +25,11 @@
 
 <script setup lang="ts">
 import { findNew } from '@/api/home';
-import type { Ref } from 'vue';
+import { useLazyData } from '@/hooks/index';
 import type { New } from '@/types/home';
+import type { Ref } from 'vue';
 import HomePanel from './home-panel.vue';
 import HomeSkeleton from './home-skeleton.vue';
-import { useLazyData } from '@/hooks/index';
 
 const { target, result } = useLazyData(findNew);
 

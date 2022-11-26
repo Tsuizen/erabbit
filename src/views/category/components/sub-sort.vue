@@ -3,29 +3,29 @@
     <div class="sort">
       <a
         :class="{ active: sortParams.sortField === null }"
-        @click="changeSort(null)"
         href="javascript:;"
+        @click="changeSort(null)"
         >默认排序</a
       >
       <a
         :class="{ active: sortParams.sortField === 'publishTime' }"
-        @click="changeSort('publishTime')"
         href="javascript:;"
+        @click="changeSort('publishTime')"
         >最新商品</a
       >
       <a
         :class="{ active: sortParams.sortField === 'orderNum' }"
-        @click="changeSort('orderNum')"
         href="javascript:;"
+        @click="changeSort('orderNum')"
         >最高人气</a
       >
       <a
         :class="{ active: sortParams.sortField === 'evaluateNum' }"
-        @click="changeSort('evaluateNum')"
         href="javascript:;"
+        @click="changeSort('evaluateNum')"
         >评论最多</a
       >
-      <a @click="changeSort('price')" href="javascript:;">
+      <a href="javascript:;" @click="changeSort('price')">
         价格排序
         <i
           class="arrow up"

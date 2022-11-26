@@ -1,29 +1,29 @@
 <template>
   <!-- 晒选区 -->
-  <div class="sub-filter" v-if="filterData && !filterLoading">
+  <div v-if="filterData && !filterLoading" class="sub-filter">
     <div class="item">
       <div class="head">品牌：</div>
       <div class="body">
         <a
-          @click="changeBrand(item.id)"
+          v-for="item in filterData.brands"
+          :key="item.id"
           href="javascript:;"
           :class="{
             active: item.id === filterData.selectedBrand
           }"
-          v-for="item in filterData.brands"
-          :key="item.id"
+          @click="changeBrand(item.id)"
           >{{ item.name }}</a
         >
       </div>
     </div>
-    <div class="item" v-for="item in filterData.saleProperties" :key="item.id">
+    <div v-for="item in filterData.saleProperties" :key="item.id" class="item">
       <div class="head">{{ item.name }}</div>
       <div class="body">
         <a
           v-for="attr in item.properties"
+          :key="attr.id"
           href="javascript:;"
           :class="{ acitve: item.selectedProp === attr.id }"
-          :key="attr.id"
           @click="changeProp(item, attr.id)"
         >
           {{ attr.name }}

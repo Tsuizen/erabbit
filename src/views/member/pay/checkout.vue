@@ -6,15 +6,15 @@
         <XtxBreadItem to="/cart">购物车</XtxBreadItem>
         <XtxBreadItem>填写订单</XtxBreadItem>
       </XtxBread>
-      <div class="wrapper" v-if="order">
+      <div v-if="order" class="wrapper">
         <!-- 收货地址 -->
         <h3 class="box-title">收货地址</h3>
         <div class="box-body">
           <!-- 收货地址组件 -->
           <CheckoutAddress
+            :list="order.userAddresses"
             @update:list="order!.userAddresses = $event"
             @change="changeAddress"
-            :list="order.userAddresses"
           />
         </div>
         <!-- 商品信息 -->
@@ -89,7 +89,7 @@
         </div>
         <!-- 提交订单 -->
         <div class="submit">
-          <XtxButton @click="submitOrderFn" type="primary">提交订单</XtxButton>
+          <XtxButton type="primary" @click="submitOrderFn">提交订单</XtxButton>
         </div>
       </div>
     </div>
@@ -99,10 +99,10 @@
 <script setup lang="ts">
 import { createOrder, repurchaseOrder, submitOrder } from '@/api/order';
 import Message from '@/components/library/Message';
-import CheckoutAddress from '../pay/components/checkout-address.vue';
 import { reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import type { RepurchaseOrder } from './pay';
+import CheckoutAddress from '../pay/components/checkout-address.vue';
+import type { RepurchaseOrder } from '../type';
 
 const order = ref<RepurchaseOrder>();
 const route = useRoute();

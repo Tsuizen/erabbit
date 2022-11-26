@@ -16,13 +16,13 @@
 </template>
 
 <script setup lang="ts">
-import HomeOverview from './components/home-overview.vue';
-import HomePanel from './components/home-panel.vue';
-import GoodsRelevant from '@/views/goods/components/goods-relevant.vue';
-import GoodsItem from '@/views/category/components/goods-item.vue';
 import { findCollect } from '@/api/member';
 import type { GoodsProps } from '@/types/home';
+import GoodsItem from '@/views/category/components/goods-item.vue';
+import GoodsRelevant from '@/views/goods/components/goods-relevant.vue';
 import { ref } from 'vue';
+import HomeOverview from './components/home-overview.vue';
+import HomePanel from './components/home-panel.vue';
 import type { CollectItem } from './home';
 
 const goods: GoodsProps = {

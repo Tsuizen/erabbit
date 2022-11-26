@@ -1,6 +1,6 @@
 <template>
   <div class="xtx-numbox">
-    <div class="label" v-if="label">{{ label }}</div>
+    <div v-if="label" class="label">{{ label }}</div>
     <div class="numbox">
       <a href="javascript:;" @click="changeNum(-1)">-</a>
       <input type="text" readonly :value="count" />

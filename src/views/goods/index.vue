@@ -1,5 +1,5 @@
 <template>
-  <div class="xtx-goods-page" v-if="goods">
+  <div v-if="goods" class="xtx-goods-page">
     <div class="container">
       <!-- 面包屑组件 -->
       <XtxBread>
@@ -23,7 +23,7 @@
           <!-- 规格组件 -->
           <GoodsSku :goods="goods" @change="changeSku" />
           <!-- 数量选择组件 -->
-          <XtxNumbox label="数量" v-model="num" :max="goods.inventory" />
+          <XtxNumbox v-model="num" label="数量" :max="goods.inventory" />
           <!-- 按钮组件 -->
           <XtxButton
             type="primary"
@@ -34,7 +34,7 @@
         </div>
       </div>
       <!-- 商品推荐 -->
-      <GoodsRelevant :goodsId="goods.id" />
+      <GoodsRelevant :goods-id="goods.id" />
       <!-- 商品详情 -->
       <div class="goods-footer">
         <div class="goods-article">
@@ -54,20 +54,19 @@
 </template>
 
 <script setup lang="ts">
-import GoodsRelevant from './components/goods-relevant.vue';
+import Message from '@/components/library/Message';
+import { useGoods } from '@/hooks/index';
+import { useCartStore } from '@/store';
+import type { Goods, SkuInfo } from '@/types/goods';
+import { provide, ref, type Ref } from 'vue';
+import GoodsHot from './components/goods-hot.vue';
 import GoodsImage from './components/goods-image.vue';
-import GoodsSales from './components/goods-sales.vue';
 import GoodsName from './components/goods-name.vue';
+import GoodsRelevant from './components/goods-relevant.vue';
+import GoodsSales from './components/goods-sales.vue';
 import GoodsSku from './components/goods-sku.vue';
 import GoodsTabs from './components/goods-tabs.vue';
-import GoodsHot from './components/goods-hot.vue';
 import GoodsWarn from './components/goods-warn.vue';
-import Message from '@/components/library/Message';
-import type { Goods } from '@/types/goods';
-import type { SkuInfo } from '@/types/goods';
-import { useGoods } from '@/hooks/index';
-import { provide, ref, type Ref } from 'vue';
-import { useCartStore } from '@/store';
 // import { storeToRefs } from 'pinia';
 
 const goods: Ref<Goods> = useGoods();

@@ -7,7 +7,7 @@
         <XtxBreadItem>支付订单</XtxBreadItem>
       </XtxBread>
       <!-- 付款信息 -->
-      <div class="pay-info" v-if="order">
+      <div v-if="order" class="pay-info">
         <span class="icon icon-font icon-queren2"></span>
         <div class="tip">
           <p>订单提交成功</p>
@@ -30,9 +30,9 @@
           <a href="javascript:;" class="btn wx"></a>
           <a
             class="btn alipay"
-            @click="visibleDialog = true"
             :href="payUrl"
             target="_blank"
+            @click="visibleDialog = true"
           ></a>
         </div>
         <div class="item">
@@ -46,7 +46,7 @@
       </div>
     </div>
     <!-- 支付对话框 -->
-    <XtxDialog title="正在支付..." v-model:visible="visibleDialog">
+    <XtxDialog v-model:visible="visibleDialog" title="正在支付...">
       <div class="pay-wait">
         <img src="@/assets/images/load.gif" alt="" />
         <div v-if="order">
@@ -65,10 +65,10 @@
 <script setup lang="ts">
 import { findOrderDetail } from '@/api/order';
 import { usePayTime } from '@/hooks';
-import type { Order } from './pay';
+import { baseURL } from '@/utils/request';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { baseURL } from '@/utils/request';
+import type { Order } from '../type';
 
 // 根据地址栏id发请求获取订单数据
 const route = useRoute();

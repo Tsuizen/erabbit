@@ -7,7 +7,7 @@
       :style="[{ backgroundImage: `url(${images[currIndex]})` }, largePosition]"
     ></div>
     <!-- 中图 -->
-    <div class="middle" ref="target">
+    <div ref="target" class="middle">
       <img :src="images[currIndex]" alt="" />
       <!-- 遮罩色块 -->
       <div v-show="show" class="layer" :style="layerPosition"></div>
@@ -19,7 +19,7 @@
         :key="img"
         :class="{ active: i === currIndex }"
       >
-        <img :src="img" @mouseenter="currIndex = i" alt="" />
+        <img :src="img" alt="" @mouseenter="currIndex = i" />
       </li>
     </ul>
   </div>

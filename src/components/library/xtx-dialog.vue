@@ -1,12 +1,12 @@
 <template>
-  <div class="xtx-dialog" v-show="visible" :class="{ fade }">
+  <div v-show="visible" class="xtx-dialog" :class="{ fade }">
     <div class="wrapper" :class="{ fade }">
       <div class="header">
         <h3>{{ title }}</h3>
         <a
           href="javascript:;"
-          @click="closeDialog()"
           class="iconfont icon-font-new"
+          @click="closeDialog()"
         ></a>
       </div>
       <div class="body">

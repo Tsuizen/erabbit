@@ -8,13 +8,13 @@
             v-if="val.picture"
             :title="val.name"
             :src="val.picture"
-            @click="changeSku(item, val)"
             :class="{ selected: val.selected, disabled: val.disabled }"
+            @click="changeSku(item, val)"
           />
           <span
+            v-else
             :class="{ selected: val.selected, disabled: val.disabled }"
             @click="changeSku(item, val)"
-            v-else
             >{{ val.name }}</span
           >
         </template>
@@ -24,9 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import type { Goods, GoodsSku } from '@/types/goods';
+import type { Goods, GoodsSku, GoodsSpecs, SpecsValues } from '@/types/goods';
 import powerSet from '@/vender/power-set';
-import type { GoodsSpecs, SpecsValues } from '@/types/goods';
 
 const props = defineProps<{
   goods: Goods;

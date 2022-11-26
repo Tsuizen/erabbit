@@ -13,7 +13,7 @@
     <dl>
       <dt>配送</dt>
       <dd>
-        至<XtxCity @change="changeCity" :fullLocation="fullLocation"></XtxCity>
+        至<XtxCity :full-location="fullLocation" @change="changeCity"></XtxCity>
       </dd>
     </dl>
     <dl>

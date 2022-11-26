@@ -43,7 +43,7 @@
 import { findOrderDetail } from '@/api/order';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import type { Order } from './pay';
+import type { Order } from '../type';
 
 const route = useRoute();
 const order = ref<Order>();

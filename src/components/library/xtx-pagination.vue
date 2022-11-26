@@ -1,27 +1,27 @@
 <template>
   <div class="xtx-pagination">
     <a
-      @click="changePager(myCurrentPage - 1)"
       v-if="myCurrentPage > 1"
       href="javascript:;"
-    >上一页</a
+      @click="changePager(myCurrentPage - 1)"
+      >上一页</a
     >
     <a v-else href="javascript:;" class="disabled">上一页</a>
     <span v-if="pager.start > 1">...</span>
     <a
-      @click="changePager(i)"
-      href="javascript:;"
       v-for="i in pager.btnArr"
       :key="i"
+      href="javascript:;"
       :class="{ active: i === myCurrentPage }"
-    >{{ i }}</a
+      @click="changePager(i)"
+      >{{ i }}</a
     >
     <span v-if="pager.end < pager.pageCount">...</span>
     <a
-      @click="changePager(myCurrentPage + 1)"
       v-if="myCurrentPage < pager.pageCount"
       href="javascript:;"
-    >下一页</a
+      @click="changePager(myCurrentPage + 1)"
+      >下一页</a
     >
     <a v-else href="javascript:;" class="disabled">下一页</a>
   </div>

@@ -3,8 +3,8 @@
     <template #right>
       <XtxMore />
     </template>
-    <div class="special-list" ref="target">
-      <div class="special-item" v-for="item in specailList" :key="item.id">
+    <div ref="target" class="special-list">
+      <div v-for="item in specailList" :key="item.id" class="special-item">
         <RouterLink to="/">
           <img v-lazy="item.cover" alt="" />
           <div class="meta">
@@ -32,12 +32,12 @@
 </template>
 
 <script setup lang="ts">
-import XtxMore from '@/components/library/xtx-more.vue';
-import HomePanel from './home-panel.vue';
-import { useLazyData } from '@/hooks';
 import { findSpecial } from '@/api/home';
+import XtxMore from '@/components/library/xtx-more.vue';
+import { useLazyData } from '@/hooks';
 import type { Special } from '@/types/home';
 import type { Ref } from 'vue';
+import HomePanel from './home-panel.vue';
 
 const { target, result } = useLazyData(findSpecial);
 const specailList: Ref<Special[]> = result;

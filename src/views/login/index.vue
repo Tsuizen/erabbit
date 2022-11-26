@@ -4,15 +4,15 @@
     <div class="wrapper">
       <nav>
         <a
-          @click="activeName = 'account'"
           :class="{ active: activeName === 'account' }"
           href="javascript:;"
+          @click="activeName = 'account'"
           >账户登录</a
         >
         <a
-          @click="activeName = 'qrcode'"
           :class="{ active: activeName === 'qrcode' }"
           href="javascript:;"
+          @click="activeName = 'qrcode'"
           >扫码登录</a
         >
       </nav>
@@ -28,12 +28,12 @@
 </template>
 
 <script setup lang="ts">
-import LoginHeader from './components/login-header.vue';
-import LoginFooter from './components/login-footer.vue';
-import LoginForm from './components/login-form.vue';
+import { useUserStore } from '@/store';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { useUserStore } from '@/store';
+import LoginFooter from './components/login-footer.vue';
+import LoginForm from './components/login-form.vue';
+import LoginHeader from './components/login-header.vue';
 
 const activeName = ref('account');
 const route = useRoute();

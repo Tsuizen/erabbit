@@ -3,20 +3,20 @@
     <template #right>
       <a
         href="javascript:;"
-        @click="toggle(-1)"
         class="iconfont icon-angle-left prev"
+        @click="toggle(-1)"
       ></a>
       <a
         href="javascript:;"
-        @click="toggle(1)"
         class="iconfont icon-angle-right next"
+        @click="toggle(1)"
       ></a>
     </template>
-    <div class="box" ref="target">
+    <div ref="target" class="box">
       <Transition name="fade">
         <ul
-          class="list"
           v-if="brands.length"
+          class="list"
           :style="{ transform: `translateX(${-index * 1240}px)` }"
         >
           <li v-for="item in brands" :key="item.id">
@@ -27,9 +27,9 @@
         </ul>
         <div v-else class="skeleton">
           <XtxSkeleton
-            class="item"
             v-for="i in 5"
             :key="i"
+            class="item"
             animated
             bg="#e4e4e4"
             width="240px"
@@ -42,11 +42,11 @@
 </template>
 
 <script setup lang="ts">
-import HomePanel from './home-panel.vue';
-import { useLazyData } from '@/hooks';
 import { findBrand } from '@/api/home';
+import { useLazyData } from '@/hooks';
 import type { Brand } from '@/types/home';
 import { ref, type Ref } from 'vue';
+import HomePanel from './home-panel.vue';
 
 const { target, result } = useLazyData(() => findBrand(10));
 const brands: Ref<Brand[]> = result;

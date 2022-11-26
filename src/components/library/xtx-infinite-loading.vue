@@ -1,10 +1,10 @@
 <template>
-  <div class="xtx-infinite-loading" ref="container">
-    <div class="loading" v-if="loading">
+  <div ref="container" class="xtx-infinite-loading">
+    <div v-if="loading" class="loading">
       <span class="img"></span>
       <span class="text">正在加载...</span>
     </div>
-    <div class="none" v-if="finished">
+    <div v-if="finished" class="none">
       <span class="img"></span>
       <span class="text">亲，没有更多了</span>
     </div>

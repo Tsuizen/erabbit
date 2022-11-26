@@ -1,20 +1,20 @@
 <template>
-  <div class="xtx-city" ref="target">
-    <div class="select" @click="toggle()" :class="{ active: visible }">
-      <span class="placeholder" v-if="!fullLocation">{{ placeholder }}</span>
-      <span class="value" v-else>{{ fullLocation }}</span>
+  <div ref="target" class="xtx-city">
+    <div class="select" :class="{ active: visible }" @click="toggle()">
+      <span v-if="!fullLocation" class="placeholder">{{ placeholder }}</span>
+      <span v-else class="value">{{ fullLocation }}</span>
       <i class="iconfont icon-angle-down"></i>
     </div>
 
-    <div class="option" v-if="visible">
+    <div v-if="visible" class="option">
       <div v-if="loading" class="loading"></div>
 
       <template v-else>
         <span
-          class="ellipsis"
-          @click="changeItem(item)"
           v-for="item in currentList"
           :key="item.code"
+          class="ellipsis"
+          @click="changeItem(item)"
           >{{ item.name }}</span
         >
       </template>

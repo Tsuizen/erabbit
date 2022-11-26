@@ -9,10 +9,10 @@
 
 <script setup lang="ts">
 import { findHotGoods } from '@/api/product';
+import type { GoodsProps } from '@/types/home';
+import GoodsItem from '@/views/category/components/goods-item.vue';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import GoodsItem from '@/views/category/components/goods-item.vue';
-import type { GoodsProps } from '@/types/home';
 
 const props = defineProps({
   type: {

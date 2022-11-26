@@ -16,8 +16,8 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import AppHeaderNav from './app-header-nav.vue';
 import AppHeaderCart from './app-header-cart.vue';
+import AppHeaderNav from './app-header-nav.vue';
 </script>
 
 <style scoped lang="less">

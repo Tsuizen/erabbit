@@ -4,8 +4,8 @@
       <li
         v-for="item in menuList"
         :key="item.id"
-        @mouseenter="categoryId = item.id"
         :class="{ active: categoryId === item.id }"
+        @mouseenter="categoryId = item.id"
       >
         <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
         <template v-if="item.children">
@@ -47,7 +47,7 @@
         </li>
       </ul>
       <ul v-if="currCategory && currCategory.brands">
-        <li class="brand" v-for="brand in currCategory.brands" :key="brand.id">
+        <li v-for="brand in currCategory.brands" :key="brand.id" class="brand">
           <RouterLink to="/">
             <img :src="brand.picture" alt="" />
             <div class="info">
@@ -65,12 +65,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue';
-import { useCategoryStore } from '@/store';
-import { storeToRefs } from 'pinia';
-import type { Category } from '@/types/category';
-import { isCategoryResult } from '@/store/modules/category';
 import { findBrand } from '@/api/home';
+import { useCategoryStore } from '@/store';
+import { isCategoryResult } from '@/store/modules/category';
+import type { Category } from '@/types/category';
+import { storeToRefs } from 'pinia';
+import { computed, reactive, ref } from 'vue';
 
 const brand = reactive({
   id: 'brand',
