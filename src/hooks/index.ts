@@ -1,10 +1,9 @@
 import { findGoods } from '@/api/product';
 import type { Goods } from '@/types/goods';
 import { useIntersectionObserver, useIntervalFn } from '@vueuse/core';
-import { onUnmounted, type Ref } from 'vue';
-import { nextTick, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
 import dayjs from 'dayjs';
+import { nextTick, onUnmounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 //数据懒加载函数
 export const useLazyData = (apiFn: () => Promise<any>) => {
@@ -25,9 +24,9 @@ export const useLazyData = (apiFn: () => Promise<any>) => {
 };
 
 // 获取商品详情
-export const useGoods = (): Ref<Goods> => {
+export const useGoods = () => {
   // 出现路由地址商品id发生变化，但是不会重新初始化组件
-  const goods = ref();
+  const goods = ref<Goods | null>();
   const route = useRoute();
   watch(
     () => route.params.id,

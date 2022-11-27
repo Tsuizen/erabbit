@@ -1,6 +1,6 @@
 import { useVModel } from '@vueuse/core';
 import { defineComponent, provide } from 'vue';
-import styles from './xtx-tabs.module.less';
+import './xtx-tabs.less';
 
 export default defineComponent({
   name: 'XtxTabs',
@@ -36,15 +36,13 @@ export default defineComponent({
     });
 
     return () => (
-      <div class={styles['xtx-tabs']}>
+      <div class="xtx-tabs">
         <nav>
           {dynamicPanels.map((item, i) => {
             return (
               <a
                 onClick={() => tabClick(item.props.name, i)}
-                class={
-                  item.props.name === activeName.value ? styles.active : ''
-                }
+                class={item.props.name === activeName.value ? 'active' : ''}
               >
                 {item.props.label}
               </a>

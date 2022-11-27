@@ -67,3 +67,18 @@ export interface RepurchaseOrder {
     postFee: number;
   };
 }
+
+export interface Logistics {
+  picture: string;
+  count: number;
+  company: {
+    name: string;
+    number: string;
+    tel: number;
+  };
+  list: {
+    id: string;
+    text: string;
+    time: string;
+  }[];
+}

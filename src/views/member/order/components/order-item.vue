@@ -11,7 +11,7 @@
         v-if="[5, 6].includes(order.orderState)"
         href="javascript:;"
         class="del"
-        @click="$emit('on-delete', order)"
+        @click="emit('on-delete', order)"
         >删除</a
       >
     </div>
@@ -36,7 +36,7 @@
         <!-- 待收货  查看物流 -->
         <!-- 待评价  评价商品 -->
         <!-- 已完成  查看评价 -->
-        <p v-if="order.orderState === 3" @click="$emit('on-logistics', order)">
+        <p v-if="order.orderState === 3" @click="emit('on-logistics', order)">
           <a class="green" href="javascript:;">查看物流</a>
         </p>
         <p v-if="order.orderState === 4">
@@ -62,29 +62,29 @@
           v-if="order.orderState === 1"
           type="primary"
           size="small"
-          @click="$router.push(`/member/pay?orderId=${order.id}`)"
+          @click="router.push(`/member/pay?orderId=${order.id}`)"
           >立即付款</XtxButton
         >
         <XtxButton
           v-if="order.orderState === 3"
           type="primary"
           size="small"
-          @click="$emit('on-confirm', order)"
+          @click="emit('on-confirm', order)"
           >确认收货</XtxButton
         >
         <p>
           <a
             href="javascript:;"
-            @click="$router.push(`/member/order/${order.id}`)"
+            @click="router.push(`/member/order/${order.id}`)"
             >查看详情</a
           >
         </p>
-        <p v-if="order.orderState === 1" @click="$emit('on-cancel', order)">
+        <p v-if="order.orderState === 1" @click="emit('on-cancel', order)">
           <a href="javascript:;">取消订单</a>
         </p>
         <p
           v-if="[2, 3, 4, 5].includes(order.orderState)"
-          @click="$router.push(`/member/checkout?orderId=${order.id}`)"
+          @click="router.push(`/member/checkout?orderId=${order.id}`)"
         >
           <a href="javascript:;">再次购买</a>
         </p>
@@ -99,8 +99,8 @@
 <script setup lang="ts">
 import { orderStatus } from '@/api/constants';
 import { usePayTime } from '@/hooks';
+import type { Order } from '@/types/order';
 import { useRouter } from 'vue-router';
-import type { Order } from '../../type';
 
 const props = defineProps<{
   order: Order;

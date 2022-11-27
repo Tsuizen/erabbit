@@ -65,10 +65,10 @@
 <script setup lang="ts">
 import { findOrderDetail } from '@/api/order';
 import { usePayTime } from '@/hooks';
+import type { Order } from '@/types/order';
 import { baseURL } from '@/utils/request';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import type { Order } from '../type';
 
 // 根据地址栏id发请求获取订单数据
 const route = useRoute();

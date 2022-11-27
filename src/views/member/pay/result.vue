@@ -24,9 +24,9 @@
         <div class="btn">
           /* stylelint-disable-next-line declaration-block-trailing-semicolon */
           <XtxButton
-            @click="$router.push('/member/order')"
             type="primary"
             style="margin-right: 20px"
+            @click="router.push('/member/order')"
             >查看订单</XtxButton
           >
           <XtxButton type="gray">进入首页</XtxButton>
@@ -41,11 +41,12 @@
 </template>
 <script setup lang="ts">
 import { findOrderDetail } from '@/api/order';
+import type { Order } from '@/types/order';
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
-import type { Order } from '../type';
+import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
+const router = useRouter();
 const order = ref<Order>();
 findOrderDetail(route.query.id as string).then((data) => {
   order.value = data.result;

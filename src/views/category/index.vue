@@ -11,7 +11,6 @@
       </XtxBread>
 
       <!-- 轮播图 -->
-      /* stylelint-disable-next-line declaration-block-trailing-semicolon */
       <XtxCarousel :sliders="sliders" style="height: 500px" auto-play />
 
       <!-- 二级分类 -->

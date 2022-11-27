@@ -14,7 +14,15 @@
     <div class="order-list">
       <div v-if="loading" class="loading"></div>
       <div v-if="!loading && orderList.length === 0" class="none">暂无数据</div>
-      <OrderItem v-for="item in orderList" :key="item.id" :order="item" />
+      <OrderItem
+        v-for="item in orderList"
+        :key="item.id"
+        :order="item"
+        @on-cancel="handlerCancel"
+        @on-delete="handlerDelete"
+        @on-confirm="handlerConfirm"
+        @on-logistics="handlerLogistics"
+      />
     </div>
     <!-- 分页组件 -->
     <XtxPagination
@@ -33,14 +41,16 @@
 
 <script setup lang="ts">
 import { orderStatus } from '@/api/constants';
-import { deleteOrder, findOrderList } from '@/api/order';
+import { confirmOrder, deleteOrder, findOrderList } from '@/api/order';
 import Confirm from '@/components/library/Confirm';
 import Message from '@/components/library/Message';
 import XtxTabs from '@/components/library/xtx-tabs';
 import XtxTabsPanel from '@/components/library/xtx-tabs-panel';
+import type { Order } from '@/types/order';
 import { reactive, ref, watch } from 'vue';
-import type { Order } from '../type';
+import OrderCancel from './components/order-cancel.vue';
 import OrderItem from './components/order-item.vue';
+import OrderLogistics from './components/order-logistics.vue';
 
 interface ReqParams {
   page: number;
@@ -60,6 +70,8 @@ const reqParams = reactive<ReqParams>({
 const orderList = ref<Order[]>([]);
 const loading = ref<boolean>(false);
 const total = ref<number>(0);
+const orderCancelCom = ref<InstanceType<typeof OrderCancel> | null>(null);
+const orderLogisticsCom = ref<InstanceType<typeof OrderLogistics> | null>(null);
 
 // 点击选项卡
 const tabClick = ({ index }: { index: number }) => {
@@ -90,6 +102,28 @@ const handlerDelete = (order: Order) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+const handlerCancel = (order: Order) => {
+  orderCancelCom.value?.open(order);
+};
+
+const handlerConfirm = (order: Order) => {
+  Confirm({ text: '亲，您确认收货吗？确认后货款将打给买家。' }).then(() => {
+    confirmOrder(order.id)
+      .then(() => {
+        Message({ type: 'success', text: '确认收货成功' });
+        // 待收货-->待评价
+        order.orderState = 4;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+};
+
+const handlerLogistics = (order: Order) => {
+  orderLogisticsCom.value?.open(order);
 };
 
 watch(

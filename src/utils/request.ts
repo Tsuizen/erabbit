@@ -1,3 +1,5 @@
+import router from '@/router';
+import { useUserStore } from '@/store';
 import type {
   AxiosError,
   AxiosInstance,
@@ -5,8 +7,6 @@ import type {
   AxiosResponse
 } from 'axios';
 import axios from 'axios';
-import router from '@/router';
-import { useUserStore } from '@/store';
 import { storeToRefs } from 'pinia';
 
 // export const baseURL = 'https://apipc-xiaotuxian-front.itheima.net';

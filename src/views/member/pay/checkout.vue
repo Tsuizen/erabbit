@@ -99,10 +99,10 @@
 <script setup lang="ts">
 import { createOrder, repurchaseOrder, submitOrder } from '@/api/order';
 import Message from '@/components/library/Message';
+import type { RepurchaseOrder } from '@/types/order';
 import { reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import CheckoutAddress from '../pay/components/checkout-address.vue';
-import type { RepurchaseOrder } from '../type';
 
 const order = ref<RepurchaseOrder>();
 const route = useRoute();
