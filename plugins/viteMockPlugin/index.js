@@ -15,13 +15,13 @@ function getQuery(url) {
   return result;
 }
 
-const viteMockPlugin = async () => {
+const viteMockPlugin = async (options) => {
   const mockStat = fs.statSync('mock');
   const isDirectory = mockStat.isDirectory();
   let mockResult = [];
   if (isDirectory) {
     const cwd = process.cwd();
-    mockResult = await import(path.join(cwd, 'mock/collect.js'));
+    mockResult = await import(path.join(cwd, options.mockPath));
   }
 
   return {

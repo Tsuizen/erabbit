@@ -24,7 +24,9 @@ export default defineConfig({
       dirs: ['./src/components/library'],
       dts: 'src/components.d.ts'
     }),
-    viteMockPlugin()
+    viteMockPlugin({
+      mockPath: 'mock/collect.js'
+    })
   ],
   resolve: {
     alias: {

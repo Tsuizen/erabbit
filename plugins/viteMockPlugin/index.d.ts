@@ -1,4 +1,9 @@
 import { Plugin } from 'vite';
-declare function viteMockPlugin(): Plugin;
+
+declare interface viteOption {
+  mockPath: string;
+}
+
+declare function viteMockPlugin(options: viteOption): Plugin;
 
 export default viteMockPlugin ;
