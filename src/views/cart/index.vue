@@ -44,9 +44,9 @@
                     <p class="name ellipsis">{{ goods.name }}</p>
                     <!-- 选择规格组件 -->
                     <CartSku
+                      :sku-id="goods.skuId!"
+                      :attrs-text="goods.attrsText!"
                       @change="($event) => updateCartSku(goods.skuId!, $event)"
-                      :skuId="goods.skuId!"
-                      :attrsText="goods.attrsText!"
                     />
                   </div>
                 </div>
@@ -62,9 +62,9 @@
               </td>
               <td class="tc">
                 <XtxNumbox
-                  @change="($event: number) => updateCount(goods.skuId!, $event)"
+                  :model-value="goods.count"
                   :max="goods.stock"
-                  :modelValue="goods.count"
+                  @change="($event: number) => updateCount(goods.skuId!, $event)"
                 />
               </td>
               <td class="tc">
@@ -78,9 +78,9 @@
                 <p><a href="javascript:;">移入收藏夹</a></p>
                 <p>
                   <a
-                    @click="deleteCart(goods.skuId!)"
                     class="green"
                     href="javascript:;"
+                    @click="deleteCart(goods.skuId!)"
                     >删除</a
                   >
                 </p>
@@ -120,9 +120,9 @@
               <td class="tc">
                 <p>
                   <a
-                    @click="deleteCart(goods.skuId!)"
                     class="green"
                     href="javascript:;"
+                    @click="deleteCart(goods.skuId!)"
                     >删除</a
                   >
                 </p>
@@ -135,18 +135,18 @@
       <!-- 操作栏 -->
       <div class="action">
         <div class="batch">
-          <XtxCheckbox @change="checkAll" v-model="isCheckAll"
+          <XtxCheckbox v-model="isCheckAll" @change="checkAll"
             >全选</XtxCheckbox
           >
-          <a @click="batchDeleteCart(false)" href="javascript:;">删除商品</a>
+          <a href="javascript:;" @click="batchDeleteCart(false)">删除商品</a>
           <a href="javascript:;">移入收藏夹</a>
-          <a @click="batchDeleteCart(true)" href="javascript:;">清空失效商品</a>
+          <a href="javascript:;" @click="batchDeleteCart(true)">清空失效商品</a>
         </div>
         <div class="total">
           共 {{ cart.validTotal }} 件商品，已选择
           {{ cart.selectedTotal }} 件，商品合计：
           <span class="red">¥{{ cart.selectedAmount }}</span>
-          <XtxButton @click="checkout" type="primary">下单结算</XtxButton>
+          <XtxButton type="primary" @click="checkout">下单结算</XtxButton>
         </div>
       </div>
       <!-- 猜你喜欢 -->
@@ -156,15 +156,15 @@
 </template>
 
 <script setup lang="ts">
-import type { SkuInfo } from '@/types/goods';
-import GoodRelevant from '@/views/goods/components/goods-relevant.vue';
 import Confirm from '@/components/library/Confirm';
 import Message from '@/components/library/Message';
 import { useCartStore, useUserStore } from '@/store';
+import type { SkuInfo } from '@/types/goods';
+import GoodRelevant from '@/views/goods/components/goods-relevant.vue';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import CartNone from './components/cart-none.vue';
 import CartSku from './components/cart-sku.vue';
-import { useRouter } from 'vue-router';
-import { ref } from 'vue';
 
 const cart = useCartStore();
 const user = useUserStore();
@@ -205,6 +205,7 @@ const batchDeleteCart = (isClear: boolean) => {
 
 // 修改数量
 const updateCount = (skuId: string, count: number) => {
+  console.log(count);
   cart.updateCart({ skuId, count });
 };
 

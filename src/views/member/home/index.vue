@@ -16,13 +16,13 @@
 </template>
 
 <script setup lang="ts">
+import type { GoodsProps } from '@/types/home';
+import GoodsItem from '@/views/category/components/goods-item.vue';
+import GoodsRelevant from '@/views/goods/components/goods-relevant.vue';
+import axios from 'axios';
+import { ref } from 'vue';
 import HomeOverview from './components/home-overview.vue';
 import HomePanel from './components/home-panel.vue';
-import GoodsRelevant from '@/views/goods/components/goods-relevant.vue';
-import GoodsItem from '@/views/category/components/goods-item.vue';
-import { findCollect } from '@/api/member';
-import type { GoodsProps } from '@/types/home';
-import { ref } from 'vue';
 import type { CollectItem } from './home';
 
 const goods: GoodsProps = {
@@ -36,12 +36,20 @@ const goods: GoodsProps = {
 
 // 调用模拟的接口
 const collectGoods = ref<CollectItem[]>([]);
-findCollect({
-  page: 1,
-  pageSize: 4
-}).then((data) => {
-  collectGoods.value = data.result.items;
-});
+// findCollect({
+//   page: 1,
+//   pageSize: 4
+// }).then((data) => {
+//   collectGoods.value = data.result.items;
+// });
+axios
+  .get('/member/collect', {
+    params: { page: 1, pageSize: 4, collectType: 1 }
+  })
+  .then((data) => {
+    console.log(data.data.data);
+    collectGoods.value = data.data.data.items;
+  });
 </script>
 
 <style scoped lang="less">

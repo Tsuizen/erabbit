@@ -1,22 +1,23 @@
 import { useVModel } from '@vueuse/core';
-import { defineComponent, provide, useSlots } from 'vue';
-import styles from './xtx-tabs.module.less';
+import { defineComponent, provide } from 'vue';
+import './xtx-tabs.less';
 
 export default defineComponent({
   name: 'XtxTabs',
-
   props: {
     modelValue: {
-      type: [String, Number]
+      type: [String, Number],
+      default: ''
     }
   },
-
-  setup(props, { emit }) {
+  emits: ['tab-click'],
+  setup(props, { emit, slots }) {
+    // 接受v-model的值
     const activeName = useVModel(props, 'modelValue', emit);
-    const slots = useSlots();
-
+    // 点击选项卡触发函数
     const tabClick = (name: string, index: number) => {
       activeName.value = name;
+      // 提供一个tab-click自定义事件
       emit('tab-click', { name, index });
     };
     provide('activeName', activeName);
@@ -33,22 +34,23 @@ export default defineComponent({
         });
       }
     });
-    const nav = (
-      <nav>
-        {dynamicPanels.map((item, i) => {
-          return (
-            <a
-              onClick={() => tabClick(item.props.name, i)}
-              class={{ active: item.props.name === activeName }}
-              href="javascript:;"
-            >
-              {item.props.label}
-            </a>
-          );
-        })}
-      </nav>
-    );
 
-    return () => <div class={styles['xtx-tabs']}>{[nav, dynamicPanels]}</div>;
+    return () => (
+      <div class="xtx-tabs">
+        <nav>
+          {dynamicPanels.map((item, i) => {
+            return (
+              <a
+                onClick={() => tabClick(item.props.name, i)}
+                class={item.props.name === activeName.value ? 'active' : ''}
+              >
+                {item.props.label}
+              </a>
+            );
+          })}
+        </nav>
+        {dynamicPanels}
+      </div>
+    );
   }
 });

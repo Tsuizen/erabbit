@@ -4,7 +4,7 @@
       <i class="icon"></i>
       <span class="title">{{ goodsId ? '同类商品推荐' : '猜你喜欢' }}</span>
     </div>
-    <XtxCarousel :sliders="sliders" ref="target" />
+    <XtxCarousel ref="target" :sliders="sliders" />
   </div>
 </template>
 

@@ -11,7 +11,6 @@
       </XtxBread>
 
       <!-- 轮播图 -->
-      /* stylelint-disable-next-line declaration-block-trailing-semicolon */
       <XtxCarousel :sliders="sliders" style="height: 500px" auto-play />
 
       <!-- 二级分类 -->
@@ -26,7 +25,7 @@
           </li>
         </ul>
       </div>
-      <div class="ref-goods" v-for="sub in subList" :key="sub.id">
+      <div v-for="sub in subList" :key="sub.id" class="ref-goods">
         <div class="head">
           <h3>-{{ sub.name }}-</h3>
           <!-- <p class="tag">温暖柔软，品质之选</p> -->
@@ -45,8 +44,8 @@
 </template>
 
 <script setup lang="ts">
-import { findBanner } from '@/api/home';
 import { findTopCategory } from '@/api/category';
+import { findBanner } from '@/api/home';
 import { useCategoryStore } from '@/store';
 import type { Category } from '@/types/category';
 import { storeToRefs } from 'pinia';

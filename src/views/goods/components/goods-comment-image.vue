@@ -2,18 +2,18 @@
   <div class="goods-comment-image">
     <div class="list">
       <a
-        :class="{ active: currImg === url }"
-        @click="currImg = url"
-        href="javascript:;"
         v-for="url in pictures"
         :key="url"
+        :class="{ active: currImg === url }"
+        href="javascript:;"
+        @click="currImg = url"
       >
         <img :src="url" alt="" />
       </a>
     </div>
-    <div class="preview" v-if="currImg">
+    <div v-if="currImg" class="preview">
       <img :src="currImg" alt="" />
-      <i @click="currImg = ''" class="iconfont icon-close-new"></i>
+      <i class="iconfont icon-close-new" @click="currImg = ''"></i>
     </div>
   </div>
 </template>

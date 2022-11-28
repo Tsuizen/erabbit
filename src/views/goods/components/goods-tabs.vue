@@ -2,15 +2,15 @@
   <div class="goods-tabs">
     <nav>
       <a
-        @click="activeName = 'GoodsDetail'"
         :class="{ active: activeName === 'GoodsDetail' }"
         href="javascript:;"
+        @click="activeName = 'GoodsDetail'"
         >商品详情</a
       >
       <a
-        @click="activeName = 'GoodsComment'"
         :class="{ active: activeName === 'GoodsComment' }"
         href="javascript:;"
+        @click="activeName = 'GoodsComment'"
         >商品评价<span>{{ goods?.commentCount }}</span
         >></a
       >
@@ -28,8 +28,8 @@
 <script setup lang="ts">
 import type { Goods } from '@/types/goods';
 import { inject, ref } from 'vue';
-import GoodsDetail from './goods-detail.vue';
 import GoodsComment from './goods-comment.vue';
+import GoodsDetail from './goods-detail.vue';
 const activeName = ref<string>('GoodsDetail');
 const goods = inject<Goods>('goods');
 </script>

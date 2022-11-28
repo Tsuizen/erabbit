@@ -9,9 +9,9 @@
     <!-- 图片 -->
     <img
       v-for="item in goods?.details.pictures"
+      :key="item"
       alt=""
       :src="item"
-      :key="item"
     />
   </div>
 </template>

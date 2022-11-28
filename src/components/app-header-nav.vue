@@ -25,8 +25,8 @@
 </template>
 <script setup lang="ts">
 import { useCategoryStore } from '@/store';
-import { storeToRefs } from 'pinia';
 import type { Category } from '@/types/category';
+import { storeToRefs } from 'pinia';
 import { computed, type ComputedRef } from 'vue';
 
 const categoryStore = useCategoryStore();

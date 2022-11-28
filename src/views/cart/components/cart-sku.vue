@@ -1,18 +1,18 @@
 <template>
-  <div class="cart-sku" ref="target">
+  <div ref="target" class="cart-sku">
     <div class="attrs" @click="toggle()">
       <span class="ellipsis">{{ attrsText }}</span>
       <i class="iconfont icon-angle-down"></i>
     </div>
-    <div class="layer" v-if="visible">
+    <div v-if="visible" class="layer">
       <div v-if="loading" class="loading"></div>
-      <GoodsSku v-else @change="changeSku" :skuId="skuId" :goods="goods!" />
+      <GoodsSku v-else :sku-id="skuId" :goods="goods!" @change="changeSku" />
       <XtxButton
-        @click="submit"
         v-if="!loading"
         type="primary"
         size="mini"
         style="margin-left: 60px"
+        @click="submit"
         >确认</XtxButton
       >
     </div>
@@ -21,11 +21,10 @@
 
 <script setup lang="ts">
 import { getGoodsSku } from '@/api/cart';
+import type { Goods, SkuInfo } from '@/types/goods';
+import GoodsSku from '@/views/goods/components/goods-sku.vue';
 import { onClickOutside } from '@vueuse/core';
 import { ref } from 'vue';
-import GoodsSku from '@/views/goods/components/goods-sku.vue';
-import type { Goods } from '@/types/goods';
-import type { SkuInfo } from '@/types/goods';
 
 const props = defineProps<{
   attrsText: string;

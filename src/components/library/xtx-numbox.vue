@@ -1,6 +1,6 @@
 <template>
   <div class="xtx-numbox">
-    <div class="label" v-if="label">{{ label }}</div>
+    <div v-if="label" class="label">{{ label }}</div>
     <div class="numbox">
       <a href="javascript:;" @click="changeNum(-1)">-</a>
       <input type="text" readonly :value="count" />
@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useVModel } from '@vueuse/core';
 const props = defineProps({
   label: {
     type: String,
@@ -31,16 +31,16 @@ const props = defineProps({
   }
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['change']);
 // 绑定按钮点击事件
-const count = ref(1);
+const count = useVModel(props, 'modelValue', emit);
 const changeNum = (step: number) => {
   const newValue = count.value + step;
   if (newValue < props.min || newValue > props.max) {
     return;
   }
   count.value = newValue;
-  emit('update:modelValue', newValue);
+  emit('change', newValue);
 };
 </script>
 

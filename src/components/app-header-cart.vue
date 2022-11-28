@@ -5,9 +5,9 @@
       <i class="iconfont icon-cart"></i>
       <em>{{ cart.validTotal }}</em>
     </RouterLink>
-    <div class="layer" v-if="cart.validTotal > 0 && $route.path !== '/cart'">
+    <div v-if="cart.validTotal > 0 && $route.path !== '/cart'" class="layer">
       <div class="list">
-        <div class="item" v-for="goods in cart.validList" :key="goods.skuId">
+        <div v-for="goods in cart.validList" :key="goods.skuId" class="item">
           <RouterLink :to="`/product/${goods.id}`">
             <img :src="goods.picture" alt="" />
             <div class="center">
@@ -20,8 +20,8 @@
             </div>
           </RouterLink>
           <i
-            @click="deleteCart(goods.skuId!)"
             class="iconfont icon-close-new"
+            @click="deleteCart(goods.skuId!)"
           ></i>
         </div>
       </div>
@@ -30,7 +30,7 @@
           <p>共{{ cart.validTotal }}件商品</p>
           <p>&yen;{{ cart.validAmount }}</p>
         </div>
-        <XtxButton @click="$router.push('/cart')" type="plain"
+        <XtxButton type="plain" @click="$router.push('/cart')"
           >去购物车结算</XtxButton
         >
       </div>

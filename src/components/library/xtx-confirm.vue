@@ -5,8 +5,8 @@
         <h3>{{ title }}</h3>
         <a
           href="javascript:;"
-          @click="cancel"
           class="iconfont icon-close-new"
+          @click="cancel"
         ></a>
       </div>
       <div class="body">
@@ -14,8 +14,8 @@
         <span>{{ text }}</span>
       </div>
       <div class="footer">
-        <XtxButton @click="cancel" size="mini" type="gray">取消</XtxButton>
-        <XtxButton @click="submit" size="mini" type="primary">确认</XtxButton>
+        <XtxButton size="mini" type="gray" @click="cancel">取消</XtxButton>
+        <XtxButton size="mini" type="primary" @click="submit">确认</XtxButton>
       </div>
     </div>
   </div>

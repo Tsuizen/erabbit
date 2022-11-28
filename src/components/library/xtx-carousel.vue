@@ -4,9 +4,9 @@
     <ul class="carousel-body">
       <!-- fade 显示的图片加上 -->
       <li
-        class="carousel-item"
         v-for="(item, i) in sliders"
         :key="i"
+        class="carousel-item"
         :class="{ fade: index === i }"
       >
         <!-- 图片 -->
@@ -28,30 +28,30 @@
       </li>
     </ul>
     <!-- 上一张 -->
-    <a @click="toggle(-1)" href="javascript:;" class="carousel-btn prev"
+    <a href="javascript:;" class="carousel-btn prev" @click="toggle(-1)"
       ><i class="iconfont icon-angle-left"></i
     ></a>
     <!-- 下一张 -->
-    <a @click="toggle(1)" href="javascript:;" class="carousel-btn next"
+    <a href="javascript:;" class="carousel-btn next" @click="toggle(1)"
       ><i class="iconfont icon-angle-right"></i
     ></a>
     <!-- 指示器 -->
     <div class="carousel-indicator">
       <!-- active 激活点 -->
       <span
-        @click="index = i"
         v-for="(item, i) in sliders"
         :key="i"
         :class="{ active: index === i }"
+        @click="index = i"
       ></span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onUnmounted, ref, watch } from 'vue';
-import type { Banner } from '@/types/home';
 import type { Relevant } from '@/types/goods';
+import type { Banner } from '@/types/home';
+import { onUnmounted, ref, watch } from 'vue';
 
 interface Props {
   sliders: Banner[] | Relevant[][];

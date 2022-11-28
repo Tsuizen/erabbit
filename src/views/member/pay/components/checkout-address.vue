@@ -20,27 +20,27 @@
         </li>
       </ul>
       <a
-        href="javascript:;"
         v-if="showAddress"
+        href="javascript:;"
         @click="openAddressEdit(showAddress!)"
         >修改地址</a
       >
     </div>
     <div class="action">
-      <XtxButton @click="openDialog()" class="btn">切换地址</XtxButton>
-      <XtxButton @click="openAddressEdit({})" class="btn">添加地址</XtxButton>
+      <XtxButton class="btn" @click="openDialog()">切换地址</XtxButton>
+      <XtxButton class="btn" @click="openAddressEdit({})">添加地址</XtxButton>
     </div>
   </div>
   <!-- 对话框组件, 切换收货地址 -->
-  <XtxDialog title="切换收货地址" v-model:visible="visibleDialog">
+  <XtxDialog v-model:visible="visibleDialog" title="切换收货地址">
     <div
       v-for="item in list"
       :key="item.id"
-      @click="selectedAddress = item"
       class="text item"
       :class="{
         active: selectedAddress && selectedAddress.id === item.id
       }"
+      @click="selectedAddress = item"
     >
       <ul>
         <li>
@@ -58,12 +58,12 @@
     </div>
     <template #footer>
       <XtxButton
-        @click="visibleDialog = false"
         type="gray"
         style="margin-right: 20px"
+        @click="visibleDialog = false"
         >取消</XtxButton
       >
-      <XtxButton @click="confirmAddressFn" type="primary">确认</XtxButton>
+      <XtxButton type="primary" @click="confirmAddressFn">确认</XtxButton>
     </template>
   </XtxDialog>
 
@@ -71,9 +71,9 @@
 </template>
 
 <script setup lang="ts">
-import AddressEdit from './address-edit.vue';
 import type { Address } from '@/types/member';
 import { ref, toRefs } from 'vue';
+import AddressEdit from './address-edit.vue';
 
 const props = defineProps<{
   list: Address[];

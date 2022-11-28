@@ -25,14 +25,14 @@
 </template>
 
 <script setup lang="ts">
-import type { TemporaryItem, Temporary } from '@/types/category';
 import { findSubCategroyGoods } from '@/api/category';
+import type { Temporary, TemporaryItem } from '@/types/category';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import GoodsItem from './components/goods-item.vue';
 import SubBread from './components/sub-bread.vue';
 import SubFilter from './components/sub-filter.vue';
 import SubSort from './components/sub-sort.vue';
-import GoodsItem from './components/goods-item.vue';
 
 interface ReqParams {
   page: number;

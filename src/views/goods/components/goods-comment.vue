@@ -1,7 +1,7 @@
 <template>
   <div class="goods-comment">
     <!-- 评价头部 -->
-    <div class="head" v-if="commentInfo">
+    <div v-if="commentInfo" class="head">
       <div class="data">
         <p>
           <span>{{ commentInfo.salesCount }}</span
@@ -26,30 +26,30 @@
         </div>
       </div>
     </div>
-    <div class="sort" v-if="commentInfo">
+    <div v-if="commentInfo" class="sort">
       <span>排序：</span>
       <a
         href="javascipt:;"
-        @click="changeSort(null)"
         :class="{ active: reqParams.sortField === null }"
+        @click="changeSort(null)"
         >默认</a
       >
       <a
         href="javascipt:;"
-        @click="changeSort('createTime')"
         :class="{ active: reqParams.sortField === 'createTime' }"
+        @click="changeSort('createTime')"
         >最新</a
       >
       <a
         href="javascipt:;"
-        @click="changeSort('praiseCount')"
         :class="{ active: reqParams.sortField === 'praiseCount' }"
+        @click="changeSort('praiseCount')"
         >最热</a
       >
     </div>
     <!-- 评价列表 -->
-    <div class="list" v-if="commentList">
-      <div class="item" v-for="item in commentList" :key="item.id">
+    <div v-if="commentList" class="list">
+      <div v-for="item in commentList" :key="item.id" class="item">
         <div class="user">
           <img :src="item.member.avatar" alt="" />
           <span>{{ formatNickname(item.member.nickname) }}</span>
@@ -86,9 +86,9 @@
     <!-- 分页组件 -->
     <XtxPagination
       v-if="total"
-      @current-change="changePagerFn"
       :page-size="reqParams.pageSize"
       :current-page="reqParams.page"
+      @current-change="changePagerFn"
     />
   </div>
 </template>

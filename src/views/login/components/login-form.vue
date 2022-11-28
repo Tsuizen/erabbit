@@ -1,18 +1,18 @@
 <template>
   <div class="account-box">
     <div class="toggle">
-      <a @click="isMsgLogin = false" href="javascript:;" v-if="isMsgLogin">
+      <a v-if="isMsgLogin" href="javascript:;" @click="isMsgLogin = false">
         <i class="iconfont icon-user"></i> 使用账号登录
       </a>
-      <a @click="isMsgLogin = true" href="javascript:;" v-else>
+      <a v-else href="javascript:;" @click="isMsgLogin = true">
         <i class="iconfont icon-msg"></i> 使用短信登录
       </a>
     </div>
     <Form
       ref="formCom"
+      v-slot="{ errors }"
       class="form"
       :validation-schema="schema"
-      v-slot="{ errors }"
       autocomplete="off"
     >
       <template v-if="!isMsgLogin">
@@ -20,14 +20,14 @@
           <div class="input">
             <i class="iconfont icon-user"></i>
             <Field
-              :class="{ error: errors.account }"
               v-model="form.account"
+              :class="{ error: errors.account }"
               name="account"
               type="text"
               placeholder="请输入用户名"
             />
           </div>
-          <div class="error" v-if="errors.account">
+          <div v-if="errors.account" class="error">
             <i class="iconfont icon-warning" />
             {{ errors.account }}
           </div>
@@ -36,14 +36,14 @@
           <div class="input">
             <i class="iconfont icon-lock"></i>
             <Field
-              :class="{ error: errors.password }"
               v-model="form.password"
+              :class="{ error: errors.password }"
               name="password"
               type="password"
               placeholder="请输入密码"
             />
           </div>
-          <div class="error" v-if="errors.password">
+          <div v-if="errors.password" class="error">
             <i class="iconfont icon-warning" />
             {{ errors.password }}
           </div>
@@ -54,14 +54,14 @@
           <div class="input">
             <i class="iconfont icon-user"></i>
             <Field
-              :class="{ error: errors.mobile }"
               v-model="form.mobile"
+              :class="{ error: errors.mobile }"
               name="mobile"
               type="text"
               placeholder="请输入手机号"
             />
           </div>
-          <div class="error" v-if="errors.mobile">
+          <div v-if="errors.mobile" class="error">
             <i class="iconfont icon-warning" />
             {{ errors.mobile }}
           </div>
@@ -70,17 +70,17 @@
           <div class="input">
             <i class="iconfont icon-code"></i>
             <Field
-              :class="{ error: errors.code }"
               v-model="form.code"
+              :class="{ error: errors.code }"
               name="code"
               type="text"
               placeholder="请输入验证码"
             />
-            <span @click="send()" class="code">
+            <span class="code" @click="send()">
               {{ time === 0 ? '发送验证码' : `${time}秒后发送` }}
             </span>
           </div>
-          <div class="error" v-if="errors.code">
+          <div v-if="errors.code" class="error">
             <i class="iconfont icon-warning" />
             {{ errors.code }}
           </div>
@@ -88,18 +88,18 @@
       </template>
       <div class="form-item">
         <div class="agree">
-          <Field as="XtxCheckbox" name="isAgree" v-model="form.isAgree" />
+          <Field v-model="form.isAgree" as="XtxCheckbox" name="isAgree" />
           <span>我已同意</span>
           <a href="javascript:;">《隐私条款》</a>
           <span>和</span>
           <a href="javascript:;">《服务条款》</a>
         </div>
-        <div class="error" v-if="errors.isAgree">
+        <div v-if="errors.isAgree" class="error">
           <i class="iconfont icon-warning" />
           {{ errors.isAgree }}
         </div>
       </div>
-      <a @click="login()" href="javascript:;" class="btn">登录</a>
+      <a href="javascript:;" class="btn" @click="login()">登录</a>
     </Form>
     <div class="action">
       <!-- <a
@@ -117,18 +117,18 @@
 </template>
 
 <script setup lang="ts">
-import { onUnmounted, reactive, ref, watch } from 'vue';
-import schema from '@/utils/vee-validate-schema';
-import { Form, Field } from 'vee-validate';
-import { useCartStore, useUserStore } from '@/store';
-import { useRoute, useRouter } from 'vue-router';
 import {
   userAccountLogin,
   userMobileLogin,
   userMobileLoginMsg
 } from '@/api/user';
 import Message from '@/components/library/Message';
+import { useCartStore, useUserStore } from '@/store';
+import schema from '@/utils/vee-validate-schema';
 import { useIntervalFn } from '@vueuse/core';
+import { Field, Form } from 'vee-validate';
+import { onUnmounted, reactive, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 // 切换短信登录
 const isMsgLogin = ref(false);

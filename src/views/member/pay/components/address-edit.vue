@@ -1,7 +1,7 @@
 <template>
   <XtxDialog
-    :title="`${formData.id ? '修改' : '添加'}收货地址`"
     v-model:visible="visibleDialog"
+    :title="`${formData.id ? '修改' : '添加'}收货地址`"
   >
     <!-- 表单 -->
     <div class="address-edit">
@@ -30,9 +30,9 @@
           <div class="label">地区：</div>
           <div class="field">
             <XtxCity
-              :fullLocation="formData.fullLocation"
-              @change="changeCity"
+              :full-location="formData.fullLocation"
               placeholder="请选择所在地区"
+              @change="changeCity"
             />
           </div>
         </div>
@@ -71,12 +71,12 @@
     <!-- 按钮 -->
     <template #footer>
       <XtxButton
-        @click="visibleDialog = false"
         type="gray"
         style="margin-right: 20px"
+        @click="visibleDialog = false"
         >取消</XtxButton
       >
-      <XtxButton @click="submit" type="primary">确认</XtxButton>
+      <XtxButton type="primary" @click="submit">确认</XtxButton>
     </template>
   </XtxDialog>
 </template>

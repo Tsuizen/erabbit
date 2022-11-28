@@ -1,7 +1,7 @@
 <template>
-  <div class="home-product" ref="target">
-    <HomePanel :title="cate.name" v-for="cate in list" :key="cate.id">
-      <template v-slot:right>
+  <div ref="target" class="home-product">
+    <HomePanel v-for="cate in list" :key="cate.id" :title="cate.name">
+      <template #right>
         <div class="sub">
           <RouterLink
             v-for="sub in cate.children"
@@ -31,12 +31,12 @@
 </template>
 
 <script setup lang="ts">
-import HomePanel from './home-panel.vue';
-import HomeGoods from './home-goods.vue';
-import { useLazyData } from '@/hooks';
 import { findGoods } from '@/api/home';
+import { useLazyData } from '@/hooks';
 import type { GoodsOfHome } from '@/types/home';
 import type { Ref } from 'vue';
+import HomeGoods from './home-goods.vue';
+import HomePanel from './home-panel.vue';
 
 const { target, result } = useLazyData(findGoods);
 const list: Ref<GoodsOfHome[]> = result;

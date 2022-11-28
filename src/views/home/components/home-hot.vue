@@ -22,11 +22,11 @@
 
 <script setup lang="ts">
 import { findHot } from '@/api/home';
-import type { Ref } from 'vue';
+import { useLazyData } from '@/hooks/index';
 import type { Hot } from '@/types/home';
+import type { Ref } from 'vue';
 import HomePanel from './home-panel.vue';
 import HomeSkeleton from './home-skeleton.vue';
-import { useLazyData } from '@/hooks/index';
 
 const { target, result } = useLazyData(findHot);
 const goods: Ref<Hot[]> = result;

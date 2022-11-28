@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-essential',
+    'plugin:vue/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended'
   ],
@@ -20,7 +21,11 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint'],
   rules: {
     'vue/multi-word-component-names': 'off',
+    'vue/no-v-model-argument': 'off',
+    'vue/no-multiple-template-root': 'off',
+    'vue/no-v-for-template-key': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/no-explicit-any': 'off'
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off'
   }
 };
