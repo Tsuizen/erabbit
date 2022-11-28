@@ -1,6 +1,6 @@
 // 封装购物车相关的API函数
-import request from '@/utils/request';
 import type { Cart } from '@/types/carts';
+import request from '@/utils/request';
 
 /* 获取商品最新价格库存 */
 export const getNewCartGoods = (skuId: string) => {
@@ -48,6 +48,7 @@ export const updateCart = ({
   selected: boolean;
   count: number;
 }) => {
+  console.log(count);
   return request(`/member/cart/${skuId}`, 'put', { selected, count });
 };
 

@@ -14,7 +14,7 @@
         <XtxButton
           type="primary"
           size="small"
-          @click="$router.push('/member/pay?id=' + order.id)"
+          @click="$router.push(`/member/pay?orderId=${order.id}`)"
           >立即付款</XtxButton
         >
         <XtxButton type="gray" size="small" @click="handlerCancel"

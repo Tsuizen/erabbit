@@ -62,8 +62,8 @@
               </td>
               <td class="tc">
                 <XtxNumbox
-                  :max="goods.stock"
                   :model-value="goods.count"
+                  :max="goods.stock"
                   @change="($event: number) => updateCount(goods.skuId!, $event)"
                 />
               </td>
@@ -205,6 +205,7 @@ const batchDeleteCart = (isClear: boolean) => {
 
 // 修改数量
 const updateCount = (skuId: string, count: number) => {
+  console.log(count);
   cart.updateCart({ skuId, count });
 };
 
