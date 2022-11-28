@@ -42,10 +42,14 @@ const collectGoods = ref<CollectItem[]>([]);
 // }).then((data) => {
 //   collectGoods.value = data.result.items;
 // });
-axios.get('/member/collect?page=1&pageSize=4&collectType=1').then((data) => {
-  console.log(data.data.data);
-  collectGoods.value = data.data.data.items;
-});
+axios
+  .get('/member/collect', {
+    params: { page: 1, pageSize: 4, collectType: 1 }
+  })
+  .then((data) => {
+    console.log(data.data.data);
+    collectGoods.value = data.data.data.items;
+  });
 </script>
 
 <style scoped lang="less">

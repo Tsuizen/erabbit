@@ -3,24 +3,28 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import { fileURLToPath, URL } from 'node:url';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
-import { viteMockServe } from 'vite-plugin-mock';
+import viteMockPlugin from './plugins/viteMockPlugin/index';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  optimizeDeps: {
+    exclude: []
+  },
   build: {
     sourcemap: true
   },
   plugins: [
     vue(),
     vueJsx(),
-    viteMockServe({
-      mockPath: 'mock',
-      localEnabled: true
-    }),
+    // viteMockServe({
+    //   mockPath: 'mock',
+    //   localEnabled: true
+    // }),
     Components({
       dirs: ['./src/components/library'],
       dts: 'src/components.d.ts'
-    })
+    }),
+    viteMockPlugin()
   ],
   resolve: {
     alias: {

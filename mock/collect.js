@@ -1,18 +1,14 @@
+// const Mock = require('mockjs');
+// import type { MockMethod } from 'vite-plugin-mock';
 import Mock from 'mockjs';
-import type { MockMethod } from 'vite-plugin-mock';
-
 export default [
   {
     url: '/member/collect',
     method: 'get',
-    response: ({
-      query
-    }: {
-      query: { page: string; pageSize: string; collectType: string };
-    }) => {
-      console.log('query', query);
+    response: (req) => {
       const items = [];
-      for (let i = 0; i < +query.pageSize; i++) {
+
+      for (let i = 0; i < +req.pageSize; i++) {
         items.push(
           Mock.mock({
             id: '@id',
@@ -31,11 +27,11 @@ export default [
         message: 'success',
         data: {
           counts: 35,
-          pageSize: +query.pageSize,
-          page: +query.page,
+          pageSize: +req.pageSize,
+          page: +req.page,
           items
         }
       };
     }
   }
-] as MockMethod[];
+];
