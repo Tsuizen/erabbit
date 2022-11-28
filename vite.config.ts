@@ -3,7 +3,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import { fileURLToPath, URL } from 'node:url';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
-import viteMockPlugin from './plugins/viteMockPlugin/index';
+import viteMockPlugin from './plugins/vite-mock-plugin/index';
 
 // https://vitejs.dev/config/
 export default defineConfig({
