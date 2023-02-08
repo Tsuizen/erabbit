@@ -20,14 +20,9 @@ declare module '@vue/runtime-core' {
     XtxInfiniteLoading: typeof import('./components/library/xtx-infinite-loading.vue')['default']
     XtxMessage: typeof import('./components/library/xtx-message.vue')['default']
     XtxMore: typeof import('./components/library/xtx-more.vue')['default']
-    XtxNumber: typeof import('./components/library/xtx-number.vue')['default']
     XtxNumbox: typeof import('./components/library/xtx-numbox.vue')['default']
     XtxPagination: typeof import('./components/library/xtx-pagination.vue')['default']
-    XtxPanels: typeof import('./components/library/xtx-tabs-panel.tsx')['default']
     XtxSkeleton: typeof import('./components/library/xtx-skeleton.vue')['default']
     XtxStepsItem: typeof import('./components/library/xtx-steps-item.vue')['default']
-    XtxTabs: typeof import('./components/library/xtx-tabs.vue')['default']
-    XtxTabsBar: typeof import('./components/library/xtx-tabs-bar.tsx')['default']
-    XtxTabsPanel: typeof import('./components/library/xtx-tabs-panel.tsx')['default']
   }
 }

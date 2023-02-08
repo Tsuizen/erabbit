@@ -40,17 +40,17 @@
 </template>
 
 <script setup lang="ts">
-import { orderStatus } from '@/api/constants';
-import { confirmOrder, deleteOrder, findOrderList } from '@/api/order';
-import Confirm from '@/components/library/Confirm';
-import Message from '@/components/library/Message';
-import XtxTabs from '@/components/library/xtx-tabs';
-import XtxTabsPanel from '@/components/library/xtx-tabs-panel';
-import type { Order } from '@/types/order';
-import { reactive, ref, watch } from 'vue';
-import OrderCancel from './components/order-cancel.vue';
-import OrderItem from './components/order-item.vue';
-import OrderLogistics from './components/order-logistics.vue';
+import { orderStatus } from "@/api/constants";
+import { confirmOrder, deleteOrder, findOrderList } from "@/api/order";
+import Confirm from "@/components/library/Confirm";
+import Message from "@/components/library/Message";
+import XtxTabs from "@/components/library/xtx-tabs";
+import XtxTabsPanel from "@/components/library/xtx-tabs-panel";
+import type { Order } from "@/types/order";
+import { reactive, ref, watch, getCurrentInstance } from "vue";
+import OrderCancel from "./components/order-cancel.vue";
+import OrderItem from "./components/order-item.vue";
+import OrderLogistics from "./components/order-logistics.vue";
 
 interface ReqParams {
   page: number;
@@ -58,13 +58,13 @@ interface ReqParams {
   orderState: number;
 }
 
-const activeName = ref<string>('all');
+const activeName = ref<string>("all");
 
 // 筛选条件
 const reqParams = reactive<ReqParams>({
   page: 1,
   pageSize: 5,
-  orderState: 0
+  orderState: 0,
 });
 
 const orderList = ref<Order[]>([]);
@@ -72,6 +72,7 @@ const loading = ref<boolean>(false);
 const total = ref<number>(0);
 const orderCancelCom = ref<InstanceType<typeof OrderCancel> | null>(null);
 const orderLogisticsCom = ref<InstanceType<typeof OrderLogistics> | null>(null);
+const { proxy } = getCurrentInstance();
 
 // 点击选项卡
 const tabClick = ({ index }: { index: number }) => {
@@ -92,10 +93,11 @@ const getOrderList = () => {
 
 // 删除订单
 const handlerDelete = (order: Order) => {
-  Confirm({ text: '亲，您确认删除该订单吗？' })
+  proxy
+    .$confirm({ text: "亲，您确认删除该订单吗？" })
     .then(() => {
       deleteOrder(order.id).then(() => {
-        Message({ type: 'success', text: '删除成功' });
+        Message({ type: "success", text: "删除成功" });
         getOrderList();
       });
     })
@@ -109,10 +111,10 @@ const handlerCancel = (order: Order) => {
 };
 
 const handlerConfirm = (order: Order) => {
-  Confirm({ text: '亲，您确认收货吗？确认后货款将打给买家。' }).then(() => {
+  proxy.$confirm({ text: "亲，您确认收货吗？确认后货款将打给买家。" }).then(() => {
     confirmOrder(order.id)
       .then(() => {
-        Message({ type: 'success', text: '确认收货成功' });
+        Message({ type: "success", text: "确认收货成功" });
         // 待收货-->待评价
         order.orderState = 4;
       })
@@ -154,8 +156,8 @@ watch(
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(255 255 255 / 90%) url(../../../assets/images/loading.gif)
-    no-repeat center;
+  background: rgb(255 255 255 / 90%) url(../../../assets/images/loading.gif) no-repeat
+    center;
 }
 
 .none {

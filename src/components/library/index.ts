@@ -1,7 +1,7 @@
-import type { App } from 'vue';
 import defaultImg from '@/assets/images/200.png';
+import type { App } from 'vue';
+import Confirm from './Confirm';
 import Message from './Message';
-import Confirm from './Confirm'
 
 // 扩展vue原有的功能：全局组件，自定义指令，挂载原型方法，注意：没有全局过滤器。
 // vue3.0插件写法要素：导出一个对象，有install函数，默认传入了app应用实例，app基础之上扩展
@@ -10,6 +10,7 @@ export default {
     // 定义一个指令
     defineDirective(app);
 
+    // 全局组件挂载
     app.config.globalProperties.$message = Message;
     app.config.globalProperties.$confirm = Confirm;
   }

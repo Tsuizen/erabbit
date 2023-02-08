@@ -59,9 +59,11 @@ const closeDialog = () => {
   top: 0;
   left: 0;
   z-index: 8887;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   background: rgb(0 0 0 / 0%);
+  padding-right: 17px;
+  overflow: auto;
 
   &.fade {
     background: rgb(0 0 0 / 50%);

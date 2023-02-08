@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import type { Goods } from '@/types/goods';
 import { inject, type Ref } from 'vue';
+const test  =() => {}
 const goods = inject<Ref<Goods>>('goods');
 </script>
 

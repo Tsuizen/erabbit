@@ -14,7 +14,7 @@ export const baseURL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net';
 
 const instance: AxiosInstance = axios.create({
   baseURL,
-  timeout: 100000
+  timeout: 7000
 });
 
 instance.interceptors.request.use(
