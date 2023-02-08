@@ -161,13 +161,14 @@ import Message from '@/components/library/Message';
 import { useCartStore, useUserStore } from '@/store';
 import type { SkuInfo } from '@/types/goods';
 import GoodRelevant from '@/views/goods/components/goods-relevant.vue';
-import { ref } from 'vue';
+import { ref, getCurrentInstance } from 'vue';
 import { useRouter } from 'vue-router';
 import CartNone from './components/cart-none.vue';
 import CartSku from './components/cart-sku.vue';
 
 const cart = useCartStore();
 const user = useUserStore();
+const {proxy} = getCurrentInstance();
 
 // 单选
 const checkOne = (skuId: string, selected: boolean) => {
@@ -183,10 +184,10 @@ const checkAll = (selected: boolean) => {
 
 // 删除
 const deleteCart = (skuId: string) => {
-  Confirm({ text: '亲，您是否确认删除商品' })
+  proxy.$confirm({ text: '亲，您是否确认删除商品' })
     .then(() => {
       cart.deleteCart(skuId).then(() => {
-        Message({ type: 'success', text: '删除成功' });
+        proxy.$message({ type: 'success', text: '删除成功' });
       });
     })
     .catch((e) => {
@@ -196,7 +197,7 @@ const deleteCart = (skuId: string) => {
 
 // 批量删除选中商品，也支持清空无效商品
 const batchDeleteCart = (isClear: boolean) => {
-  Confirm({
+  proxy.$confirm({
     text: `亲，您是否确认删除${isClear ? '失效' : '选中'}的商品`
   }).then(() => {
     cart.batchDeleteCart(isClear);
@@ -221,7 +222,7 @@ const checkout = () => {
   // 2.弹出框确认，提示：下单结算需要登录
   // 3.使用导航守卫，遇见需要登录的路由跳转，拦截到登录页面
   if (cart.selectedList.length === 0) {
-    return Message({ text: '至少选中一种商品' });
+    return proxy.$message({ text: '至少选中一种商品' });
   }
 
   // 如果登录直接跳转
@@ -230,7 +231,7 @@ const checkout = () => {
   }
 
   // 未登录弹出确认框
-  Confirm({ text: '下单结算需要登录，确认现在去登录吗？' })
+  proxy.$confirm({ text: '下单结算需要登录，确认现在去登录吗？' })
     .then(() => {
       router.push('/member/checkout');
     })

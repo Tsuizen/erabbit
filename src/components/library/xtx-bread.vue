@@ -42,7 +42,7 @@ export default {
   // ul li:last-child {}
   // 先找到父元素，找到所有的子元素，找到最后一个，判断是不是LI，是就是选中，不是就是无效选择器
   // ul li:last-of-type {}
-  // 先找到父元素，找到所有的类型为li的元素，选中最后一个io oo oo oioooooo
+  // 先找到父元素，找到所有的类型为li的元素，选中最后一个
   &-item {
     a {
       color: #666;

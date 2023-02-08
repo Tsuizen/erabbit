@@ -1,8 +1,9 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.tsx"],
-  "exclude": [".vscode", "assets", "dist", "public"],
+  "exclude": [".vscode", "assets", "dist", "public", "vite.config.js", "mock"],
   "compilerOptions": {
+    "target":"ES2021",
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {

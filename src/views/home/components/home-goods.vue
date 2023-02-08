@@ -9,7 +9,7 @@
     <div class="extra">
       <RouterLink to="/">
         <span>找相似</span>
-        <span>发现现多宝贝 &gt;</span>
+        <span>发现更多宝贝 &gt;</span>
       </RouterLink>
     </div>
   </div>

@@ -58,7 +58,7 @@ import Message from '@/components/library/Message';
 import { useGoods } from '@/hooks/index';
 import { useCartStore } from '@/store';
 import type { Goods, SkuInfo } from '@/types/goods';
-import { provide, ref, type Ref } from 'vue';
+import { provide, ref, type Ref, getCurrentInstance} from 'vue';
 import GoodsHot from './components/goods-hot.vue';
 import GoodsImage from './components/goods-image.vue';
 import GoodsName from './components/goods-name.vue';
@@ -69,6 +69,7 @@ import GoodsTabs from './components/goods-tabs.vue';
 import GoodsWarn from './components/goods-warn.vue';
 // import { storeToRefs } from 'pinia';
 
+const {proxy} = getCurrentInstance();
 const goods: Ref<Goods> = useGoods();
 // 选择的数量
 const num = ref(1);
@@ -112,10 +113,10 @@ const insertCart = () => {
         count: num.value
       })
       .then(() => {
-        Message({ type: 'success', text: '加入购物车成功' });
+        proxy.$message({ type: 'success', text: '加入购物车成功' });
       });
   } else {
-    Message({ type: 'error', text: '请选择完整规格' });
+    proxy.$message({ type: 'error', text: '请选择完整规格' });
   }
 };
 </script>
